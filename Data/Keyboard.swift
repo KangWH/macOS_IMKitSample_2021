@@ -135,6 +135,7 @@ enum KeyAction: Codable, Hashable, Equatable {
         case actionType
         case character
         case unicode
+        case isTwoSet
         case direction
         case to
         case stopComposition
@@ -149,6 +150,7 @@ enum KeyAction: Codable, Hashable, Equatable {
         case .insertHangul(let hangul):
             try container.encode("insertHangul", forKey: .actionType)
             try container.encode(String(format: "0x%04X", hangul.getUnicode()), forKey: .unicode)
+            try container.encode(hangul.isTwoSet, forKey: .isTwoSet)
         case .delete(direction: let direction):
             try container.encode("delete", forKey: .actionType)
             try container.encode(direction, forKey: .direction)
@@ -178,7 +180,8 @@ enum KeyAction: Codable, Hashable, Equatable {
             guard let unicodeValue = unichar(unicodeString.replacingOccurrences(of: "0x", with: ""), radix: 16) else {
                 throw DecodingError.dataCorruptedError(forKey: .unicode, in: container, debugDescription: "Invalid unicode format")
             }
-            let hangul = Hangul(unicode: unicodeValue)
+            let isTwoSet = try container.decode(Bool.self, forKey: .isTwoSet)
+            let hangul = Hangul(unicode: unicodeValue, isTwoSet: isTwoSet)
             self = .insertHangul(hangul)
         case "delete":
             let direction = try container.decode(String.self, forKey: .direction)

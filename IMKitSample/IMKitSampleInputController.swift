@@ -292,6 +292,7 @@ struct InputReceiver {
         let capsLockPressed = event.modifierFlags.contains(.capsLock)
         for (condition, action) in actionDictionary {
             if condition.test(automataState: self.status, capsLockState: capsLockPressed) {
+                print("Matched with automata state \(self.status)")
                 return action
             }
         }
@@ -305,29 +306,34 @@ struct InputReceiver {
     mutating func applyComposition() -> Bool {
         // 조합 데이터가 없는 경우: 바로 실패
         guard self.keyboard.compositionRules.count > 0 else {
+            print("Info: Composition failed due to the absence of composintion rules.")
             return false
         }
         
-        var currentCount = Array(self.keyboard.compositionRules.keys).max(by: { $0.count < $1.count })!.count
-        while (currentCount > 1) {
-            // 입력된 문자열이 짧은 경우: 실패
-            guard self.hangulBuffer.count >= currentCount else {
-                currentCount -= 1
-                continue
+        if self.hangulBuffer.count < 2 {
+            return false
+        }
+        
+        func getPositionString(_ hangul: Hangul) -> String {
+            switch hangul.position {
+            case .initial: return hangul.isTwoSet ? "i2" : "i"
+            case .medial: return "j"
+            case .final: return hangul.isTwoSet ? "f2" : "f"
+            default: return ""
             }
-            let target = Array(self.hangulBuffer[(self.hangulBuffer.count - currentCount)...])
-            for (key, value) in self.keyboard.compositionRules {
-                if key.count != currentCount {
-                    continue
-                }
-                if key == target {
-                    // 조합 성공
-                    self.hangulBuffer.removeLast(currentCount)
-                    self.hangulBuffer.append(value)
-                    return true
-                }
+        }
+        
+        let target = Array(self.hangulBuffer[(self.hangulBuffer.count - 2)...])
+        print("Target: " + target.map({$0.getCharacterString() + getPositionString($0)}).joined(separator: "+"))
+        
+        for (key, value) in self.keyboard.compositionRules {
+            print("From rule: " + key.map({$0.getCharacterString() + getPositionString($0)}).joined(separator: "+"))
+            if key == target {
+                // 조합 성공
+                self.hangulBuffer.removeLast(2)
+                self.hangulBuffer.append(value.copy())
+                return true
             }
-            currentCount -= 1
         }
         
         return false
