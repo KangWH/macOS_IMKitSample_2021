@@ -1,0 +1,126 @@
+{
+  "" : {
+    "diagnostics" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/HaneulIMESettings-primary.dia",
+    "emit-module-dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/HaneulIMESettings-primary-emit-module.d",
+    "emit-module-diagnostics" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/HaneulIMESettings-primary-emit-module.dia",
+    "pch" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/HaneulIMESettings-primary-Bridging-header.pch",
+    "swift-dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/HaneulIMESettings-primary.swiftdeps"
+  },
+  "/IMKitSample.build/Debug/HaneulIMESettings.build/DerivedSources/GeneratedAssetSymbols.swift" : {
+    "const-values" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftconstvalues",
+    "dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/GeneratedAssetSymbols.d",
+    "diagnostics" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/GeneratedAssetSymbols.dia",
+    "llvm-bc" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/GeneratedAssetSymbols.bc",
+    "object" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/GeneratedAssetSymbols.o",
+    "swift-dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/GeneratedAssetSymbols.swiftdeps",
+    "swiftmodule" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/GeneratedAssetSymbols~partial.swiftmodule"
+  },
+  "/Users/woohyun-kang/Documents/GitHub/macOS_IMKitSample_2021/HaneulIMESettings/ContentView.swift" : {
+    "const-values" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/ContentView.swiftconstvalues",
+    "dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/ContentView.d",
+    "diagnostics" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/ContentView.dia",
+    "llvm-bc" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/ContentView.bc",
+    "object" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/ContentView.o",
+    "swift-dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/ContentView.swiftdeps",
+    "swiftmodule" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/ContentView~partial.swiftmodule"
+  },
+  "/Users/woohyun-kang/Documents/GitHub/macOS_IMKitSample_2021/HaneulIMESettings/HaneulIMESettingsApp.swift" : {
+    "const-values" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/HaneulIMESettingsApp.swiftconstvalues",
+    "dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/HaneulIMESettingsApp.d",
+    "diagnostics" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/HaneulIMESettingsApp.dia",
+    "llvm-bc" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/HaneulIMESettingsApp.bc",
+    "object" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/HaneulIMESettingsApp.o",
+    "swift-dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/HaneulIMESettingsApp.swiftdeps",
+    "swiftmodule" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/HaneulIMESettingsApp~partial.swiftmodule"
+  },
+  "/Users/woohyun-kang/Documents/GitHub/macOS_IMKitSample_2021/HaneulIMESettings/Views/DetailView.swift" : {
+    "const-values" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/DetailView.swiftconstvalues",
+    "dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/DetailView.d",
+    "diagnostics" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/DetailView.dia",
+    "llvm-bc" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/DetailView.bc",
+    "object" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/DetailView.o",
+    "swift-dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/DetailView.swiftdeps",
+    "swiftmodule" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/DetailView~partial.swiftmodule"
+  },
+  "/Users/woohyun-kang/Documents/GitHub/macOS_IMKitSample_2021/HaneulIMESettings/Views/KeyView.swift" : {
+    "const-values" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/KeyView.swiftconstvalues",
+    "dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/KeyView.d",
+    "diagnostics" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/KeyView.dia",
+    "llvm-bc" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/KeyView.bc",
+    "object" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/KeyView.o",
+    "swift-dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/KeyView.swiftdeps",
+    "swiftmodule" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/KeyView~partial.swiftmodule"
+  },
+  "/Users/woohyun-kang/Documents/GitHub/macOS_IMKitSample_2021/HaneulIMESettings/Views/LayoutView.swift" : {
+    "const-values" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/LayoutView.swiftconstvalues",
+    "dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/LayoutView.d",
+    "diagnostics" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/LayoutView.dia",
+    "llvm-bc" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/LayoutView.bc",
+    "object" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/LayoutView.o",
+    "swift-dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/LayoutView.swiftdeps",
+    "swiftmodule" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/LayoutView~partial.swiftmodule"
+  },
+  "/Users/woohyun-kang/Documents/GitHub/macOS_IMKitSample_2021/HaneulIMESettings/Views/PreferencesView.swift" : {
+    "const-values" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/PreferencesView.swiftconstvalues",
+    "dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/PreferencesView.d",
+    "diagnostics" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/PreferencesView.dia",
+    "llvm-bc" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/PreferencesView.bc",
+    "object" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/PreferencesView.o",
+    "swift-dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/PreferencesView.swiftdeps",
+    "swiftmodule" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/PreferencesView~partial.swiftmodule"
+  },
+  "/Users/woohyun-kang/Documents/GitHub/macOS_IMKitSample_2021/HaneulIMESettings/Views/RulesView.swift" : {
+    "const-values" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/RulesView.swiftconstvalues",
+    "dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/RulesView.d",
+    "diagnostics" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/RulesView.dia",
+    "llvm-bc" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/RulesView.bc",
+    "object" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/RulesView.o",
+    "swift-dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/RulesView.swiftdeps",
+    "swiftmodule" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/RulesView~partial.swiftmodule"
+  },
+  "/Users/woohyun-kang/Documents/GitHub/macOS_IMKitSample_2021/HaneulIMESettings/Views/TestView.swift" : {
+    "const-values" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/TestView.swiftconstvalues",
+    "dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/TestView.d",
+    "diagnostics" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/TestView.dia",
+    "llvm-bc" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/TestView.bc",
+    "object" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/TestView.o",
+    "swift-dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/TestView.swiftdeps",
+    "swiftmodule" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/TestView~partial.swiftmodule"
+  },
+  "/Users/woohyun-kang/Documents/GitHub/macOS_IMKitSample_2021/IMKitSample/FileManager.swift" : {
+    "const-values" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/FileManager.swiftconstvalues",
+    "dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/FileManager.d",
+    "diagnostics" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/FileManager.dia",
+    "llvm-bc" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/FileManager.bc",
+    "object" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/FileManager.o",
+    "swift-dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/FileManager.swiftdeps",
+    "swiftmodule" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/FileManager~partial.swiftmodule"
+  },
+  "/Users/woohyun-kang/Documents/GitHub/macOS_IMKitSample_2021/IMKitSample/Hangul.swift" : {
+    "const-values" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/Hangul.swiftconstvalues",
+    "dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/Hangul.d",
+    "diagnostics" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/Hangul.dia",
+    "llvm-bc" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/Hangul.bc",
+    "object" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/Hangul.o",
+    "swift-dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/Hangul.swiftdeps",
+    "swiftmodule" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/Hangul~partial.swiftmodule"
+  },
+  "/Users/woohyun-kang/Documents/GitHub/macOS_IMKitSample_2021/IMKitSample/KeyCodes.swift" : {
+    "const-values" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/KeyCodes.swiftconstvalues",
+    "dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/KeyCodes.d",
+    "diagnostics" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/KeyCodes.dia",
+    "llvm-bc" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/KeyCodes.bc",
+    "object" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/KeyCodes.o",
+    "swift-dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/KeyCodes.swiftdeps",
+    "swiftmodule" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/KeyCodes~partial.swiftmodule"
+  },
+  "/Users/woohyun-kang/Documents/GitHub/macOS_IMKitSample_2021/IMKitSample/Keyboard.swift" : {
+    "const-values" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/Keyboard.swiftconstvalues",
+    "dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/Keyboard.d",
+    "diagnostics" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/Keyboard.dia",
+    "llvm-bc" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/Keyboard.bc",
+    "object" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/Keyboard.o",
+    "swift-dependencies" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/Keyboard.swiftdeps",
+    "swiftmodule" : "/IMKitSample.build/Debug/HaneulIMESettings.build/Objects-normal/arm64/Keyboard~partial.swiftmodule"
+  }
+}
