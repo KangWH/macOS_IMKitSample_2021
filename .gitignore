@@ -20,3 +20,8 @@ DerivedData/
 !*.xcodeproj/xcshareddata/
 **/xcshareddata/WorkspaceSettings.xcsettings
 !*.xcworkspace/contents.xcworkspacedata
+
+EagerLinkingTBDs/*
+ExplicitPrecompiledModules/*
+SwiftExplicitPrecompiledModules/*
+XCBuildData/*
