@@ -506,7 +506,7 @@ enum JamoConstant: Int64, Codable, CaseIterable {
     }
 }
 
-typealias Environment = [String: Int64]
+typealias ExpressionEnvironment = [String: Int64]
 
 indirect enum Expression: Codable {
     case constant(_ value: Int64)
@@ -552,7 +552,7 @@ indirect enum Expression: Codable {
     case conditional(condition: Expression, onTrue: Expression, onFalse: Expression)
     
     
-    func eval(env: inout Environment) -> Int64 {
+    func eval(env: inout ExpressionEnvironment) -> Int64 {
         switch self {
         case .constant(let value): return value
             
@@ -1340,7 +1340,7 @@ indirect enum Expression: Codable {
             fatalError("Something went wrong")
         }
     }
-    static func parse(_ string: String) -> Expression {
+    static func parse(_ string: String) throws -> Expression {
         let tokens = self.tokenize(string)
         return parseTokens(tokens)
     }

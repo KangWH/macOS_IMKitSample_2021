@@ -65,13 +65,13 @@ struct KeyboardDataView: View {
                         Text("기본").tag(Keyboard.Level.basic)
                         Text("고급").tag(Keyboard.Level.advanced)
                     }
-//                    Picker("음절로 조합할 글자 범위", selection: $keyboard.outputProcessorData.hangulRange) {
-//                        Text("KS X 1001(완성형)").tag(Keyboard.HangulRange.ksx1001)
-//                        Text("현대 한글 전체").tag(Keyboard.HangulRange.modernFull)
-//                        Text("한양 PUA").tag(Keyboard.HangulRange.hanyangPUA)
-//                        Text("가능한 모든 한글 조합").tag(Keyboard.HangulRange.oldFull)
-//                    }
-//                    .disabled(keyboard.outputLevel == .plain)
+                    Picker("음절로 조합할 글자 범위", selection: $keyboard.outputProcessorData.composableSyllableRange) {
+                        Text("KS X 1001(완성형)").tag(OutputProcessorData.SyllableRange.ksx1001)
+                        Text("현대 한글 전체").tag(OutputProcessorData.SyllableRange.modernFull)
+                        Text("한양 PUA").tag(OutputProcessorData.SyllableRange.hanyangPUA)
+                        Text("가능한 모든 한글 조합").tag(OutputProcessorData.SyllableRange.oldFull)
+                    }
+                    .disabled(keyboard.outputLevel == .plain)
                     NavigationLink(destination: EmptyView()) {
                         BackgroundIcon(label: "낱자 조합 규칙", iconName: "squares.leading.rectangle.fill")
                     }

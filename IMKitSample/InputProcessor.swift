@@ -10,12 +10,12 @@ import Foundation
 
 protocol InputProcessor {
     var data: InputProcessorData { get }
-    func getKeyAction (event: NSEvent, env: inout Environment) -> KeyAction?
+    func getKeyAction (event: NSEvent, env: inout ExpressionEnvironment) -> KeyAction?
 }
 
 class PlainInputProcessor: InputProcessor {
     let data = InputProcessorData()
-    func getKeyAction(event: NSEvent, env: inout Environment) -> KeyAction? {
+    func getKeyAction(event: NSEvent, env: inout ExpressionEnvironment) -> KeyAction? {
         return KeyAction.fromRawValue(0)
     }
 }
@@ -27,7 +27,7 @@ class BasicInputProcessor: InputProcessor {
         self.data = data
     }
     
-    func getKeyAction(event: NSEvent, env: inout Environment) -> KeyAction? {
+    func getKeyAction(event: NSEvent, env: inout ExpressionEnvironment) -> KeyAction? {
         let key = Key(event: event)
         var keyAction = KeyAction.normalCharacter(unicode: 0)
         
@@ -52,7 +52,7 @@ class BasicInputProcessor: InputProcessor {
                 return KeyAction.specialKey(keyCode: 0x8B)
             }
         } else if let expr = data.keyTable[key] {
-            keyAction = KeyAction.fromRawValue(expr.eval(env: &env))
+            keyAction = KeyAction.fromRawValue(try! Expression.parse(expr).eval(env: &env))
         }
         
         return keyAction
@@ -66,7 +66,7 @@ class AdvancedInputProcessor: InputProcessor {
         self.data = data
     }
     
-    func getKeyAction(event: NSEvent, env: inout Environment) -> KeyAction? {
+    func getKeyAction(event: NSEvent, env: inout ExpressionEnvironment) -> KeyAction? {
         let key = Key(event: event)
         var keyAction = KeyAction.normalCharacter(unicode: 0)
         
@@ -93,7 +93,7 @@ class AdvancedInputProcessor: InputProcessor {
                 return KeyAction.specialKey(keyCode: 0x8B)
             }
         } else if let expr = data.keyTable[key] {
-            keyAction = KeyAction.fromRawValue(expr.eval(env: &env))
+            keyAction = KeyAction.fromRawValue(try! Expression.parse(expr).eval(env: &env))
         }
         
         return keyAction

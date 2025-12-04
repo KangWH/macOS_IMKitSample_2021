@@ -102,12 +102,37 @@ enum KeyAction: Equatable, Codable {
             return .normalCharacter(unicode: 0)
         }
     }
+    
+    var previewString: String {
+        switch self {
+        case .normalCharacter(unicode: let unicode):
+            if unicode == 0 { return "" }
+            guard let unicodeScalar = UnicodeScalar(Int(unicode)) else {
+                return "?"
+            }
+            return String(unicodeScalar)
+            
+        case .dubeolsikHangul(leading: let leading, medial: let medial, trailing: let trailing),
+             .sebeolsikHangul(leading: let leading, medial: let medial, trailing: let trailing):
+            if let leadingCode = LeadingJamoCode[leading], let unicodeScalar = UnicodeScalar(leadingCode) {
+                return String(unicodeScalar)
+            } else if let medialCode = MedialJamoCode[medial], let unicodeScalar = UnicodeScalar(medialCode) {
+                return String(unicodeScalar)
+            } else if let trailingCode = TrailingJamoCode[trailing], let unicodeScalar = UnicodeScalar(trailingCode) {
+                return String(unicodeScalar)
+            }
+            return "?"
+            
+        default:
+            return "?"
+        }
+    }
 }
 struct InputProcessorData: Codable {
     var flags: [InputProcessorFlag] = []
     var additionalExpressions = AdditionalExpressions()
     
-    var keyTable: [Key: Expression] = [:]
+    var keyTable: [Key: String] = [:]
     var keyTableDescription: String = ""
     var additionalKeyTable: [ShortcutKey: Expression] = [:]
     
@@ -170,7 +195,7 @@ struct DecompositionSkipRule: Codable {
     var trailing: [Jamo: [Jamo]] = [:]
 }
 struct AutomataEntry: Codable {
-    var expression: Expression
+    var expression: String
     var fallbackState = 0
     var description: String = ""
 }

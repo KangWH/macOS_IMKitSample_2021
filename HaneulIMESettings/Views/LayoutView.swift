@@ -14,27 +14,47 @@ enum LayoutType {
 }
 
 struct KeyView: View {
+    @Bindable var keyboard: Keyboard
     let keyCode: KeyCode
-//    let keyData: [Key: [Condition: KeyAction]]
     let status: (shift: Bool, option: Bool, formula: String)
+    
+    private let key: Key
+    private var environment: ExpressionEnvironment = [:]
+    @State var expressionString: String
+    private var expression: Expression
+    private var keyAction: KeyAction
+    private var keyString: String
+    
+    init(keyboard: Keyboard, keyCode: KeyCode, status: (shift: Bool, option: Bool, formula: String)) {
+        self.keyboard = keyboard
+        self.keyCode = keyCode
+        self.status = status
+        
+        self.key = Key(keyCode: keyCode, shift: status.shift, option: status.option)
+        self.expressionString = keyboard.inputProcessorData.keyTable[key]!
+        self.expression = try! Expression.parse(expressionString)
+        self.keyAction = KeyAction.fromRawValue(expression.eval(env: &environment))
+        self.keyString = keyAction.previewString
+    }
     
     @State var keyEditing: Bool = false
     
     var body: some View {
-        Button(action: {keyEditing = true}) {
+        
+        Button(action: {
+            keyEditing = true
+        }) {
             ZStack {
                 Rectangle()
                     .foregroundStyle(Color.secondary.opacity(0.2))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
-                Text(keyCode.name)
+                Text(keyString)
             }
         }
         .padding(2)
         .buttonStyle(.plain)
         .frame(width: 36, height: 36)
-        .sheet(isPresented: $keyEditing) {
-            KeyOptionView(key: Key(keyCode: keyCode, shift: status.shift, option: status.option))
-        }
+        .sheet(isPresented: $keyEditing) { KeyOptionView(key: self.key, expression: $expressionString) }
     }
 }
 
@@ -119,7 +139,7 @@ struct KeyboardView: View {
                     .fill(.clear)
                     .frame(width: keyLayout[layoutType]![0].leftMargin, height: 4)
                 ForEach(keyLayout[layoutType]![0].keys) { keyCode in
-                    KeyView(keyCode: keyCode, /*keyData: keyboard.layout,*/ status: status)
+                    KeyView(keyboard: keyboard, keyCode: keyCode, status: status)
                 }
                 Rectangle()
                     .fill(.clear)
@@ -130,7 +150,7 @@ struct KeyboardView: View {
                     .fill(.clear)
                     .frame(width: keyLayout[layoutType]![1].leftMargin, height: 4)
                 ForEach(keyLayout[layoutType]![1].keys) { keyCode in
-                    KeyView(keyCode: keyCode, /*keyData: keyboard.layout,*/ status: status)
+                    KeyView(keyboard: keyboard, keyCode: keyCode, status: status)
                 }
                 Rectangle()
                     .fill(.clear)
@@ -141,7 +161,7 @@ struct KeyboardView: View {
                     .fill(.clear)
                     .frame(width: keyLayout[layoutType]![2].leftMargin, height: 4)
                 ForEach(keyLayout[layoutType]![2].keys) { keyCode in
-                    KeyView(keyCode: keyCode, /*keyData: keyboard.layout,*/ status: status)
+                    KeyView(keyboard: keyboard, keyCode: keyCode, status: status)
                 }
                 Rectangle()
                     .fill(.clear)
@@ -152,7 +172,7 @@ struct KeyboardView: View {
                     .fill(.clear)
                     .frame(width: keyLayout[layoutType]![3].leftMargin, height: 4)
                 ForEach(keyLayout[layoutType]![3].keys) { keyCode in
-                    KeyView(keyCode: keyCode, /*keyData: keyboard.layout,*/ status: status)
+                    KeyView(keyboard: keyboard, keyCode: keyCode, status: status)
                 }
                 Rectangle()
                     .fill(.clear)

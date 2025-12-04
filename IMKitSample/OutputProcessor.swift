@@ -10,15 +10,15 @@ import Foundation
 protocol OutputProcessor {
     var data: OutputProcessorData { get }
     ///
-    func executeKeyAction(_ action: KeyAction, hangulBufferLog: inout [[PreSyllable]], stateLog: inout [Int], env: inout Environment) -> String?
+    func executeKeyAction(_ action: KeyAction, hangulBufferLog: inout [[PreSyllable]], stateLog: inout [Int], env: inout ExpressionEnvironment) -> String?
     func changeState(state: Int) -> Int
-    func changeState(state: Int, failState: Int64, inputJamos: [Jamo], currentSyllable: PreSyllable?, env: inout Environment) -> Int
+    func changeState(state: Int, failState: Int64, inputJamos: [Jamo], currentSyllable: PreSyllable?, env: inout ExpressionEnvironment) -> Int
 }
 
 class PlainOutputProcessor: OutputProcessor {
     var data = OutputProcessorData()
     
-    func executeKeyAction(_ action: KeyAction, hangulBufferLog: inout [[PreSyllable]], stateLog: inout [Int], env: inout Environment) -> String? {
+    func executeKeyAction(_ action: KeyAction, hangulBufferLog: inout [[PreSyllable]], stateLog: inout [Int], env: inout ExpressionEnvironment) -> String? {
         switch action {
         case .normalCharacter(unicode: let unicode):
             if let unicodeScalar = UnicodeScalar(Int(unicode)) {
@@ -93,7 +93,7 @@ class PlainOutputProcessor: OutputProcessor {
     func changeState(state: Int) -> Int {
         return 0
     }
-    func changeState(state: Int, failState: Int64, inputJamos: [Jamo], currentSyllable: PreSyllable?, env: inout Environment) -> Int {
+    func changeState(state: Int, failState: Int64, inputJamos: [Jamo], currentSyllable: PreSyllable?, env: inout ExpressionEnvironment) -> Int {
         return 0
     }
 }
@@ -105,7 +105,7 @@ class BasicOutputProcessor: OutputProcessor {
         self.data = data
     }
     
-    func executeKeyAction(_ action: KeyAction, hangulBufferLog: inout [[PreSyllable]], stateLog: inout [Int], env: inout Environment) -> String? {
+    func executeKeyAction(_ action: KeyAction, hangulBufferLog: inout [[PreSyllable]], stateLog: inout [Int], env: inout ExpressionEnvironment) -> String? {
         switch action {
         case .normalCharacter(unicode: let unicode):
             if let unicodeScalar = UnicodeScalar(Int(unicode)) {
@@ -181,7 +181,7 @@ class BasicOutputProcessor: OutputProcessor {
         return ""
     }
     
-    func processJamo(inputJamos: [Jamo], hangulBufferLog: inout [[PreSyllable]], stateLog: inout [Int], env: inout Environment, rerunCount: Int = 0) {
+    func processJamo(inputJamos: [Jamo], hangulBufferLog: inout [[PreSyllable]], stateLog: inout [Int], env: inout ExpressionEnvironment, rerunCount: Int = 0) {
         var currentBuffer: [PreSyllable] = []
         if let lastBuffer = hangulBufferLog.last {
             lastBuffer.forEach { currentBuffer.append($0.copy()) }
@@ -260,7 +260,7 @@ class BasicOutputProcessor: OutputProcessor {
         currentBuffer.append(currentSyllable)
         hangulBufferLog.append(currentBuffer)
     }
-    func processFailedJamo(failState: Int64, inputJamos: [Jamo], hangulBufferLog: inout [[PreSyllable]], stateLog: inout [Int], env: inout Environment, rerunCount: Int) {
+    func processFailedJamo(failState: Int64, inputJamos: [Jamo], hangulBufferLog: inout [[PreSyllable]], stateLog: inout [Int], env: inout ExpressionEnvironment, rerunCount: Int) {
         var currentBuffer: [PreSyllable] = []
         if let lastBuffer = hangulBufferLog.last {
             lastBuffer.forEach { currentBuffer.append($0.copy()) }
@@ -333,9 +333,9 @@ class BasicOutputProcessor: OutputProcessor {
         let medialIndex = [0x0001, 0x0005, 0x0006, 0x000A, 0x000B, 0x000F, 0x0010, 0x0014, 0x0015, 0x0016, 0x0017, 0x0021, 0x0022, 0x002B, 0x002E, 0x0030, 0x0034, 0x0036, 0x0040, 0x0047, 0x0049].firstIndex(of: currentSyllable.medial.code)
         let trailingIndex = [0x0000, 0x0001, 0x0002, 0x0007, 0x000C, 0x0014, 0x0017, 0x0018, 0x0024, 0x0025, 0x002F, 0x0033, 0x003A, 0x0040, 0x0041, 0x0042, 0x0046, 0x0056, 0x005E, 0x006D, 0x0076, 0x008A, 0x00A1, 0x00AB, 0x00B0, 0x00B1, 0x00B3, 0x00B9].firstIndex(of: currentSyllable.trailing.code)
         
-        if let leadingIndex = leadingIndex, let medialIndex = medialIndex, let trailingIndex = trailingIndex {
-            let syllableUnicode = UnicodeScalar(0xAC00 + (21 * 28) * leadingIndex + 28 * medialIndex + trailingIndex)
-        }
+//        if let leadingIndex = leadingIndex, let medialIndex = medialIndex, let trailingIndex = trailingIndex {
+//            let syllableUnicode = UnicodeScalar(0xAC00 + (21 * 28) * leadingIndex + 28 * medialIndex + trailingIndex)
+//        }
         
         switch self.data.composableSyllableRange {
         case .modernFull:
@@ -356,7 +356,7 @@ class BasicOutputProcessor: OutputProcessor {
         return automataEntry.fallbackState
     }
     // 한글 조합 시
-    func changeState(state: Int, failState: Int64, inputJamos: [Jamo], currentSyllable: PreSyllable?, env: inout Environment) -> Int {
+    func changeState(state: Int, failState: Int64, inputJamos: [Jamo], currentSyllable: PreSyllable?, env: inout ExpressionEnvironment) -> Int {
         if inputJamos.isEmpty {
             return state
         }
@@ -386,6 +386,6 @@ class BasicOutputProcessor: OutputProcessor {
         guard let expr = data.automataRules[state] else {
             return 0
         }
-        return Int(expr.expression.eval(env: &env))
+        return Int(try! Expression.parse(expr.expression).eval(env: &env))
     }
 }

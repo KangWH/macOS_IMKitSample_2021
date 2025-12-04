@@ -8,32 +8,29 @@
 import SwiftUI
 
 struct KeyOptionView: View {
-//    @Environment(\.dismiss) var dismiss
+    @Environment(\.dismiss) var dismiss
     let key: Key
-    @State var expression = "T < 2 ? H2|G_ : H2|_G"
-    @State var keyActionType: KeyActionType = .dubeolsikJamo
-    @State var showExpressionForm: Bool = false
-    @State var characterBuffer: String = ""
+    @Binding var expression: String
     
-    enum KeyActionType {
-        case generalCharacter
-        case dubeolsikJamo
-        case sebeolsikJamo
-        case advanced
+    @State private var expressionBuffer: String
+    
+    init(key: Key, expression: Binding<String>) {
+        self.key = key
+        self._expression = expression
+        self._expressionBuffer = State(initialValue: expression.wrappedValue)
     }
     
     var body: some View {
         Form {
             Section {
-                Picker("역할", selection: $keyActionType) {
-                    Text("일반 문자 입력").tag(KeyActionType.generalCharacter)
-                    Text("두벌식 낱자 입력").tag(KeyActionType.dubeolsikJamo)
-                    Text("세벌식 낱자 입력").tag(KeyActionType.sebeolsikJamo)
-                    Text("고급").tag(KeyActionType.advanced)
-                        .selectionDisabled()
+                HStack {
+                    Text("표현식")
+                    TextField("", text: $expressionBuffer)
+                        .monospaced()
                 }
-                if keyActionType != .advanced {
-                    TextField("문자", text: $characterBuffer)
+                HStack {
+                    Spacer()
+                    Button("문자 상수 입력 도우미...", action: {})
                 }
             } header: {
                 HStack(spacing: 0) {
@@ -45,33 +42,26 @@ struct KeyOptionView: View {
                     }
                     Text("\(key.keyCode.name) 편집")
                 }
-            } footer: {
-                Text("겹낱자는 구성 낱자를 늘어놓아 입력할 수 있습니다. (예: ‘ㅅㄱ’ → ‘ㅺ’)\n옛한글 낱자 중 반시옷은 ‘Z’로, 옛이응은 ‘O‘로, 여린히읗은 ‘X’로, 아래아는 ‘A’로 입력할 수 있습니다.")
-            }
-            Section("고급 설정", isExpanded: $showExpressionForm) {
-                HStack {
-                    Text("표현식")
-                    TextField("", text: $expression)
-                        .monospaced()
-                }
-                HStack {
-                    Spacer()
-                    Button("문자 상수 입력 도우미...", action: {})
-                }
             }
         }
         .formStyle(.grouped)
         Divider()
         HStack {
             Spacer()
-            Button("취소") { /* dismiss() */ }
-            Button("확인", action: {})
-                .buttonStyle(.borderedProminent)
+            Button("취소") { dismiss() }
+            Button("확인", action: {
+                do {
+                    let expression = try Expression.parse(expressionBuffer)
+                } catch {
+                    print("There is a syntax error in the expression.")
+                }
+            })
+            .buttonStyle(.borderedProminent)
         }
         .padding()
     }
 }
 
 #Preview {
-    KeyOptionView(key: Key(keyCode: .a, shift: false, option: true))
+    KeyOptionView(key: Key(keyCode: .a, shift: false, option: true), expression: .constant("Hello!"))
 }

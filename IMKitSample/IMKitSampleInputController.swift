@@ -134,7 +134,7 @@ struct InputReceiver {
 //    var keyboard: Keyboard
     var stateLog: [Int]
     var hangulBufferLog: [[PreSyllable]]
-    var environment: Environment
+    var environment: ExpressionEnvironment
     
     var inputProcessor: InputProcessor
     var outputProcessor: OutputProcessor

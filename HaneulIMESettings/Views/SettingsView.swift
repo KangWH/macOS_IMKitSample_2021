@@ -33,7 +33,7 @@ struct SettingsView: View {
                         Label("일반 설정", systemImage: "gear")
                     }
                 }
-                Section("Keyboards") {
+                Section("키보드") {
                     ForEach(appEnvironment.keyboards) { keyboard in
                         NavigationLink(value: MenuItem.keyboard(keyboard)) {
                             Label(keyboard.name, systemImage: "keyboard")
