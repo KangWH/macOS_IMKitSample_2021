@@ -11,794 +11,513 @@ let dubeolsikOld = Keyboard(
     name: "두벌식 옛한글",
     description: "기본 두벌식 옛한글 자판입니다.",
     
-    layout: [
-        Key(keyCode: .grave, shift: false, option: false): [
-            Condition(): KeyAction.insert("₩")
-        ],
-        Key(keyCode: .grave, shift: true, option: false): [
-            Condition(): KeyAction.insert("~")
-        ],
-        Key(keyCode: .grave, shift: false, option: true): [
-            Condition(): KeyAction.insert("`")
-        ],
-        Key(keyCode: .grave, shift: true, option: true): [
-            Condition(): KeyAction.insert("~")
-        ],
-        
-//        Key(keyCode: .q, shift: false, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .b, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .b, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .q, shift: true, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .b_b, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .b_b, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .q, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("q")]
-//        ],
-//        Key(keyCode: .q, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("Q")]
-//        ],
-//        Key(keyCode: .w, shift: false, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .j, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .j, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .w, shift: true, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .j_j, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .j_j, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .w, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("w")]
-//        ],
-//        Key(keyCode: .w, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("W")]
-//        ],
-//        Key(keyCode: .e, shift: false, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .d, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .d, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .e, shift: true, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .d_d, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .d_d, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .e, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("e")]
-//        ],
-//        Key(keyCode: .e, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("E")]
-//        ],
-//        Key(keyCode: .r, shift: false, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .g, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .g, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .r, shift: true, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .g_g, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .g_g, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .r, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("r")]
-//        ],
-//        Key(keyCode: .r, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("R")]
-//        ],
-//        Key(keyCode: .t, shift: false, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .s, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .s, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .t, shift: true, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .s_s, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .s_s, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .t, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("t")]
-//        ],
-//        Key(keyCode: .t, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("T")]
-//        ],
-//        
-//        Key(keyCode: .y, shift: false, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.medial, .yo))
-//            ]
-//        ],
-//        Key(keyCode: .y, shift: true, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.toneMark, .two))
-//            ]
-//        ],
-//        Key(keyCode: .y, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("y")]
-//        ],
-//        Key(keyCode: .y, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("Y")]
-//        ],
-//        Key(keyCode: .u, shift: false, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.medial, .yeo))
-//            ]
-//        ],
-//        Key(keyCode: .u, shift: true, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.toneMark, .one))
-//            ]
-//        ],
-//        Key(keyCode: .u, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("u")]
-//        ],
-//        Key(keyCode: .u, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("U")]
-//        ],
-//        Key(keyCode: .i, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.medial, .ya))
-//            ]
-//        ],
-//        Key(keyCode: .i, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("i")]
-//        ],
-//        Key(keyCode: .i, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("I")]
-//        ],
-//        Key(keyCode: .o, shift: false, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.medial, .ae))
-//            ]
-//        ],
-//        Key(keyCode: .o, shift: true, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.medial, .yae))
-//            ]
-//        ],
-//        Key(keyCode: .o, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("o")]
-//        ],
-//        Key(keyCode: .o, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("O")]
-//        ],
-//        Key(keyCode: .p, shift: false, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.medial, .e))
-//            ]
-//        ],
-//        Key(keyCode: .p, shift: true, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.medial, .ye))
-//            ]
-//        ],
-//        Key(keyCode: .p, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("p")]
-//        ],
-//        Key(keyCode: .p, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("P")]
-//        ],
-//        
-//        Key(keyCode: .a, shift: false, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .m, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .m, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .a, shift: true, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .z, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .z, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .a, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("a")]
-//        ],
-//        Key(keyCode: .a, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("A")]
-//        ],
-//        Key(keyCode: .s, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .n, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .n, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .s, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("s")]
-//        ],
-//        Key(keyCode: .s, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("S")]
-//        ],
-//        Key(keyCode: .d, shift: false, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .ie, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .ie, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .d, shift: true, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .ng, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .ng, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .d, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("d")]
-//        ],
-//        Key(keyCode: .d, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("D")]
-//        ],
-//        Key(keyCode: .f, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .r, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .r, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .f, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("f")]
-//        ],
-//        Key(keyCode: .f, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("F")]
-//        ],
-//        Key(keyCode: .g, shift: false, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .h, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .h, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .g, shift: true, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .x, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .x, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .g, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("g")]
-//        ],
-//        Key(keyCode: .g, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("G")]
-//        ],
-//        
-//        Key(keyCode: .h, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.medial, .o))
-//            ]
-//        ],
-//        Key(keyCode: .h, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("h")]
-//        ],
-//        Key(keyCode: .h, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("H")]
-//        ],
-//        Key(keyCode: .j, shift: false, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.medial, .eo))
-//            ]
-//        ],
-//        Key(keyCode: .j, shift: true, option: false): [
-//            Condition(): [
-//                KeyAction.noop(stopComposition: true)
-//            ]
-//        ],
-//        Key(keyCode: .j, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("j")]
-//        ],
-//        Key(keyCode: .j, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("J")]
-//        ],
-//        Key(keyCode: .k, shift: false, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.medial, .a))
-//            ]
-//        ],
-//        Key(keyCode: .k, shift: true, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.medial, .aa))
-//            ]
-//        ],
-//        Key(keyCode: .k, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("k")]
-//        ],
-//        Key(keyCode: .k, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("K")]
-//        ],
-//        Key(keyCode: .l, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.medial, .i))
-//            ]
-//        ],
-//        Key(keyCode: .l, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("l")]
-//        ],
-//        Key(keyCode: .l, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("L")]
-//        ],
-//        
-//        Key(keyCode: .z, shift: false, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .k, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .k, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .z, shift: true, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.initial, .chs, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .z, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("z")]
-//        ],
-//        Key(keyCode: .z, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("Z")]
-//        ],
-//        Key(keyCode: .x, shift: false, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .t, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .t, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .x, shift: true, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.initial, .js, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .x, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("x")]
-//        ],
-//        Key(keyCode: .x, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("X")]
-//        ],
-//        Key(keyCode: .c, shift: false, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .ch, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .ch, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .c, shift: true, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.initial, .chj, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .c, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("c")]
-//        ],
-//        Key(keyCode: .c, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("C")]
-//        ],
-//        Key(keyCode: .v, shift: false, option: false): [
-//            Condition(allowedAutomataStates: [0, 1]): [
-//                KeyAction.insertHangul(Hangul(.initial, .p, isTwoSet: true))
-//            ],
-//            Condition(allowedAutomataStates: [2, 3]): [
-//                KeyAction.insertHangul(Hangul(.final, .p, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .v, shift: true, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.initial, .jj, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .v, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("v")]
-//        ],
-//        Key(keyCode: .v, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("V")]
-//        ],
-//        
-//        Key(keyCode: .b, shift: false, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.medial, .yu))
-//            ]
-//        ],
-//        Key(keyCode: .b, shift: true, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.initial, .chch, isTwoSet: true))
-//            ]
-//        ],
-//        Key(keyCode: .b, shift: false, option: true): [
-//            Condition(): [KeyAction.insert("b")]
-//        ],
-//        Key(keyCode: .b, shift: true, option: true): [
-//            Condition(): [KeyAction.insert("B")]
-//        ],
-        Key(keyCode: .n, shift: false, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.medial, .u))
-        ],
-        Key(keyCode: .n, shift: true, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.initial, .jch, isTwoSet: true))
-        ],
-        Key(keyCode: .n, shift: false, option: true): [
-            Condition(): KeyAction.insert("n")
-        ],
-        Key(keyCode: .n, shift: true, option: true): [
-            Condition(): KeyAction.insert("N")
-        ],
-//        Key(keyCode: .m, option: false): [
-//            Condition(): [
-//                KeyAction.insertHangul(Hangul(.medial, .eu))
-//            ]
-//        ],
-        Key(keyCode: .m, shift: false, option: true): [
-            Condition(): KeyAction.insert("m")
-        ],
-        Key(keyCode: .m, shift: true, option: true): [
-            Condition(): KeyAction.insert("M")
-        ],
-    ],
+    inputLevel: .basic,
+    outputLevel: .basic,
     
-    compositionRules: [
-        [Hangul(.initial, .g, isTwoSet: true), Hangul(.initial, .d, isTwoSet: true)]: Hangul(.initial, .g_d),
-        [Hangul(.initial, .n, isTwoSet: true), Hangul(.initial, .g, isTwoSet: true)]: Hangul(.initial, .n_g),
-        [Hangul(.initial, .n, isTwoSet: true), Hangul(.initial, .n, isTwoSet: true)]: Hangul(.initial, .n_n),
-        [Hangul(.initial, .n, isTwoSet: true), Hangul(.initial, .d, isTwoSet: true)]: Hangul(.initial, .n_d),
-        [Hangul(.initial, .n, isTwoSet: true), Hangul(.initial, .b, isTwoSet: true)]: Hangul(.initial, .n_b),
-        [Hangul(.initial, .n, isTwoSet: true), Hangul(.initial, .s, isTwoSet: true)]: Hangul(.initial, .n_s),
-        [Hangul(.initial, .n, isTwoSet: true), Hangul(.initial, .j, isTwoSet: true)]: Hangul(.initial, .n_j),
-        [Hangul(.initial, .n, isTwoSet: true), Hangul(.initial, .h, isTwoSet: true)]: Hangul(.initial, .n_h),
-        [Hangul(.initial, .d, isTwoSet: true), Hangul(.initial, .g, isTwoSet: true)]: Hangul(.initial, .d_g),
-        [Hangul(.initial, .d, isTwoSet: true), Hangul(.initial, .r, isTwoSet: true)]: Hangul(.initial, .d_r),
-        [Hangul(.initial, .d, isTwoSet: true), Hangul(.initial, .m, isTwoSet: true)]: Hangul(.initial, .d_m),
-        [Hangul(.initial, .d, isTwoSet: true), Hangul(.initial, .b, isTwoSet: true)]: Hangul(.initial, .d_b),
-        [Hangul(.initial, .d, isTwoSet: true), Hangul(.initial, .s, isTwoSet: true)]: Hangul(.initial, .d_s),
-        [Hangul(.initial, .d, isTwoSet: true), Hangul(.initial, .j, isTwoSet: true)]: Hangul(.initial, .d_j),
-        [Hangul(.initial, .r, isTwoSet: true), Hangul(.initial, .g, isTwoSet: true)]: Hangul(.initial, .r_g),
-        [Hangul(.initial, .r, isTwoSet: true), Hangul(.initial, .g_g, isTwoSet: true)]: Hangul(.initial, .r_g_g),
-        [Hangul(.initial, .r, isTwoSet: true), Hangul(.initial, .n, isTwoSet: true)]: Hangul(.initial, .r_n),
-        [Hangul(.initial, .r, isTwoSet: true), Hangul(.initial, .d, isTwoSet: true)]: Hangul(.initial, .r_d),
-        [Hangul(.initial, .r, isTwoSet: true), Hangul(.initial, .d_d, isTwoSet: true)]: Hangul(.initial, .r_d_d),
-        [Hangul(.initial, .r, isTwoSet: true), Hangul(.initial, .r, isTwoSet: true)]: Hangul(.initial, .r_r),
-        [Hangul(.initial, .r, isTwoSet: true), Hangul(.initial, .m, isTwoSet: true)]: Hangul(.initial, .r_m),
-        [Hangul(.initial, .r, isTwoSet: true), Hangul(.initial, .b, isTwoSet: true)]: Hangul(.initial, .r_b),
-        [Hangul(.initial, .r, isTwoSet: true), Hangul(.initial, .b_b, isTwoSet: true)]: Hangul(.initial, .r_b_b),
-        [Hangul(.initial, .r, isTwoSet: true), Hangul(.initial, .s, isTwoSet: true)]: Hangul(.initial, .r_s),
-        [Hangul(.initial, .r, isTwoSet: true), Hangul(.initial, .j, isTwoSet: true)]: Hangul(.initial, .r_j),
-        [Hangul(.initial, .r, isTwoSet: true), Hangul(.initial, .k, isTwoSet: true)]: Hangul(.initial, .r_k),
-        [Hangul(.initial, .r, isTwoSet: true), Hangul(.initial, .h, isTwoSet: true)]: Hangul(.initial, .r_h),
-        [Hangul(.initial, .r, isTwoSet: true), Hangul(.initial, .ie, isTwoSet: true)]: Hangul(.initial, .gr),
-        [Hangul(.initial, .r_b), Hangul(.initial, .ie, isTwoSet: true)]: Hangul(.initial, .r_gb),
-        [Hangul(.initial, .m, isTwoSet: true), Hangul(.initial, .g, isTwoSet: true)]: Hangul(.initial, .m_g),
-        [Hangul(.initial, .m, isTwoSet: true), Hangul(.initial, .d, isTwoSet: true)]: Hangul(.initial, .m_d),
-        [Hangul(.initial, .m, isTwoSet: true), Hangul(.initial, .b, isTwoSet: true)]: Hangul(.initial, .m_b),
-        [Hangul(.initial, .m, isTwoSet: true), Hangul(.initial, .s, isTwoSet: true)]: Hangul(.initial, .m_s),
-        [Hangul(.initial, .m, isTwoSet: true), Hangul(.initial, .ie, isTwoSet: true)]: Hangul(.initial, .gm),
-        [Hangul(.initial, .b, isTwoSet: true), Hangul(.initial, .g, isTwoSet: true)]: Hangul(.initial, .b_g),
-        [Hangul(.initial, .b, isTwoSet: true), Hangul(.initial, .n, isTwoSet: true)]: Hangul(.initial, .b_n),
-        [Hangul(.initial, .b, isTwoSet: true), Hangul(.initial, .d, isTwoSet: true)]: Hangul(.initial, .b_d),
-        [Hangul(.initial, .b, isTwoSet: true), Hangul(.initial, .s, isTwoSet: true)]: Hangul(.initial, .b_s),
-        [Hangul(.initial, .b, isTwoSet: true), Hangul(.initial, .s_s, isTwoSet: true)]: Hangul(.initial, .b_s_s),
-        [Hangul(.initial, .b, isTwoSet: true), Hangul(.initial, .j, isTwoSet: true)]: Hangul(.initial, .b_j),
-        [Hangul(.initial, .b, isTwoSet: true), Hangul(.initial, .ch, isTwoSet: true)]: Hangul(.initial, .b_ch),
-        [Hangul(.initial, .b, isTwoSet: true), Hangul(.initial, .k, isTwoSet: true)]: Hangul(.initial, .b_k),
-        [Hangul(.initial, .b, isTwoSet: true), Hangul(.initial, .t, isTwoSet: true)]: Hangul(.initial, .b_t),
-        [Hangul(.initial, .b, isTwoSet: true), Hangul(.initial, .p, isTwoSet: true)]: Hangul(.initial, .b_p),
-        [Hangul(.initial, .b, isTwoSet: true), Hangul(.initial, .h, isTwoSet: true)]: Hangul(.initial, .b_h),
-        [Hangul(.initial, .b, isTwoSet: true), Hangul(.initial, .ie, isTwoSet: true)]: Hangul(.initial, .gb),
-        [Hangul(.initial, .b_b), Hangul(.initial, .ie, isTwoSet: true)]: Hangul(.initial, .gbb),
-        [Hangul(.initial, .b_s), Hangul(.initial, .g, isTwoSet: true)]: Hangul(.initial, .b_s_g),
-        [Hangul(.initial, .b_s), Hangul(.initial, .d, isTwoSet: true)]: Hangul(.initial, .b_s_d),
-        [Hangul(.initial, .b_s), Hangul(.initial, .b, isTwoSet: true)]: Hangul(.initial, .b_s_b),
-        [Hangul(.initial, .b_s), Hangul(.initial, .j, isTwoSet: true)]: Hangul(.initial, .b_s_j),
-        [Hangul(.initial, .b_s), Hangul(.initial, .t, isTwoSet: true)]: Hangul(.initial, .b_s_t),
-        [Hangul(.initial, .s, isTwoSet: true), Hangul(.initial, .g, isTwoSet: true)]: Hangul(.initial, .s_g),
-        [Hangul(.initial, .s, isTwoSet: true), Hangul(.initial, .n, isTwoSet: true)]: Hangul(.initial, .s_n),
-        [Hangul(.initial, .s, isTwoSet: true), Hangul(.initial, .d, isTwoSet: true)]: Hangul(.initial, .s_d),
-        [Hangul(.initial, .s, isTwoSet: true), Hangul(.initial, .r, isTwoSet: true)]: Hangul(.initial, .s_r),
-        [Hangul(.initial, .s, isTwoSet: true), Hangul(.initial, .m, isTwoSet: true)]: Hangul(.initial, .s_m),
-        [Hangul(.initial, .s, isTwoSet: true), Hangul(.initial, .b, isTwoSet: true)]: Hangul(.initial, .s_b),
-        [Hangul(.initial, .s, isTwoSet: true), Hangul(.initial, .s_s, isTwoSet: true)]: Hangul(.initial, .s_s_s),
-        [Hangul(.initial, .s, isTwoSet: true), Hangul(.initial, .ie, isTwoSet: true)]: Hangul(.initial, .s_ie),
-        [Hangul(.initial, .s, isTwoSet: true), Hangul(.initial, .j, isTwoSet: true)]: Hangul(.initial, .s_j),
-        [Hangul(.initial, .s, isTwoSet: true), Hangul(.initial, .ch, isTwoSet: true)]: Hangul(.initial, .s_ch),
-        [Hangul(.initial, .s, isTwoSet: true), Hangul(.initial, .k, isTwoSet: true)]: Hangul(.initial, .s_k),
-        [Hangul(.initial, .s, isTwoSet: true), Hangul(.initial, .t, isTwoSet: true)]: Hangul(.initial, .s_t),
-        [Hangul(.initial, .s, isTwoSet: true), Hangul(.initial, .p, isTwoSet: true)]: Hangul(.initial, .s_p),
-        [Hangul(.initial, .s, isTwoSet: true), Hangul(.initial, .h, isTwoSet: true)]: Hangul(.initial, .s_h),
-        [Hangul(.initial, .s_b), Hangul(.initial, .g, isTwoSet: true)]: Hangul(.initial, .s_b_g),
-        [Hangul(.initial, .s_s, isTwoSet: true), Hangul(.initial, .b, isTwoSet: true)]: Hangul(.initial, .s_s_b),
-        [Hangul(.initial, .s_s, isTwoSet: true), Hangul(.initial, .s, isTwoSet: true)]: Hangul(.initial, .s_s_s),
-        [Hangul(.initial, .chs, isTwoSet: true), Hangul(.initial, .chs, isTwoSet: true)]: Hangul(.initial, .chss),
-        [Hangul(.initial, .js, isTwoSet: true), Hangul(.initial, .js, isTwoSet: true)]: Hangul(.initial, .jss),
-        [Hangul(.initial, .ie, isTwoSet: true), Hangul(.initial, .g, isTwoSet: true)]: Hangul(.initial, .ie_g),
-        [Hangul(.initial, .ie, isTwoSet: true), Hangul(.initial, .d, isTwoSet: true)]: Hangul(.initial, .ie_d),
-        [Hangul(.initial, .ie, isTwoSet: true), Hangul(.initial, .r, isTwoSet: true)]: Hangul(.initial, .ie_r),
-        [Hangul(.initial, .ie, isTwoSet: true), Hangul(.initial, .m, isTwoSet: true)]: Hangul(.initial, .ie_m),
-        [Hangul(.initial, .ie, isTwoSet: true), Hangul(.initial, .b, isTwoSet: true)]: Hangul(.initial, .ie_b),
-        [Hangul(.initial, .ie, isTwoSet: true), Hangul(.initial, .s, isTwoSet: true)]: Hangul(.initial, .ie_s),
-        [Hangul(.initial, .ie, isTwoSet: true), Hangul(.initial, .z, isTwoSet: true)]: Hangul(.initial, .ie_z),
-        [Hangul(.initial, .ie, isTwoSet: true), Hangul(.initial, .ie, isTwoSet: true)]: Hangul(.initial, .ie_ie),
-        [Hangul(.initial, .ie, isTwoSet: true), Hangul(.initial, .j, isTwoSet: true)]: Hangul(.initial, .ie_j),
-        [Hangul(.initial, .ie, isTwoSet: true), Hangul(.initial, .ch, isTwoSet: true)]: Hangul(.initial, .ie_ch),
-        [Hangul(.initial, .ie, isTwoSet: true), Hangul(.initial, .t, isTwoSet: true)]: Hangul(.initial, .ie_t),
-        [Hangul(.initial, .ie, isTwoSet: true), Hangul(.initial, .p, isTwoSet: true)]: Hangul(.initial, .ie_p),
-        [Hangul(.initial, .ie, isTwoSet: true), Hangul(.initial, .h, isTwoSet: true)]: Hangul(.initial, .ie_h),
-        [Hangul(.initial, .j, isTwoSet: true), Hangul(.initial, .ie, isTwoSet: true)]: Hangul(.initial, .j_ie),
-        [Hangul(.initial, .j_j, isTwoSet: true), Hangul(.initial, .h, isTwoSet: true)]: Hangul(.initial, .j_j_h),
-        [Hangul(.initial, .chj, isTwoSet: true), Hangul(.initial, .chj, isTwoSet: true)]: Hangul(.initial, .chjj),
-        [Hangul(.initial, .jj, isTwoSet: true), Hangul(.initial, .jj, isTwoSet: true)]: Hangul(.initial, .jjj),
-        [Hangul(.initial, .ch, isTwoSet: true), Hangul(.initial, .k, isTwoSet: true)]: Hangul(.initial, .ch_k),
-        [Hangul(.initial, .ch, isTwoSet: true), Hangul(.initial, .h, isTwoSet: true)]: Hangul(.initial, .ch_h),
-        [Hangul(.initial, .t, isTwoSet: true), Hangul(.initial, .t, isTwoSet: true)]: Hangul(.initial, .t_t),
-        [Hangul(.initial, .p, isTwoSet: true), Hangul(.initial, .b, isTwoSet: true)]: Hangul(.initial, .p_b),
-        [Hangul(.initial, .p, isTwoSet: true), Hangul(.initial, .h, isTwoSet: true)]: Hangul(.initial, .p_h),
-        [Hangul(.initial, .p, isTwoSet: true), Hangul(.initial, .ie, isTwoSet: true)]: Hangul(.initial, .gp),
-        [Hangul(.initial, .h, isTwoSet: true), Hangul(.initial, .s, isTwoSet: true)]: Hangul(.initial, .h_s),
-        [Hangul(.initial, .h, isTwoSet: true), Hangul(.initial, .h, isTwoSet: true)]: Hangul(.initial, .h_h),
-        [Hangul(.initial, .x, isTwoSet: true), Hangul(.initial, .x, isTwoSet: true)]: Hangul(.initial, .x_x),
-        
-        [Hangul(.medial, .a), Hangul(.medial, .o)]: Hangul(.medial, .a_o),
-        [Hangul(.medial, .a), Hangul(.medial, .u)]: Hangul(.medial, .a_u),
-        [Hangul(.medial, .a), Hangul(.medial, .eu)]: Hangul(.medial, .a_eu),
-        [Hangul(.medial, .ya), Hangul(.medial, .o)]: Hangul(.medial, .ya_o),
-        [Hangul(.medial, .ya), Hangul(.medial, .yo)]: Hangul(.medial, .ya_yo),
-        [Hangul(.medial, .ya), Hangul(.medial, .u)]: Hangul(.medial, .ya_u),
-        [Hangul(.medial, .eo), Hangul(.medial, .o)]: Hangul(.medial, .eo_o),
-        [Hangul(.medial, .eo), Hangul(.medial, .u)]: Hangul(.medial, .eo_u),
-        [Hangul(.medial, .eo), Hangul(.medial, .eu)]: Hangul(.medial, .eo_eu),
-        [Hangul(.medial, .yeo), Hangul(.medial, .ya)]: Hangul(.medial, .yeo_ya),
-        [Hangul(.medial, .yeo), Hangul(.medial, .o)]: Hangul(.medial, .yeo_o),
-        [Hangul(.medial, .yeo), Hangul(.medial, .u)]: Hangul(.medial, .yeo_u),
-        [Hangul(.medial, .o), Hangul(.medial, .a)]: Hangul(.medial, .o_a),
-        [Hangul(.medial, .o), Hangul(.medial, .ae)]: Hangul(.medial, .o_ae),
-        [Hangul(.medial, .o), Hangul(.medial, .ya)]: Hangul(.medial, .o_ya),
-        [Hangul(.medial, .o), Hangul(.medial, .yae)]: Hangul(.medial, .o_yae),
-        [Hangul(.medial, .o), Hangul(.medial, .eo)]: Hangul(.medial, .o_eo),
-        [Hangul(.medial, .o), Hangul(.medial, .e)]: Hangul(.medial, .o_e),
-        [Hangul(.medial, .o), Hangul(.medial, .yeo)]: Hangul(.medial, .o_yeo),
-        [Hangul(.medial, .o), Hangul(.medial, .ye)]: Hangul(.medial, .o_ye),
-        [Hangul(.medial, .o), Hangul(.medial, .o)]: Hangul(.medial, .o_o),
-        [Hangul(.medial, .o), Hangul(.medial, .u)]: Hangul(.medial, .o_u),
-        [Hangul(.medial, .o), Hangul(.medial, .i)]: Hangul(.medial, .o_i),
-        [Hangul(.medial, .o_o), Hangul(.medial, .i)]: Hangul(.medial, .o_o_i),
-        [Hangul(.medial, .yo), Hangul(.medial, .a)]: Hangul(.medial, .yo_a),
-        [Hangul(.medial, .yo), Hangul(.medial, .ae)]: Hangul(.medial, .yo_ae),
-        [Hangul(.medial, .yo), Hangul(.medial, .ya)]: Hangul(.medial, .yo_ya),
-        [Hangul(.medial, .yo), Hangul(.medial, .yae)]: Hangul(.medial, .yo_yae),
-        [Hangul(.medial, .yo), Hangul(.medial, .eo)]: Hangul(.medial, .yo_eo),
-        [Hangul(.medial, .yo), Hangul(.medial, .yeo)]: Hangul(.medial, .yo_yeo),
-        [Hangul(.medial, .yo), Hangul(.medial, .o)]: Hangul(.medial, .yo_o),
-        [Hangul(.medial, .yo), Hangul(.medial, .i)]: Hangul(.medial, .yo_i),
-        [Hangul(.medial, .u), Hangul(.medial, .a)]: Hangul(.medial, .u_a),
-        [Hangul(.medial, .u), Hangul(.medial, .ae)]: Hangul(.medial, .u_ae),
-        [Hangul(.medial, .u), Hangul(.medial, .eo)]: Hangul(.medial, .u_eo),
-        [Hangul(.medial, .u), Hangul(.medial, .e)]: Hangul(.medial, .u_e),
-        [Hangul(.medial, .u), Hangul(.medial, .yeo)]: Hangul(.medial, .u_yeo),
-        [Hangul(.medial, .u), Hangul(.medial, .ye)]: Hangul(.medial, .u_ye),
-        [Hangul(.medial, .u), Hangul(.medial, .u)]: Hangul(.medial, .u_u),
-        [Hangul(.medial, .u), Hangul(.medial, .i)]: Hangul(.medial, .u_i),
-        [Hangul(.medial, .u_eo), Hangul(.medial, .eu)]: Hangul(.medial, .u_eo_eu),
-        [Hangul(.medial, .u_i), Hangul(.medial, .i)]: Hangul(.medial, .u_i_i),
-        [Hangul(.medial, .yu), Hangul(.medial, .a)]: Hangul(.medial, .yu_a),
-        [Hangul(.medial, .yu), Hangul(.medial, .ae)]: Hangul(.medial, .yu_ae),
-        [Hangul(.medial, .yu), Hangul(.medial, .eo)]: Hangul(.medial, .yu_eo),
-        [Hangul(.medial, .yu), Hangul(.medial, .e)]: Hangul(.medial, .yu_e),
-        [Hangul(.medial, .yu), Hangul(.medial, .yeo)]: Hangul(.medial, .yu_yeo),
-        [Hangul(.medial, .yu), Hangul(.medial, .ye)]: Hangul(.medial, .yu_ye),
-        [Hangul(.medial, .yu), Hangul(.medial, .o)]: Hangul(.medial, .yu_o),
-        [Hangul(.medial, .yu), Hangul(.medial, .u)]: Hangul(.medial, .yu_u),
-        [Hangul(.medial, .yu), Hangul(.medial, .i)]: Hangul(.medial, .yu_i),
-        [Hangul(.medial, .eu), Hangul(.medial, .a)]: Hangul(.medial, .eu_a),
-        [Hangul(.medial, .eu), Hangul(.medial, .eo)]: Hangul(.medial, .eu_eo),
-        [Hangul(.medial, .eu), Hangul(.medial, .e)]: Hangul(.medial, .eu_e),
-        [Hangul(.medial, .eu), Hangul(.medial, .o)]: Hangul(.medial, .eu_o),
-        [Hangul(.medial, .eu), Hangul(.medial, .u)]: Hangul(.medial, .eu_u),
-        [Hangul(.medial, .eu), Hangul(.medial, .eu)]: Hangul(.medial, .eu_eu),
-        [Hangul(.medial, .eu), Hangul(.medial, .i)]: Hangul(.medial, .eu_i),
-        [Hangul(.medial, .eu_i), Hangul(.medial, .u)]: Hangul(.medial, .eu_i_u),
-        [Hangul(.medial, .i), Hangul(.medial, .a)]: Hangul(.medial, .i_a),
-        [Hangul(.medial, .i), Hangul(.medial, .ya)]: Hangul(.medial, .i_ya),
-        [Hangul(.medial, .i), Hangul(.medial, .yae)]: Hangul(.medial, .i_yae),
-        [Hangul(.medial, .i), Hangul(.medial, .yeo)]: Hangul(.medial, .i_yeo),
-        [Hangul(.medial, .i), Hangul(.medial, .ye)]: Hangul(.medial, .i_ye),
-        [Hangul(.medial, .i), Hangul(.medial, .o)]: Hangul(.medial, .i_o),
-        [Hangul(.medial, .i), Hangul(.medial, .yo)]: Hangul(.medial, .i_yo),
-        [Hangul(.medial, .i), Hangul(.medial, .u)]: Hangul(.medial, .i_u),
-        [Hangul(.medial, .i), Hangul(.medial, .yu)]: Hangul(.medial, .i_yu),
-        [Hangul(.medial, .i), Hangul(.medial, .eu)]: Hangul(.medial, .i_eu),
-        [Hangul(.medial, .i), Hangul(.medial, .i)]: Hangul(.medial, .i_i),
-        [Hangul(.medial, .i), Hangul(.medial, .aa)]: Hangul(.medial, .i_aa),
-        [Hangul(.medial, .i_ya), Hangul(.medial, .o)]: Hangul(.medial, .i_ya_o),
-        [Hangul(.medial, .i_o), Hangul(.medial, .i)]: Hangul(.medial, .i_o_i),
-        [Hangul(.medial, .aa), Hangul(.medial, .a)]: Hangul(.medial, .aa_a),
-        [Hangul(.medial, .aa), Hangul(.medial, .eo)]: Hangul(.medial, .aa_eo),
-        [Hangul(.medial, .aa), Hangul(.medial, .e)]: Hangul(.medial, .aa_e),
-        [Hangul(.medial, .aa), Hangul(.medial, .u)]: Hangul(.medial, .aa_u),
-        [Hangul(.medial, .aa), Hangul(.medial, .i)]: Hangul(.medial, .aa_i),
-        [Hangul(.medial, .aa), Hangul(.medial, .aa)]: Hangul(.medial, .aa_aa),
-        
-        // 결합된 겹받침은 초성으로 올 수 없으므로 isTwoSet에 true를 지정하지 않음
-        [Hangul(.final, .g, isTwoSet: true), Hangul(.final, .n, isTwoSet: true)]: Hangul(.final, .g_n),
-        [Hangul(.final, .g, isTwoSet: true), Hangul(.final, .r, isTwoSet: true)]: Hangul(.final, .g_r),
-        [Hangul(.final, .g, isTwoSet: true), Hangul(.final, .b, isTwoSet: true)]: Hangul(.final, .g_b),
-        [Hangul(.final, .g, isTwoSet: true), Hangul(.final, .s, isTwoSet: true)]: Hangul(.final, .g_s),
-        [Hangul(.final, .g, isTwoSet: true), Hangul(.final, .ch, isTwoSet: true)]: Hangul(.final, .g_ch),
-        [Hangul(.final, .g, isTwoSet: true), Hangul(.final, .k, isTwoSet: true)]: Hangul(.final, .g_k),
-        [Hangul(.final, .g, isTwoSet: true), Hangul(.final, .h, isTwoSet: true)]: Hangul(.final, .g_h),
-        [Hangul(.final, .g_s), Hangul(.final, .g, isTwoSet: true)]: Hangul(.final, .g_s_g),
-        [Hangul(.final, .n, isTwoSet: true), Hangul(.final, .g, isTwoSet: true)]: Hangul(.final, .n_g),
-        [Hangul(.final, .n, isTwoSet: true), Hangul(.final, .n, isTwoSet: true)]: Hangul(.final, .n_n),
-        [Hangul(.final, .n, isTwoSet: true), Hangul(.final, .d, isTwoSet: true)]: Hangul(.final, .n_d),
-        [Hangul(.final, .n, isTwoSet: true), Hangul(.final, .r, isTwoSet: true)]: Hangul(.final, .n_r),
-        [Hangul(.final, .n, isTwoSet: true), Hangul(.final, .s, isTwoSet: true)]: Hangul(.final, .n_s),
-        [Hangul(.final, .n, isTwoSet: true), Hangul(.final, .z, isTwoSet: true)]: Hangul(.final, .n_z),
-        [Hangul(.final, .n, isTwoSet: true), Hangul(.final, .j, isTwoSet: true)]: Hangul(.final, .n_j),
-        [Hangul(.final, .n, isTwoSet: true), Hangul(.final, .ch, isTwoSet: true)]: Hangul(.final, .n_ch),
-        [Hangul(.final, .n, isTwoSet: true), Hangul(.final, .t, isTwoSet: true)]: Hangul(.final, .n_t),
-        [Hangul(.final, .n, isTwoSet: true), Hangul(.final, .h, isTwoSet: true)]: Hangul(.final, .n_h),
-        [Hangul(.final, .d, isTwoSet: true), Hangul(.final, .g, isTwoSet: true)]: Hangul(.final, .d_g),
-        [Hangul(.final, .d, isTwoSet: true), Hangul(.final, .r, isTwoSet: true)]: Hangul(.final, .d_r),
-        [Hangul(.final, .d, isTwoSet: true), Hangul(.final, .b, isTwoSet: true)]: Hangul(.final, .d_b),
-        [Hangul(.final, .d, isTwoSet: true), Hangul(.final, .s, isTwoSet: true)]: Hangul(.final, .d_s),
-        [Hangul(.final, .d, isTwoSet: true), Hangul(.final, .j, isTwoSet: true)]: Hangul(.final, .d_j),
-        [Hangul(.final, .d, isTwoSet: true), Hangul(.final, .ch, isTwoSet: true)]: Hangul(.final, .d_ch),
-        [Hangul(.final, .d, isTwoSet: true), Hangul(.final, .t, isTwoSet: true)]: Hangul(.final, .d_t),
-        [Hangul(.final, .d_d, isTwoSet: true), Hangul(.final, .b, isTwoSet: true)]: Hangul(.final, .d_d_b),
-        [Hangul(.final, .d_s), Hangul(.final, .g, isTwoSet: true)]: Hangul(.final, .d_s_g),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .g, isTwoSet: true)]: Hangul(.final, .r_g),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .g_g, isTwoSet: true)]: Hangul(.final, .r_g_g),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .n, isTwoSet: true)]: Hangul(.final, .r_n),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .d, isTwoSet: true)]: Hangul(.final, .r_d),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .r, isTwoSet: true)]: Hangul(.final, .r_r),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .m, isTwoSet: true)]: Hangul(.final, .r_m),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .b, isTwoSet: true)]: Hangul(.final, .r_b),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .s, isTwoSet: true)]: Hangul(.final, .r_s),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .s_s, isTwoSet: true)]: Hangul(.final, .r_s_s),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .z, isTwoSet: true)]: Hangul(.final, .r_z),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .ng, isTwoSet: true)]: Hangul(.final, .r_ng),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .k, isTwoSet: true)]: Hangul(.final, .r_k),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .t, isTwoSet: true)]: Hangul(.final, .r_t),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .p, isTwoSet: true)]: Hangul(.final, .r_p),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .h, isTwoSet: true)]: Hangul(.final, .r_h),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .x, isTwoSet: true)]: Hangul(.final, .r_x),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .ie, isTwoSet: true)]: Hangul(.final, .gr),
-        [Hangul(.final, .r_g), Hangul(.final, .s, isTwoSet: true)]: Hangul(.final, .r_g_s),
-        [Hangul(.final, .r_g), Hangul(.final, .h, isTwoSet: true)]: Hangul(.final, .r_g_h),
-        [Hangul(.final, .r_d), Hangul(.final, .h, isTwoSet: true)]: Hangul(.final, .r_d_h),
-        [Hangul(.final, .r_r), Hangul(.final, .k, isTwoSet: true)]: Hangul(.final, .r_r_k),
-        [Hangul(.final, .r_m), Hangul(.final, .g, isTwoSet: true)]: Hangul(.final, .r_m_g),
-        [Hangul(.final, .r_m), Hangul(.final, .s, isTwoSet: true)]: Hangul(.final, .r_m_s),
-        [Hangul(.final, .r_m), Hangul(.final, .h, isTwoSet: true)]: Hangul(.final, .r_m_h),
-        [Hangul(.final, .r_b), Hangul(.final, .d, isTwoSet: true)]: Hangul(.final, .r_b_d),
-        [Hangul(.final, .r_b), Hangul(.final, .s, isTwoSet: true)]: Hangul(.final, .r_b_s),
-        [Hangul(.final, .r_b), Hangul(.final, .p, isTwoSet: true)]: Hangul(.final, .r_b_p),
-        [Hangul(.final, .r_b), Hangul(.final, .h, isTwoSet: true)]: Hangul(.final, .r_b_h),
-        [Hangul(.final, .r_b), Hangul(.final, .ie, isTwoSet: true)]: Hangul(.final, .r_gb),
-        [Hangul(.final, .r_x), Hangul(.final, .h, isTwoSet: true)]: Hangul(.final, .r_x_h),
-        [Hangul(.final, .m, isTwoSet: true), Hangul(.final, .g, isTwoSet: true)]: Hangul(.final, .m_g),
-        [Hangul(.final, .m, isTwoSet: true), Hangul(.final, .n, isTwoSet: true)]: Hangul(.final, .m_n),
-        [Hangul(.final, .m, isTwoSet: true), Hangul(.final, .r, isTwoSet: true)]: Hangul(.final, .m_r),
-        [Hangul(.final, .m, isTwoSet: true), Hangul(.final, .m, isTwoSet: true)]: Hangul(.final, .m_m),
-        [Hangul(.final, .m, isTwoSet: true), Hangul(.final, .b, isTwoSet: true)]: Hangul(.final, .m_b),
-        [Hangul(.final, .m, isTwoSet: true), Hangul(.final, .s, isTwoSet: true)]: Hangul(.final, .m_s),
-        [Hangul(.final, .m, isTwoSet: true), Hangul(.final, .s_s, isTwoSet: true)]: Hangul(.final, .m_s_s),
-        [Hangul(.final, .m, isTwoSet: true), Hangul(.final, .z, isTwoSet: true)]: Hangul(.final, .m_z),
-        [Hangul(.final, .m, isTwoSet: true), Hangul(.final, .j, isTwoSet: true)]: Hangul(.final, .m_j),
-        [Hangul(.final, .m, isTwoSet: true), Hangul(.final, .ch, isTwoSet: true)]: Hangul(.final, .m_ch),
-        [Hangul(.final, .m, isTwoSet: true), Hangul(.final, .h, isTwoSet: true)]: Hangul(.final, .m_h),
-        [Hangul(.final, .m, isTwoSet: true), Hangul(.final, .ie, isTwoSet: true)]: Hangul(.final, .gm),
-        [Hangul(.final, .m_n), Hangul(.final, .n, isTwoSet: true)]: Hangul(.final, .m_n_n),
-        [Hangul(.final, .m_b), Hangul(.final, .s, isTwoSet: true)]: Hangul(.final, .m_b_s),
-        [Hangul(.final, .b, isTwoSet: true), Hangul(.final, .d, isTwoSet: true)]: Hangul(.final, .b_d),
-        [Hangul(.final, .b, isTwoSet: true), Hangul(.final, .r, isTwoSet: true)]: Hangul(.final, .b_r),
-        [Hangul(.final, .b, isTwoSet: true), Hangul(.final, .m, isTwoSet: true)]: Hangul(.final, .b_m),
-        [Hangul(.final, .b, isTwoSet: true), Hangul(.final, .s, isTwoSet: true)]: Hangul(.final, .b_s),
-        [Hangul(.final, .b, isTwoSet: true), Hangul(.final, .j, isTwoSet: true)]: Hangul(.final, .b_j),
-        [Hangul(.final, .b, isTwoSet: true), Hangul(.final, .ch, isTwoSet: true)]: Hangul(.final, .b_ch),
-        [Hangul(.final, .b, isTwoSet: true), Hangul(.final, .p, isTwoSet: true)]: Hangul(.final, .b_p),
-        [Hangul(.final, .b, isTwoSet: true), Hangul(.final, .h, isTwoSet: true)]: Hangul(.final, .b_h),
-        [Hangul(.final, .b, isTwoSet: true), Hangul(.final, .ie, isTwoSet: true)]: Hangul(.final, .gb),
-        [Hangul(.final, .b_r), Hangul(.final, .p, isTwoSet: true)]: Hangul(.final, .b_r_p),
-        [Hangul(.final, .b_s), Hangul(.final, .d, isTwoSet: true)]: Hangul(.final, .b_s_d),
-        [Hangul(.final, .s, isTwoSet: true), Hangul(.final, .g, isTwoSet: true)]: Hangul(.final, .s_g),
-        [Hangul(.final, .s, isTwoSet: true), Hangul(.final, .d, isTwoSet: true)]: Hangul(.final, .s_d),
-        [Hangul(.final, .s, isTwoSet: true), Hangul(.final, .r, isTwoSet: true)]: Hangul(.final, .s_r),
-        [Hangul(.final, .s, isTwoSet: true), Hangul(.final, .m, isTwoSet: true)]: Hangul(.final, .s_m),
-        [Hangul(.final, .s, isTwoSet: true), Hangul(.final, .b, isTwoSet: true)]: Hangul(.final, .s_b),
-        [Hangul(.final, .s, isTwoSet: true), Hangul(.final, .z, isTwoSet: true)]: Hangul(.final, .s_z),
-        [Hangul(.final, .s, isTwoSet: true), Hangul(.final, .j, isTwoSet: true)]: Hangul(.final, .s_j),
-        [Hangul(.final, .s, isTwoSet: true), Hangul(.final, .ch, isTwoSet: true)]: Hangul(.final, .s_ch),
-        [Hangul(.final, .s, isTwoSet: true), Hangul(.final, .t, isTwoSet: true)]: Hangul(.final, .s_t),
-        [Hangul(.final, .s, isTwoSet: true), Hangul(.final, .h, isTwoSet: true)]: Hangul(.final, .s_h),
-        [Hangul(.final, .s_b), Hangul(.final, .ie, isTwoSet: true)]: Hangul(.final, .s_gb),
-        [Hangul(.final, .s_s, isTwoSet: true), Hangul(.final, .g, isTwoSet: true)]: Hangul(.final, .s_s_g),
-        [Hangul(.final, .s_s, isTwoSet: true), Hangul(.final, .d, isTwoSet: true)]: Hangul(.final, .s_s_d),
-        [Hangul(.final, .z, isTwoSet: true), Hangul(.final, .b, isTwoSet: true)]: Hangul(.final, .z_b),
-        [Hangul(.final, .z_b), Hangul(.final, .ie, isTwoSet: true)]: Hangul(.final, .z_gb),
-        [Hangul(.final, .ng, isTwoSet: true), Hangul(.final, .g, isTwoSet: true)]: Hangul(.final, .ng_g),
-        [Hangul(.final, .ng, isTwoSet: true), Hangul(.final, .g_g, isTwoSet: true)]: Hangul(.final, .ng_g_g),
-        [Hangul(.final, .ng, isTwoSet: true), Hangul(.final, .m, isTwoSet: true)]: Hangul(.final, .ng_m),
-        [Hangul(.final, .ng, isTwoSet: true), Hangul(.final, .s, isTwoSet: true)]: Hangul(.final, .ng_s),
-        [Hangul(.final, .ng, isTwoSet: true), Hangul(.final, .z, isTwoSet: true)]: Hangul(.final, .ng_z),
-        [Hangul(.final, .ng, isTwoSet: true), Hangul(.final, .ng, isTwoSet: true)]: Hangul(.final, .ng_ng),
-        [Hangul(.final, .ng, isTwoSet: true), Hangul(.final, .k, isTwoSet: true)]: Hangul(.final, .ng_k),
-        [Hangul(.final, .ng, isTwoSet: true), Hangul(.final, .h, isTwoSet: true)]: Hangul(.final, .ng_h),
-        [Hangul(.final, .j, isTwoSet: true), Hangul(.final, .b, isTwoSet: true)]: Hangul(.final, .j_b),
-        [Hangul(.final, .j_b), Hangul(.final, .b, isTwoSet: true)]: Hangul(.final, .j_b_b),
-        [Hangul(.final, .p, isTwoSet: true), Hangul(.final, .b, isTwoSet: true)]: Hangul(.final, .p_b),
-        [Hangul(.final, .p, isTwoSet: true), Hangul(.final, .s, isTwoSet: true)]: Hangul(.final, .p_s),
-        [Hangul(.final, .p, isTwoSet: true), Hangul(.final, .t, isTwoSet: true)]: Hangul(.final, .p_t),
-        [Hangul(.final, .p, isTwoSet: true), Hangul(.final, .ie, isTwoSet: true)]: Hangul(.final, .gp),
-        [Hangul(.final, .h, isTwoSet: true), Hangul(.final, .n, isTwoSet: true)]: Hangul(.final, .h_n),
-        [Hangul(.final, .h, isTwoSet: true), Hangul(.final, .r, isTwoSet: true)]: Hangul(.final, .h_r),
-        [Hangul(.final, .h, isTwoSet: true), Hangul(.final, .m, isTwoSet: true)]: Hangul(.final, .h_m),
-        [Hangul(.final, .h, isTwoSet: true), Hangul(.final, .b, isTwoSet: true)]: Hangul(.final, .h_b),
-    ],
-    
-    // 방점 조합 후에는 무조건 조합 완료 상태로 이동
-    automata: [
-        // 조합 중이 아니거나 한글 조합 완료
-        0: [
-            Condition(lastHangulPosition: .initial): 1,
-            Condition(lastHangulPosition: .medial): 2
-        ],
-        // 초성 조합 중임
-        1: [
-            Condition(lastHangulPosition: .initial): 1,
-            Condition(lastHangulPosition: .medial): 2
-        ],
-        // 중성 조합 중임
-        2: [
-            Condition(lastHangulPosition: .medial): 2,
-            Condition(lastHangulPosition: .final): 3
-        ],
-        // 종성 조합 중임
-        3: [
-            Condition(lastHangulPosition: .final): 3
+    inputProcessorData: InputProcessorData(
+        keyTable: [
+            Key(keyCode: .grave, shift: false, option: false): Expression.parse("'₩'"),
+            Key(keyCode: .grave, shift: true,  option: false): Expression.parse("'~'"),
+            Key(keyCode: .grave, shift: false, option: true):  Expression.parse("'`'"),
+            Key(keyCode: .grave, shift: true,  option: true):  Expression.parse("'~'"),
+            Key(keyCode: .one, shift: false, option: false): Expression.parse("'1'"),
+            Key(keyCode: .one, shift: true,  option: false): Expression.parse("'!'"),
+            Key(keyCode: .one, shift: false, option: true):  Expression.parse("'1'"),
+            Key(keyCode: .one, shift: true,  option: true):  Expression.parse("'!'"),
+            Key(keyCode: .two, shift: false, option: false): Expression.parse("'2'"),
+            Key(keyCode: .two, shift: true,  option: false): Expression.parse("'@'"),
+            Key(keyCode: .two, shift: false, option: true):  Expression.parse("'2'"),
+            Key(keyCode: .two, shift: true,  option: true):  Expression.parse("'@'"),
+            Key(keyCode: .three, shift: false, option: false): Expression.parse("'3'"),
+            Key(keyCode: .three, shift: true,  option: false): Expression.parse("'#'"),
+            Key(keyCode: .three, shift: false, option: true):  Expression.parse("'3'"),
+            Key(keyCode: .three, shift: true,  option: true):  Expression.parse("'#'"),
+            Key(keyCode: .four, shift: false, option: false): Expression.parse("'4'"),
+            Key(keyCode: .four, shift: true,  option: false): Expression.parse("'$'"),
+            Key(keyCode: .four, shift: false, option: true):  Expression.parse("'4'"),
+            Key(keyCode: .four, shift: true,  option: true):  Expression.parse("'$'"),
+            Key(keyCode: .five, shift: false, option: false): Expression.parse("'5'"),
+            Key(keyCode: .five, shift: true,  option: false): Expression.parse("'%'"),
+            Key(keyCode: .five, shift: false, option: true):  Expression.parse("'5'"),
+            Key(keyCode: .five, shift: true,  option: true):  Expression.parse("'%'"),
+            Key(keyCode: .six, shift: false, option: false): Expression.parse("'6'"),
+            Key(keyCode: .six, shift: true,  option: false): Expression.parse("'^'"),
+            Key(keyCode: .six, shift: false, option: true):  Expression.parse("'6'"),
+            Key(keyCode: .six, shift: true,  option: true):  Expression.parse("'^'"),
+            Key(keyCode: .seven, shift: false, option: false): Expression.parse("'7'"),
+            Key(keyCode: .seven, shift: true,  option: false): Expression.parse("'&'"),
+            Key(keyCode: .seven, shift: false, option: true):  Expression.parse("'7'"),
+            Key(keyCode: .seven, shift: true,  option: true):  Expression.parse("'&'"),
+            Key(keyCode: .eight, shift: false, option: false): Expression.parse("'8'"),
+            Key(keyCode: .eight, shift: true,  option: false): Expression.parse("'*'"),
+            Key(keyCode: .eight, shift: false, option: true):  Expression.parse("'8'"),
+            Key(keyCode: .eight, shift: true,  option: true):  Expression.parse("'*'"),
+            Key(keyCode: .nine, shift: false, option: false): Expression.parse("'9'"),
+            Key(keyCode: .nine, shift: true,  option: false): Expression.parse("'('"),
+            Key(keyCode: .nine, shift: false, option: true):  Expression.parse("'9'"),
+            Key(keyCode: .nine, shift: true,  option: true):  Expression.parse("'('"),
+            Key(keyCode: .zero, shift: false, option: false): Expression.parse("'0'"),
+            Key(keyCode: .zero, shift: true,  option: false): Expression.parse("')'"),
+            Key(keyCode: .zero, shift: false, option: true):  Expression.parse("'0'"),
+            Key(keyCode: .zero, shift: true,  option: true):  Expression.parse("')'"),
+            Key(keyCode: .minus, shift: false, option: false): Expression.parse("'-'"),
+            Key(keyCode: .minus, shift: true,  option: false): Expression.parse("'_'"),
+            Key(keyCode: .minus, shift: false, option: true):  Expression.parse("'-'"),
+            Key(keyCode: .minus, shift: true,  option: true):  Expression.parse("'_'"),
+            Key(keyCode: .equal, shift: false, option: false): Expression.parse("'='"),
+            Key(keyCode: .equal, shift: true,  option: false): Expression.parse("'+'"),
+            Key(keyCode: .equal, shift: false, option: true):  Expression.parse("'='"),
+            Key(keyCode: .equal, shift: true,  option: true):  Expression.parse("'+'"),
+            
+            Key(keyCode: .q, shift: false, option: false): Expression.parse("T < 2 ? H2|B_ : H2|_B"),
+            Key(keyCode: .q, shift: true,  option: false): Expression.parse("H3|BB"),
+            Key(keyCode: .q, shift: false, option: true):  Expression.parse("'q'"),
+            Key(keyCode: .q, shift: true,  option: true):  Expression.parse("'Q'"),
+            Key(keyCode: .w, shift: false, option: false): Expression.parse("T < 2 ? H2|J_ : H2|_J"),
+            Key(keyCode: .w, shift: true,  option: false): Expression.parse("H3|JJ"),
+            Key(keyCode: .w, shift: false, option: true):  Expression.parse("'w'"),
+            Key(keyCode: .w, shift: true,  option: true):  Expression.parse("'W'"),
+            Key(keyCode: .e, shift: false, option: false): Expression.parse("T < 2 ? H2|D_ : H2|_D"),
+            Key(keyCode: .e, shift: true,  option: false): Expression.parse("H3|DD"),
+            Key(keyCode: .e, shift: false, option: true):  Expression.parse("'e'"),
+            Key(keyCode: .e, shift: true,  option: true):  Expression.parse("'E'"),
+            Key(keyCode: .r, shift: false, option: false): Expression.parse("T < 2 ? H2|G_ : H2|_G"),
+            Key(keyCode: .r, shift: true,  option: false): Expression.parse("T < 2 ? H2|GG : H2|_GG"),
+            Key(keyCode: .r, shift: false, option: true):  Expression.parse("'r'"),
+            Key(keyCode: .r, shift: true,  option: true):  Expression.parse("'R'"),
+            Key(keyCode: .t, shift: false, option: false): Expression.parse("T < 2 ? H2|S_ : H2|_S"),
+            Key(keyCode: .t, shift: true,  option: false): Expression.parse("T < 2 ? H2|SS : H2|_SS"),
+            Key(keyCode: .t, shift: false, option: true):  Expression.parse("'t'"),
+            Key(keyCode: .t, shift: true,  option: true):  Expression.parse("'T'"),
+            Key(keyCode: .y, shift: false,  option: false): Expression.parse("H2|YO"),
+            Key(keyCode: .y, shift: true, option: false): Expression.parse("0x302F"),
+            Key(keyCode: .y, shift: false, option: true):  Expression.parse("'y'"),
+            Key(keyCode: .y, shift: true,  option: true):  Expression.parse("'Y'"),
+            Key(keyCode: .u, shift: false,  option: false): Expression.parse("H2|YEO"),
+            Key(keyCode: .u, shift: true, option: false): Expression.parse("0x302E"),
+            Key(keyCode: .u, shift: false, option: true):  Expression.parse("'u'"),
+            Key(keyCode: .u, shift: true,  option: true):  Expression.parse("'U'"),
+            Key(keyCode: .i, shift: false, option: false): Expression.parse("H2|YA"),
+            Key(keyCode: .i, shift: true,  option: false): Expression.parse("H2|YA"),
+            Key(keyCode: .i, shift: false, option: true):  Expression.parse("'i'"),
+            Key(keyCode: .i, shift: true,  option: true):  Expression.parse("'I'"),
+            Key(keyCode: .o, shift: false, option: false): Expression.parse("H2|AE"),
+            Key(keyCode: .o, shift: true,  option: false): Expression.parse("H2|YAE"),
+            Key(keyCode: .o, shift: false, option: true):  Expression.parse("'o'"),
+            Key(keyCode: .o, shift: true,  option: true):  Expression.parse("'O'"),
+            Key(keyCode: .p, shift: false, option: false): Expression.parse("H2|E_"),
+            Key(keyCode: .p, shift: true,  option: false): Expression.parse("H2|YE"),
+            Key(keyCode: .p, shift: false, option: true):  Expression.parse("'p'"),
+            Key(keyCode: .p, shift: true,  option: true):  Expression.parse("'P'"),
+            Key(keyCode: .leftBracket, shift: false, option: false): Expression.parse("'['"),
+            Key(keyCode: .leftBracket, shift: true,  option: false): Expression.parse("'{'"),
+            Key(keyCode: .leftBracket, shift: false, option: true):  Expression.parse("'['"),
+            Key(keyCode: .leftBracket, shift: true,  option: true):  Expression.parse("'{'"),
+            Key(keyCode: .rightBracket, shift: false, option: false): Expression.parse("']'"),
+            Key(keyCode: .rightBracket, shift: true,  option: false): Expression.parse("'}'"),
+            Key(keyCode: .rightBracket, shift: false, option: true):  Expression.parse("']'"),
+            Key(keyCode: .rightBracket, shift: true,  option: true):  Expression.parse("'}'"),
+            Key(keyCode: .backslash, shift: false, option: false): Expression.parse("'\\'"),
+            Key(keyCode: .backslash, shift: true,  option: false): Expression.parse("'|'"),
+            Key(keyCode: .backslash, shift: false, option: true):  Expression.parse("'\\'"),
+            Key(keyCode: .backslash, shift: true,  option: true):  Expression.parse("'|'"),
+            
+            Key(keyCode: .a, shift: false, option: false): Expression.parse("T < 2 ? H2|M_ : H2|_M"),
+            Key(keyCode: .a, shift: true,  option: false): Expression.parse("T < 2 ? H2|Z_ : H2|_Z"),
+            Key(keyCode: .a, shift: false, option: true):  Expression.parse("'a'"),
+            Key(keyCode: .a, shift: true,  option: true):  Expression.parse("'A'"),
+            Key(keyCode: .s, shift: false, option: false): Expression.parse("T < 2 ? H2|N_ : H2|_N"),
+            Key(keyCode: .s, shift: true,  option: false): Expression.parse("T < 2 ? H2|N_ : H2|_N"),
+            Key(keyCode: .s, shift: false, option: true):  Expression.parse("'s'"),
+            Key(keyCode: .s, shift: true,  option: true):  Expression.parse("'S'"),
+            Key(keyCode: .d, shift: false, option: false): Expression.parse("T < 2 ? H2|Q_ : H2|_Q"),
+            Key(keyCode: .d, shift: true,  option: false): Expression.parse("T < 2 ? H2|V_ : H2|_V"),
+            Key(keyCode: .d, shift: false, option: true):  Expression.parse("'d'"),
+            Key(keyCode: .d, shift: true,  option: true):  Expression.parse("'D'"),
+            Key(keyCode: .f, shift: false, option: false): Expression.parse("T < 2 ? H2|R_ : H2|_R"),
+            Key(keyCode: .f, shift: true,  option: false): Expression.parse("T < 2 ? H2|R_ : H2|_R"),
+            Key(keyCode: .f, shift: false, option: true):  Expression.parse("'f'"),
+            Key(keyCode: .f, shift: true,  option: true):  Expression.parse("'F'"),
+            Key(keyCode: .g, shift: false, option: false): Expression.parse("T < 2 ? H2|H_ : H2|_H"),
+            Key(keyCode: .g, shift: true,  option: false): Expression.parse("T < 2 ? H2|X_ : H2|_X"),
+            Key(keyCode: .g, shift: false, option: true):  Expression.parse("'g'"),
+            Key(keyCode: .g, shift: true,  option: true):  Expression.parse("'G'"),
+            Key(keyCode: .h, shift: false, option: false): Expression.parse("H2|O_"),
+            Key(keyCode: .h, shift: true,  option: false): Expression.parse("H2|O_"),
+            Key(keyCode: .h, shift: false, option: true):  Expression.parse("'h'"),
+            Key(keyCode: .h, shift: true,  option: true):  Expression.parse("'H'"),
+            Key(keyCode: .j, shift: false, option: false): Expression.parse("H2|EO"),
+            Key(keyCode: .j, shift: true,  option: false): Expression.parse("H2|0x12C0000"),
+            Key(keyCode: .j, shift: false, option: true):  Expression.parse("'j'"),
+            Key(keyCode: .j, shift: true,  option: true):  Expression.parse("'J'"),
+            Key(keyCode: .k, shift: false, option: false): Expression.parse("H2|A_"),
+            Key(keyCode: .k, shift: true,  option: false): Expression.parse("H2|F_"),
+            Key(keyCode: .k, shift: false, option: true):  Expression.parse("'k'"),
+            Key(keyCode: .k, shift: true,  option: true):  Expression.parse("'K'"),
+            Key(keyCode: .l, shift: false, option: false): Expression.parse("H2|I_"),
+            Key(keyCode: .l, shift: true,  option: false): Expression.parse("H2|I_"),
+            Key(keyCode: .l, shift: false, option: true):  Expression.parse("'l'"),
+            Key(keyCode: .l, shift: true,  option: true):  Expression.parse("'L'"),
+            Key(keyCode: .semicolon, shift: false, option: false): Expression.parse("';'"),
+            Key(keyCode: .semicolon, shift: true,  option: false): Expression.parse("':'"),
+            Key(keyCode: .semicolon, shift: false, option: true):  Expression.parse("';'"),
+            Key(keyCode: .semicolon, shift: true,  option: true):  Expression.parse("':'"),
+            
+            Key(keyCode: .section, shift: false, option: false): Expression.parse("'§'"),
+            Key(keyCode: .section, shift: true,  option: false): Expression.parse("'±'"),
+            Key(keyCode: .section, shift: false, option: true):  Expression.parse("'§'"),
+            Key(keyCode: .section, shift: true,  option: true):  Expression.parse("'±'"),
+            Key(keyCode: .z, shift: false, option: false): Expression.parse("T < 2 ? H2|K_ : H2|_K"),
+            Key(keyCode: .z, shift: true,  option: false): Expression.parse("H3|wS"),
+            Key(keyCode: .z, shift: false, option: true):  Expression.parse("'z'"),
+            Key(keyCode: .z, shift: true,  option: true):  Expression.parse("'Z'"),
+            Key(keyCode: .x, shift: false, option: false): Expression.parse("T < 2 ? H2|T_ : H2|_T"),
+            Key(keyCode: .x, shift: true,  option: false): Expression.parse("H3|Sw"),
+            Key(keyCode: .x, shift: false, option: true):  Expression.parse("'x'"),
+            Key(keyCode: .x, shift: true,  option: true):  Expression.parse("'X'"),
+            Key(keyCode: .c, shift: false, option: false): Expression.parse("T < 2 ? H2|C_ : H2|_C"),
+            Key(keyCode: .c, shift: true,  option: false): Expression.parse("H3|wJ"),
+            Key(keyCode: .c, shift: false, option: true):  Expression.parse("'c'"),
+            Key(keyCode: .c, shift: true,  option: true):  Expression.parse("'C'"),
+            Key(keyCode: .v, shift: false, option: false): Expression.parse("T < 2 ? H2|P_ : H2|_P"),
+            Key(keyCode: .v, shift: true,  option: false): Expression.parse("H3|Jw"),
+            Key(keyCode: .v, shift: false, option: true):  Expression.parse("'v'"),
+            Key(keyCode: .v, shift: true,  option: true):  Expression.parse("'V'"),
+            Key(keyCode: .b, shift: false, option: false): Expression.parse("H2|YU"),
+            Key(keyCode: .b, shift: true,  option: false): Expression.parse("H3|wC"),
+            Key(keyCode: .b, shift: false, option: true):  Expression.parse("'b'"),
+            Key(keyCode: .b, shift: true,  option: true):  Expression.parse("'B'"),
+            Key(keyCode: .n, shift: false, option: false): Expression.parse("H2|U_"),
+            Key(keyCode: .n, shift: true,  option: false): Expression.parse("H3|Cw"),
+            Key(keyCode: .n, shift: false, option: true):  Expression.parse("'n'"),
+            Key(keyCode: .n, shift: true,  option: true):  Expression.parse("'N'"),
+            Key(keyCode: .m, shift: false, option: false): Expression.parse("H2|EU"),
+            Key(keyCode: .m, shift: true,  option: false): Expression.parse("C0|0xE"),
+            Key(keyCode: .m, shift: false, option: true):  Expression.parse("'m'"),
+            Key(keyCode: .m, shift: true,  option: true):  Expression.parse("'M'"),
+            Key(keyCode: .comma, shift: false, option: false): Expression.parse("','"),
+            Key(keyCode: .comma, shift: true,  option: false): Expression.parse("'<'"),
+            Key(keyCode: .comma, shift: false, option: true):  Expression.parse("','"),
+            Key(keyCode: .comma, shift: true,  option: true):  Expression.parse("'<'"),
+            Key(keyCode: .period, shift: false, option: false): Expression.parse("'.'"),
+            Key(keyCode: .period, shift: true,  option: false): Expression.parse("'>'"),
+            Key(keyCode: .period, shift: false, option: true):  Expression.parse("'.'"),
+            Key(keyCode: .period, shift: true,  option: true):  Expression.parse("'>'"),
+            Key(keyCode: .slash, shift: false, option: false): Expression.parse("'/'"),
+            Key(keyCode: .slash, shift: true,  option: false): Expression.parse("'?'"),
+            Key(keyCode: .slash, shift: false, option: true):  Expression.parse("'/'"),
+            Key(keyCode: .slash, shift: true,  option: true):  Expression.parse("'?'"),
         ]
-    ],
+    ),
     
-    hangulRange: .oldFull
+    outputProcessorData: OutputProcessorData(
+        composableSyllableRange: .oldFull,
+        
+        compositionRules: CompositionRule(
+            leading: [
+                [Jamo(.G_, key: .dubeolsik), Jamo(.D_, key: .dubeolsik)]: Jamo(.GD, key: .dubeolsik),
+                [Jamo(.N_, key: .dubeolsik), Jamo(.G_, key: .dubeolsik)]: Jamo(.NG, key: .dubeolsik),
+                [Jamo(.N_, key: .dubeolsik), Jamo(.N_, key: .dubeolsik)]: Jamo(.NN, key: .dubeolsik),
+                [Jamo(.N_, key: .dubeolsik), Jamo(.D_, key: .dubeolsik)]: Jamo(.ND, key: .dubeolsik),
+                [Jamo(.N_, key: .dubeolsik), Jamo(.B_, key: .dubeolsik)]: Jamo(.NB, key: .dubeolsik),
+                [Jamo(.N_, key: .dubeolsik), Jamo(.S_, key: .dubeolsik)]: Jamo(.NS, key: .dubeolsik),
+                [Jamo(.N_, key: .dubeolsik), Jamo(.J_, key: .dubeolsik)]: Jamo(.NJ, key: .dubeolsik),
+                [Jamo(.N_, key: .dubeolsik), Jamo(.H_, key: .dubeolsik)]: Jamo(.NH, key: .dubeolsik),
+                [Jamo(.D_, key: .dubeolsik), Jamo(.G_, key: .dubeolsik)]: Jamo(.DG, key: .dubeolsik),
+                [Jamo(.D_, key: .dubeolsik), Jamo(.R_, key: .dubeolsik)]: Jamo(.DR, key: .dubeolsik),
+                [Jamo(.D_, key: .dubeolsik), Jamo(.M_, key: .dubeolsik)]: Jamo(.DM, key: .dubeolsik),
+                [Jamo(.D_, key: .dubeolsik), Jamo(.B_, key: .dubeolsik)]: Jamo(.DB, key: .dubeolsik),
+                [Jamo(.D_, key: .dubeolsik), Jamo(.S_, key: .dubeolsik)]: Jamo(.DS, key: .dubeolsik),
+                [Jamo(.D_, key: .dubeolsik), Jamo(.J_, key: .dubeolsik)]: Jamo(.DJ, key: .dubeolsik),
+                [Jamo(.R_, key: .dubeolsik), Jamo(.G_, key: .dubeolsik)]: Jamo(.RG, key: .dubeolsik),
+                [Jamo(.R_, key: .dubeolsik), Jamo(.GG, key: .dubeolsik)]: Jamo(.RGG, key: .dubeolsik),
+                [Jamo(.R_, key: .dubeolsik), Jamo(.N_, key: .dubeolsik)]: Jamo(.RN, key: .dubeolsik),
+                [Jamo(.R_, key: .dubeolsik), Jamo(.D_, key: .dubeolsik)]: Jamo(.RD, key: .dubeolsik),
+                [Jamo(.R_, key: .dubeolsik), Jamo(.DD, key: .dubeolsik)]: Jamo(.RDD, key: .dubeolsik),
+                [Jamo(.R_, key: .dubeolsik), Jamo(.R_, key: .dubeolsik)]: Jamo(.RR, key: .dubeolsik),
+                [Jamo(.R_, key: .dubeolsik), Jamo(.M_, key: .dubeolsik)]: Jamo(.RM, key: .dubeolsik),
+                [Jamo(.R_, key: .dubeolsik), Jamo(.B_, key: .dubeolsik)]: Jamo(.RB, key: .dubeolsik),
+                [Jamo(.R_, key: .dubeolsik), Jamo(.BB, key: .dubeolsik)]: Jamo(.RBB, key: .dubeolsik),
+                [Jamo(.R_, key: .dubeolsik), Jamo(.S_, key: .dubeolsik)]: Jamo(.RS, key: .dubeolsik),
+                [Jamo(.R_, key: .dubeolsik), Jamo(.J_, key: .dubeolsik)]: Jamo(.RJ, key: .dubeolsik),
+                [Jamo(.R_, key: .dubeolsik), Jamo(.K_, key: .dubeolsik)]: Jamo(.RK, key: .dubeolsik),
+                [Jamo(.R_, key: .dubeolsik), Jamo(.H_, key: .dubeolsik)]: Jamo(.RH, key: .dubeolsik),
+                [Jamo(.R_, key: .dubeolsik), Jamo(.Q_, key: .dubeolsik)]: Jamo(.RQ, key: .dubeolsik),
+                [Jamo(.RB, key: .dubeolsik), Jamo(.Q_, key: .dubeolsik)]: Jamo(.RBQ, key: .dubeolsik),
+                [Jamo(.M_, key: .dubeolsik), Jamo(.G_, key: .dubeolsik)]: Jamo(.MG, key: .dubeolsik),
+                [Jamo(.M_, key: .dubeolsik), Jamo(.D_, key: .dubeolsik)]: Jamo(.MD, key: .dubeolsik),
+                [Jamo(.M_, key: .dubeolsik), Jamo(.B_, key: .dubeolsik)]: Jamo(.MB, key: .dubeolsik),
+                [Jamo(.M_, key: .dubeolsik), Jamo(.S_, key: .dubeolsik)]: Jamo(.MS, key: .dubeolsik),
+                [Jamo(.M_, key: .dubeolsik), Jamo(.Q_, key: .dubeolsik)]: Jamo(.MQ, key: .dubeolsik),
+                [Jamo(.B_, key: .dubeolsik), Jamo(.G_, key: .dubeolsik)]: Jamo(.BG, key: .dubeolsik),
+                [Jamo(.B_, key: .dubeolsik), Jamo(.N_, key: .dubeolsik)]: Jamo(.BN, key: .dubeolsik),
+                [Jamo(.B_, key: .dubeolsik), Jamo(.D_, key: .dubeolsik)]: Jamo(.BD, key: .dubeolsik),
+                [Jamo(.B_, key: .dubeolsik), Jamo(.S_, key: .dubeolsik)]: Jamo(.BS, key: .dubeolsik),
+                [Jamo(.B_, key: .dubeolsik), Jamo(.SS, key: .dubeolsik)]: Jamo(.BSS, key: .dubeolsik),
+                [Jamo(.B_, key: .dubeolsik), Jamo(.J_, key: .dubeolsik)]: Jamo(.BJ, key: .dubeolsik),
+                [Jamo(.B_, key: .dubeolsik), Jamo(.C_, key: .dubeolsik)]: Jamo(.BC, key: .dubeolsik),
+                [Jamo(.B_, key: .dubeolsik), Jamo(.K_, key: .dubeolsik)]: Jamo(.BK, key: .dubeolsik),
+                [Jamo(.B_, key: .dubeolsik), Jamo(.T_, key: .dubeolsik)]: Jamo(.BT, key: .dubeolsik),
+                [Jamo(.B_, key: .dubeolsik), Jamo(.P_, key: .dubeolsik)]: Jamo(.BP, key: .dubeolsik),
+                [Jamo(.B_, key: .dubeolsik), Jamo(.H_, key: .dubeolsik)]: Jamo(.BH, key: .dubeolsik),
+                [Jamo(.B_, key: .dubeolsik), Jamo(.Q_, key: .dubeolsik)]: Jamo(.BQ, key: .dubeolsik),
+                [Jamo(.BB, key: .dubeolsik), Jamo(.Q_, key: .dubeolsik)]: Jamo(.BBQ, key: .dubeolsik),
+                [Jamo(.BS, key: .dubeolsik), Jamo(.G_, key: .dubeolsik)]: Jamo(.BSG, key: .dubeolsik),
+                [Jamo(.BS, key: .dubeolsik), Jamo(.D_, key: .dubeolsik)]: Jamo(.BSD, key: .dubeolsik),
+                [Jamo(.BS, key: .dubeolsik), Jamo(.B_, key: .dubeolsik)]: Jamo(.BSB, key: .dubeolsik),
+                [Jamo(.BS, key: .dubeolsik), Jamo(.J_, key: .dubeolsik)]: Jamo(.BSJ, key: .dubeolsik),
+                [Jamo(.BS, key: .dubeolsik), Jamo(.T_, key: .dubeolsik)]: Jamo(.BST, key: .dubeolsik),
+                [Jamo(.S_, key: .dubeolsik), Jamo(.G_, key: .dubeolsik)]: Jamo(.SG, key: .dubeolsik),
+                [Jamo(.S_, key: .dubeolsik), Jamo(.N_, key: .dubeolsik)]: Jamo(.SN, key: .dubeolsik),
+                [Jamo(.S_, key: .dubeolsik), Jamo(.D_, key: .dubeolsik)]: Jamo(.SD, key: .dubeolsik),
+                [Jamo(.S_, key: .dubeolsik), Jamo(.R_, key: .dubeolsik)]: Jamo(.SR, key: .dubeolsik),
+                [Jamo(.S_, key: .dubeolsik), Jamo(.M_, key: .dubeolsik)]: Jamo(.SM, key: .dubeolsik),
+                [Jamo(.S_, key: .dubeolsik), Jamo(.B_, key: .dubeolsik)]: Jamo(.SB, key: .dubeolsik),
+                [Jamo(.S_, key: .dubeolsik), Jamo(.SS, key: .dubeolsik)]: Jamo(.SSS, key: .dubeolsik),
+                [Jamo(.S_, key: .dubeolsik), Jamo(.Q_, key: .dubeolsik)]: Jamo(.SQ, key: .dubeolsik),
+                [Jamo(.S_, key: .dubeolsik), Jamo(.J_, key: .dubeolsik)]: Jamo(.SJ, key: .dubeolsik),
+                [Jamo(.S_, key: .dubeolsik), Jamo(.C_, key: .dubeolsik)]: Jamo(.SC, key: .dubeolsik),
+                [Jamo(.S_, key: .dubeolsik), Jamo(.K_, key: .dubeolsik)]: Jamo(.SK, key: .dubeolsik),
+                [Jamo(.S_, key: .dubeolsik), Jamo(.T_, key: .dubeolsik)]: Jamo(.ST, key: .dubeolsik),
+                [Jamo(.S_, key: .dubeolsik), Jamo(.P_, key: .dubeolsik)]: Jamo(.SP, key: .dubeolsik),
+                [Jamo(.S_, key: .dubeolsik), Jamo(.H_, key: .dubeolsik)]: Jamo(.SH, key: .dubeolsik),
+                [Jamo(.SB, key: .dubeolsik), Jamo(.G_, key: .dubeolsik)]: Jamo(.SBG, key: .dubeolsik),
+                [Jamo(.SS, key: .dubeolsik), Jamo(.B_, key: .dubeolsik)]: Jamo(.SSB, key: .dubeolsik),
+                [Jamo(.SS, key: .dubeolsik), Jamo(.S_, key: .dubeolsik)]: Jamo(.SSS, key: .dubeolsik),
+                [Jamo(.wS, key: .dubeolsik), Jamo(.wS, key: .dubeolsik)]: Jamo(.wSS, key: .dubeolsik),
+                [Jamo(.Sw, key: .dubeolsik), Jamo(.Sw, key: .dubeolsik)]: Jamo(.SSw, key: .dubeolsik),
+                [Jamo(.Q_, key: .dubeolsik), Jamo(.G_, key: .dubeolsik)]: Jamo(.QG, key: .dubeolsik),
+                [Jamo(.Q_, key: .dubeolsik), Jamo(.D_, key: .dubeolsik)]: Jamo(.QD, key: .dubeolsik),
+                [Jamo(.Q_, key: .dubeolsik), Jamo(.R_, key: .dubeolsik)]: Jamo(.QR, key: .dubeolsik),
+                [Jamo(.Q_, key: .dubeolsik), Jamo(.M_, key: .dubeolsik)]: Jamo(.QM, key: .dubeolsik),
+                [Jamo(.Q_, key: .dubeolsik), Jamo(.B_, key: .dubeolsik)]: Jamo(.QB, key: .dubeolsik),
+                [Jamo(.Q_, key: .dubeolsik), Jamo(.S_, key: .dubeolsik)]: Jamo(.QS, key: .dubeolsik),
+                [Jamo(.Q_, key: .dubeolsik), Jamo(.Z_, key: .dubeolsik)]: Jamo(.QZ, key: .dubeolsik),
+                [Jamo(.Q_, key: .dubeolsik), Jamo(.Q_, key: .dubeolsik)]: Jamo(.QQ, key: .dubeolsik),
+                [Jamo(.Q_, key: .dubeolsik), Jamo(.J_, key: .dubeolsik)]: Jamo(.QJ, key: .dubeolsik),
+                [Jamo(.Q_, key: .dubeolsik), Jamo(.C_, key: .dubeolsik)]: Jamo(.QC, key: .dubeolsik),
+                [Jamo(.Q_, key: .dubeolsik), Jamo(.T_, key: .dubeolsik)]: Jamo(.QT, key: .dubeolsik),
+                [Jamo(.Q_, key: .dubeolsik), Jamo(.P_, key: .dubeolsik)]: Jamo(.QP, key: .dubeolsik),
+                [Jamo(.Q_, key: .dubeolsik), Jamo(.H_, key: .dubeolsik)]: Jamo(.QH, key: .dubeolsik),
+                [Jamo(.J_, key: .dubeolsik), Jamo(.Q_, key: .dubeolsik)]: Jamo(.JQ, key: .dubeolsik),
+                [Jamo(.JJ, key: .dubeolsik), Jamo(.H_, key: .dubeolsik)]: Jamo(.JJH, key: .dubeolsik),
+                [Jamo(.wJ, key: .dubeolsik), Jamo(.wJ, key: .dubeolsik)]: Jamo(.wJJ, key: .dubeolsik),
+                [Jamo(.Jw, key: .dubeolsik), Jamo(.Jw, key: .dubeolsik)]: Jamo(.JJw, key: .dubeolsik),
+                [Jamo(.C_, key: .dubeolsik), Jamo(.K_, key: .dubeolsik)]: Jamo(.CK, key: .dubeolsik),
+                [Jamo(.C_, key: .dubeolsik), Jamo(.H_, key: .dubeolsik)]: Jamo(.CH, key: .dubeolsik),
+                [Jamo(.T_, key: .dubeolsik), Jamo(.T_, key: .dubeolsik)]: Jamo(.TT, key: .dubeolsik),
+                [Jamo(.P_, key: .dubeolsik), Jamo(.B_, key: .dubeolsik)]: Jamo(.PB, key: .dubeolsik),
+                [Jamo(.P_, key: .dubeolsik), Jamo(.H_, key: .dubeolsik)]: Jamo(.PH, key: .dubeolsik),
+                [Jamo(.P_, key: .dubeolsik), Jamo(.Q_, key: .dubeolsik)]: Jamo(.PQ, key: .dubeolsik),
+                [Jamo(.H_, key: .dubeolsik), Jamo(.S_, key: .dubeolsik)]: Jamo(.HS, key: .dubeolsik),
+                [Jamo(.H_, key: .dubeolsik), Jamo(.H_, key: .dubeolsik)]: Jamo(.HH, key: .dubeolsik),
+                [Jamo(.X_, key: .dubeolsik), Jamo(.X_, key: .dubeolsik)]: Jamo(.XX, key: .dubeolsik),
+            ],
+            medial: [
+                [Jamo(.A_, key: .dubeolsik), Jamo(.O_, key: .dubeolsik)]: Jamo(.AO, key: .dubeolsik),
+                [Jamo(.A_, key: .dubeolsik), Jamo(.U_, key: .dubeolsik)]: Jamo(.AU, key: .dubeolsik),
+                [Jamo(.A_, key: .dubeolsik), Jamo(.EU, key: .dubeolsik)]: Jamo(.AEU, key: .dubeolsik),
+                [Jamo(.YA, key: .dubeolsik), Jamo(.O_, key: .dubeolsik)]: Jamo(.YAO, key: .dubeolsik),
+                [Jamo(.YA, key: .dubeolsik), Jamo(.YO, key: .dubeolsik)]: Jamo(.YAYO, key: .dubeolsik),
+                [Jamo(.YA, key: .dubeolsik), Jamo(.U_, key: .dubeolsik)]: Jamo(.YAU, key: .dubeolsik),
+                [Jamo(.EO, key: .dubeolsik), Jamo(.O_, key: .dubeolsik)]: Jamo(.EOO, key: .dubeolsik),
+                [Jamo(.EO, key: .dubeolsik), Jamo(.U_, key: .dubeolsik)]: Jamo(.EOU, key: .dubeolsik),
+                [Jamo(.EO, key: .dubeolsik), Jamo(.EU, key: .dubeolsik)]: Jamo(.EOEU, key: .dubeolsik),
+                [Jamo(.YEO, key: .dubeolsik), Jamo(.YA, key: .dubeolsik)]: Jamo(.YEOYA, key: .dubeolsik),
+                [Jamo(.YEO, key: .dubeolsik), Jamo(.O_, key: .dubeolsik)]: Jamo(.YEOO, key: .dubeolsik),
+                [Jamo(.YEO, key: .dubeolsik), Jamo(.U_, key: .dubeolsik)]: Jamo(.YEOU, key: .dubeolsik),
+                [Jamo(.O_, key: .dubeolsik), Jamo(.A_, key: .dubeolsik)]: Jamo(.WA, key: .dubeolsik),
+                [Jamo(.O_, key: .dubeolsik), Jamo(.AE, key: .dubeolsik)]: Jamo(.WAE, key: .dubeolsik),
+                [Jamo(.O_, key: .dubeolsik), Jamo(.YA, key: .dubeolsik)]: Jamo(.OYA, key: .dubeolsik),
+                [Jamo(.O_, key: .dubeolsik), Jamo(.YAE, key: .dubeolsik)]: Jamo(.OYAE, key: .dubeolsik),
+                [Jamo(.O_, key: .dubeolsik), Jamo(.EO, key: .dubeolsik)]: Jamo(.OEO, key: .dubeolsik),
+                [Jamo(.O_, key: .dubeolsik), Jamo(.E_, key: .dubeolsik)]: Jamo(.OE, key: .dubeolsik),
+                [Jamo(.O_, key: .dubeolsik), Jamo(.YEO, key: .dubeolsik)]: Jamo(.OYEO, key: .dubeolsik),
+                [Jamo(.O_, key: .dubeolsik), Jamo(.YE, key: .dubeolsik)]: Jamo(.OYE, key: .dubeolsik),
+                [Jamo(.O_, key: .dubeolsik), Jamo(.O_, key: .dubeolsik)]: Jamo(.OO, key: .dubeolsik),
+                [Jamo(.O_, key: .dubeolsik), Jamo(.U_, key: .dubeolsik)]: Jamo(.OU, key: .dubeolsik),
+                [Jamo(.O_, key: .dubeolsik), Jamo(.I_, key: .dubeolsik)]: Jamo(.OI, key: .dubeolsik),
+                [Jamo(.OO, key: .dubeolsik), Jamo(.I_, key: .dubeolsik)]: Jamo(.OOI, key: .dubeolsik),
+                [Jamo(.YO, key: .dubeolsik), Jamo(.A_, key: .dubeolsik)]: Jamo(.YOA, key: .dubeolsik),
+                [Jamo(.YO, key: .dubeolsik), Jamo(.AE, key: .dubeolsik)]: Jamo(.YOAE, key: .dubeolsik),
+                [Jamo(.YO, key: .dubeolsik), Jamo(.YA, key: .dubeolsik)]: Jamo(.YOYA, key: .dubeolsik),
+                [Jamo(.YO, key: .dubeolsik), Jamo(.YAE, key: .dubeolsik)]: Jamo(.YOYAE, key: .dubeolsik),
+                [Jamo(.YO, key: .dubeolsik), Jamo(.EO, key: .dubeolsik)]: Jamo(.YOEO, key: .dubeolsik),
+                [Jamo(.YO, key: .dubeolsik), Jamo(.YEO, key: .dubeolsik)]: Jamo(.YOYEO, key: .dubeolsik),
+                [Jamo(.YO, key: .dubeolsik), Jamo(.O_, key: .dubeolsik)]: Jamo(.YOO, key: .dubeolsik),
+                [Jamo(.YO, key: .dubeolsik), Jamo(.I_, key: .dubeolsik)]: Jamo(.YOI, key: .dubeolsik),
+                [Jamo(.U_, key: .dubeolsik), Jamo(.A_, key: .dubeolsik)]: Jamo(.UA, key: .dubeolsik),
+                [Jamo(.U_, key: .dubeolsik), Jamo(.AE, key: .dubeolsik)]: Jamo(.UAE, key: .dubeolsik),
+                [Jamo(.U_, key: .dubeolsik), Jamo(.EO, key: .dubeolsik)]: Jamo(.UEO, key: .dubeolsik),
+                [Jamo(.U_, key: .dubeolsik), Jamo(.E_, key: .dubeolsik)]: Jamo(.WE, key: .dubeolsik),
+                [Jamo(.U_, key: .dubeolsik), Jamo(.YEO, key: .dubeolsik)]: Jamo(.UYEO, key: .dubeolsik),
+                [Jamo(.U_, key: .dubeolsik), Jamo(.YE, key: .dubeolsik)]: Jamo(.UYE, key: .dubeolsik),
+                [Jamo(.U_, key: .dubeolsik), Jamo(.U_, key: .dubeolsik)]: Jamo(.UU, key: .dubeolsik),
+                [Jamo(.U_, key: .dubeolsik), Jamo(.I_, key: .dubeolsik)]: Jamo(.WI, key: .dubeolsik),
+                [Jamo(.UEO, key: .dubeolsik), Jamo(.EU, key: .dubeolsik)]: Jamo(.UEOEU, key: .dubeolsik),
+                [Jamo(.WI, key: .dubeolsik), Jamo(.I_, key: .dubeolsik)]: Jamo(.UII, key: .dubeolsik),
+                [Jamo(.YU, key: .dubeolsik), Jamo(.A_, key: .dubeolsik)]: Jamo(.YUA, key: .dubeolsik),
+                [Jamo(.YU, key: .dubeolsik), Jamo(.AE, key: .dubeolsik)]: Jamo(.YUAE, key: .dubeolsik),
+                [Jamo(.YU, key: .dubeolsik), Jamo(.EO, key: .dubeolsik)]: Jamo(.YUEO, key: .dubeolsik),
+                [Jamo(.YU, key: .dubeolsik), Jamo(.E_, key: .dubeolsik)]: Jamo(.YUE, key: .dubeolsik),
+                [Jamo(.YU, key: .dubeolsik), Jamo(.YEO, key: .dubeolsik)]: Jamo(.YUYEO, key: .dubeolsik),
+                [Jamo(.YU, key: .dubeolsik), Jamo(.YE, key: .dubeolsik)]: Jamo(.YUYE, key: .dubeolsik),
+                [Jamo(.YU, key: .dubeolsik), Jamo(.O_, key: .dubeolsik)]: Jamo(.YUO, key: .dubeolsik),
+                [Jamo(.YU, key: .dubeolsik), Jamo(.U_, key: .dubeolsik)]: Jamo(.YUU, key: .dubeolsik),
+                [Jamo(.YU, key: .dubeolsik), Jamo(.I_, key: .dubeolsik)]: Jamo(.YUI, key: .dubeolsik),
+                [Jamo(.EU, key: .dubeolsik), Jamo(.A_, key: .dubeolsik)]: Jamo(.EUA, key: .dubeolsik),
+                [Jamo(.EU, key: .dubeolsik), Jamo(.EO, key: .dubeolsik)]: Jamo(.EUEO, key: .dubeolsik),
+                [Jamo(.EU, key: .dubeolsik), Jamo(.E_, key: .dubeolsik)]: Jamo(.EUE, key: .dubeolsik),
+                [Jamo(.EU, key: .dubeolsik), Jamo(.O_, key: .dubeolsik)]: Jamo(.EUO, key: .dubeolsik),
+                [Jamo(.EU, key: .dubeolsik), Jamo(.U_, key: .dubeolsik)]: Jamo(.EUU, key: .dubeolsik),
+                [Jamo(.EU, key: .dubeolsik), Jamo(.EU, key: .dubeolsik)]: Jamo(.EUEU, key: .dubeolsik),
+                [Jamo(.EU, key: .dubeolsik), Jamo(.I_, key: .dubeolsik)]: Jamo(.EUI, key: .dubeolsik),
+                [Jamo(.EUI, key: .dubeolsik), Jamo(.U_, key: .dubeolsik)]: Jamo(.EUIU, key: .dubeolsik),
+                [Jamo(.I_, key: .dubeolsik), Jamo(.A_, key: .dubeolsik)]: Jamo(.IA, key: .dubeolsik),
+                [Jamo(.I_, key: .dubeolsik), Jamo(.YA, key: .dubeolsik)]: Jamo(.IYA, key: .dubeolsik),
+                [Jamo(.I_, key: .dubeolsik), Jamo(.YAE, key: .dubeolsik)]: Jamo(.IYAE, key: .dubeolsik),
+                [Jamo(.I_, key: .dubeolsik), Jamo(.YEO, key: .dubeolsik)]: Jamo(.IYEO, key: .dubeolsik),
+                [Jamo(.I_, key: .dubeolsik), Jamo(.YE, key: .dubeolsik)]: Jamo(.IYE, key: .dubeolsik),
+                [Jamo(.I_, key: .dubeolsik), Jamo(.O_, key: .dubeolsik)]: Jamo(.IO, key: .dubeolsik),
+                [Jamo(.I_, key: .dubeolsik), Jamo(.YO, key: .dubeolsik)]: Jamo(.IYO, key: .dubeolsik),
+                [Jamo(.I_, key: .dubeolsik), Jamo(.U_, key: .dubeolsik)]: Jamo(.IU, key: .dubeolsik),
+                [Jamo(.I_, key: .dubeolsik), Jamo(.YU, key: .dubeolsik)]: Jamo(.IYU, key: .dubeolsik),
+                [Jamo(.I_, key: .dubeolsik), Jamo(.EU, key: .dubeolsik)]: Jamo(.IEU, key: .dubeolsik),
+                [Jamo(.I_, key: .dubeolsik), Jamo(.I_, key: .dubeolsik)]: Jamo(.II, key: .dubeolsik),
+                [Jamo(.I_, key: .dubeolsik), Jamo(.F_, key: .dubeolsik)]: Jamo(.IF, key: .dubeolsik),
+                [Jamo(.IYA, key: .dubeolsik), Jamo(.O_, key: .dubeolsik)]: Jamo(.IYAO, key: .dubeolsik),
+                [Jamo(.IO, key: .dubeolsik), Jamo(.I_, key: .dubeolsik)]: Jamo(.IOI, key: .dubeolsik),
+                [Jamo(.F_, key: .dubeolsik), Jamo(.A_, key: .dubeolsik)]: Jamo(.FA, key: .dubeolsik),
+                [Jamo(.F_, key: .dubeolsik), Jamo(.EO, key: .dubeolsik)]: Jamo(.FEO, key: .dubeolsik),
+                [Jamo(.F_, key: .dubeolsik), Jamo(.E_, key: .dubeolsik)]: Jamo(.FE, key: .dubeolsik),
+                [Jamo(.F_, key: .dubeolsik), Jamo(.U_, key: .dubeolsik)]: Jamo(.FU, key: .dubeolsik),
+                [Jamo(.F_, key: .dubeolsik), Jamo(.I_, key: .dubeolsik)]: Jamo(.FI, key: .dubeolsik),
+                [Jamo(.F_, key: .dubeolsik), Jamo(.F_, key: .dubeolsik)]: Jamo(.FF, key: .dubeolsik),
+            ],
+            trailing: [
+                [Jamo(._G, key: .dubeolsik), Jamo(._N, key: .dubeolsik)]: Jamo(._GN, key: .dubeolsik),
+                [Jamo(._G, key: .dubeolsik), Jamo(._R, key: .dubeolsik)]: Jamo(._GR, key: .dubeolsik),
+                [Jamo(._G, key: .dubeolsik), Jamo(._B, key: .dubeolsik)]: Jamo(._GB, key: .dubeolsik),
+                [Jamo(._G, key: .dubeolsik), Jamo(._S, key: .dubeolsik)]: Jamo(._GS, key: .dubeolsik),
+                [Jamo(._G, key: .dubeolsik), Jamo(._C, key: .dubeolsik)]: Jamo(._GC, key: .dubeolsik),
+                [Jamo(._G, key: .dubeolsik), Jamo(._K, key: .dubeolsik)]: Jamo(._GK, key: .dubeolsik),
+                [Jamo(._G, key: .dubeolsik), Jamo(._H, key: .dubeolsik)]: Jamo(._GH, key: .dubeolsik),
+                [Jamo(._GS, key: .dubeolsik), Jamo(._G, key: .dubeolsik)]: Jamo(._GSG, key: .dubeolsik),
+                [Jamo(._N, key: .dubeolsik), Jamo(._G, key: .dubeolsik)]: Jamo(._NG, key: .dubeolsik),
+                [Jamo(._N, key: .dubeolsik), Jamo(._N, key: .dubeolsik)]: Jamo(._NN, key: .dubeolsik),
+                [Jamo(._N, key: .dubeolsik), Jamo(._D, key: .dubeolsik)]: Jamo(._ND, key: .dubeolsik),
+                [Jamo(._N, key: .dubeolsik), Jamo(._R, key: .dubeolsik)]: Jamo(._NR, key: .dubeolsik),
+                [Jamo(._N, key: .dubeolsik), Jamo(._S, key: .dubeolsik)]: Jamo(._NS, key: .dubeolsik),
+                [Jamo(._N, key: .dubeolsik), Jamo(._Z, key: .dubeolsik)]: Jamo(._NZ, key: .dubeolsik),
+                [Jamo(._N, key: .dubeolsik), Jamo(._J, key: .dubeolsik)]: Jamo(._NJ, key: .dubeolsik),
+                [Jamo(._N, key: .dubeolsik), Jamo(._C, key: .dubeolsik)]: Jamo(._NC, key: .dubeolsik),
+                [Jamo(._N, key: .dubeolsik), Jamo(._T, key: .dubeolsik)]: Jamo(._NT, key: .dubeolsik),
+                [Jamo(._N, key: .dubeolsik), Jamo(._H, key: .dubeolsik)]: Jamo(._NH, key: .dubeolsik),
+                [Jamo(._D, key: .dubeolsik), Jamo(._G, key: .dubeolsik)]: Jamo(._DG, key: .dubeolsik),
+                [Jamo(._D, key: .dubeolsik), Jamo(._R, key: .dubeolsik)]: Jamo(._DR, key: .dubeolsik),
+                [Jamo(._D, key: .dubeolsik), Jamo(._B, key: .dubeolsik)]: Jamo(._DB, key: .dubeolsik),
+                [Jamo(._D, key: .dubeolsik), Jamo(._S, key: .dubeolsik)]: Jamo(._DS, key: .dubeolsik),
+                [Jamo(._D, key: .dubeolsik), Jamo(._J, key: .dubeolsik)]: Jamo(._DJ, key: .dubeolsik),
+                [Jamo(._D, key: .dubeolsik), Jamo(._C, key: .dubeolsik)]: Jamo(._DC, key: .dubeolsik),
+                [Jamo(._D, key: .dubeolsik), Jamo(._T, key: .dubeolsik)]: Jamo(._DT, key: .dubeolsik),
+                [Jamo(._DD, key: .dubeolsik), Jamo(._B, key: .dubeolsik)]: Jamo(._DDB, key: .dubeolsik),
+                [Jamo(._DS, key: .dubeolsik), Jamo(._G, key: .dubeolsik)]: Jamo(._DSG, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._G, key: .dubeolsik)]: Jamo(._RG, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._GG, key: .dubeolsik)]: Jamo(._RGG, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._N, key: .dubeolsik)]: Jamo(._RN, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._D, key: .dubeolsik)]: Jamo(._RD, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._R, key: .dubeolsik)]: Jamo(._RR, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._M, key: .dubeolsik)]: Jamo(._RM, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._B, key: .dubeolsik)]: Jamo(._RB, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._S, key: .dubeolsik)]: Jamo(._RS, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._SS, key: .dubeolsik)]: Jamo(._RSS, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._Z, key: .dubeolsik)]: Jamo(._RZ, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._V, key: .dubeolsik)]: Jamo(._RV, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._K, key: .dubeolsik)]: Jamo(._RK, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._T, key: .dubeolsik)]: Jamo(._RT, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._P, key: .dubeolsik)]: Jamo(._RP, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._H, key: .dubeolsik)]: Jamo(._RH, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._X, key: .dubeolsik)]: Jamo(._RX, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._Q, key: .dubeolsik)]: Jamo(._RQ, key: .dubeolsik),
+                [Jamo(._RG, key: .dubeolsik), Jamo(._S, key: .dubeolsik)]: Jamo(._RGS, key: .dubeolsik),
+                [Jamo(._RG, key: .dubeolsik), Jamo(._H, key: .dubeolsik)]: Jamo(._RGH, key: .dubeolsik),
+                [Jamo(._RD, key: .dubeolsik), Jamo(._H, key: .dubeolsik)]: Jamo(._RDH, key: .dubeolsik),
+                [Jamo(._RR, key: .dubeolsik), Jamo(._K, key: .dubeolsik)]: Jamo(._RRK, key: .dubeolsik),
+                [Jamo(._RM, key: .dubeolsik), Jamo(._G, key: .dubeolsik)]: Jamo(._RMG, key: .dubeolsik),
+                [Jamo(._RM, key: .dubeolsik), Jamo(._S, key: .dubeolsik)]: Jamo(._RMS, key: .dubeolsik),
+                [Jamo(._RM, key: .dubeolsik), Jamo(._H, key: .dubeolsik)]: Jamo(._RMH, key: .dubeolsik),
+                [Jamo(._RB, key: .dubeolsik), Jamo(._D, key: .dubeolsik)]: Jamo(._RBD, key: .dubeolsik),
+                [Jamo(._RB, key: .dubeolsik), Jamo(._S, key: .dubeolsik)]: Jamo(._RBS, key: .dubeolsik),
+                [Jamo(._RB, key: .dubeolsik), Jamo(._P, key: .dubeolsik)]: Jamo(._RBP, key: .dubeolsik),
+                [Jamo(._RB, key: .dubeolsik), Jamo(._H, key: .dubeolsik)]: Jamo(._RBH, key: .dubeolsik),
+                [Jamo(._RB, key: .dubeolsik), Jamo(._Q, key: .dubeolsik)]: Jamo(._RBQ, key: .dubeolsik),
+                [Jamo(._RX, key: .dubeolsik), Jamo(._H, key: .dubeolsik)]: Jamo(._RXH, key: .dubeolsik),
+                [Jamo(._M, key: .dubeolsik), Jamo(._G, key: .dubeolsik)]: Jamo(._MG, key: .dubeolsik),
+                [Jamo(._M, key: .dubeolsik), Jamo(._N, key: .dubeolsik)]: Jamo(._MN, key: .dubeolsik),
+                [Jamo(._M, key: .dubeolsik), Jamo(._R, key: .dubeolsik)]: Jamo(._MR, key: .dubeolsik),
+                [Jamo(._M, key: .dubeolsik), Jamo(._M, key: .dubeolsik)]: Jamo(._MM, key: .dubeolsik),
+                [Jamo(._M, key: .dubeolsik), Jamo(._B, key: .dubeolsik)]: Jamo(._MB, key: .dubeolsik),
+                [Jamo(._M, key: .dubeolsik), Jamo(._S, key: .dubeolsik)]: Jamo(._MS, key: .dubeolsik),
+                [Jamo(._M, key: .dubeolsik), Jamo(._SS, key: .dubeolsik)]: Jamo(._MSS, key: .dubeolsik),
+                [Jamo(._M, key: .dubeolsik), Jamo(._Z, key: .dubeolsik)]: Jamo(._MZ, key: .dubeolsik),
+                [Jamo(._M, key: .dubeolsik), Jamo(._J, key: .dubeolsik)]: Jamo(._MJ, key: .dubeolsik),
+                [Jamo(._M, key: .dubeolsik), Jamo(._C, key: .dubeolsik)]: Jamo(._MC, key: .dubeolsik),
+                [Jamo(._M, key: .dubeolsik), Jamo(._H, key: .dubeolsik)]: Jamo(._MH, key: .dubeolsik),
+                [Jamo(._M, key: .dubeolsik), Jamo(._Q, key: .dubeolsik)]: Jamo(._MQ, key: .dubeolsik),
+                [Jamo(._MN, key: .dubeolsik), Jamo(._N, key: .dubeolsik)]: Jamo(._MNN, key: .dubeolsik),
+                [Jamo(._MB, key: .dubeolsik), Jamo(._S, key: .dubeolsik)]: Jamo(._MBS, key: .dubeolsik),
+                [Jamo(._B, key: .dubeolsik), Jamo(._D, key: .dubeolsik)]: Jamo(._BD, key: .dubeolsik),
+                [Jamo(._B, key: .dubeolsik), Jamo(._R, key: .dubeolsik)]: Jamo(._BR, key: .dubeolsik),
+                [Jamo(._B, key: .dubeolsik), Jamo(._M, key: .dubeolsik)]: Jamo(._BM, key: .dubeolsik),
+                [Jamo(._B, key: .dubeolsik), Jamo(._S, key: .dubeolsik)]: Jamo(._BS, key: .dubeolsik),
+                [Jamo(._B, key: .dubeolsik), Jamo(._J, key: .dubeolsik)]: Jamo(._BJ, key: .dubeolsik),
+                [Jamo(._B, key: .dubeolsik), Jamo(._C, key: .dubeolsik)]: Jamo(._BC, key: .dubeolsik),
+                [Jamo(._B, key: .dubeolsik), Jamo(._P, key: .dubeolsik)]: Jamo(._BP, key: .dubeolsik),
+                [Jamo(._B, key: .dubeolsik), Jamo(._H, key: .dubeolsik)]: Jamo(._BH, key: .dubeolsik),
+                [Jamo(._B, key: .dubeolsik), Jamo(._Q, key: .dubeolsik)]: Jamo(._BQ, key: .dubeolsik),
+                [Jamo(._BR, key: .dubeolsik), Jamo(._P, key: .dubeolsik)]: Jamo(._BRP, key: .dubeolsik),
+                [Jamo(._BS, key: .dubeolsik), Jamo(._D, key: .dubeolsik)]: Jamo(._BSD, key: .dubeolsik),
+                [Jamo(._S, key: .dubeolsik), Jamo(._G, key: .dubeolsik)]: Jamo(._SG, key: .dubeolsik),
+                [Jamo(._S, key: .dubeolsik), Jamo(._D, key: .dubeolsik)]: Jamo(._SD, key: .dubeolsik),
+                [Jamo(._S, key: .dubeolsik), Jamo(._R, key: .dubeolsik)]: Jamo(._SR, key: .dubeolsik),
+                [Jamo(._S, key: .dubeolsik), Jamo(._M, key: .dubeolsik)]: Jamo(._SM, key: .dubeolsik),
+                [Jamo(._S, key: .dubeolsik), Jamo(._B, key: .dubeolsik)]: Jamo(._SB, key: .dubeolsik),
+                [Jamo(._S, key: .dubeolsik), Jamo(._Z, key: .dubeolsik)]: Jamo(._SZ, key: .dubeolsik),
+                [Jamo(._S, key: .dubeolsik), Jamo(._J, key: .dubeolsik)]: Jamo(._SJ, key: .dubeolsik),
+                [Jamo(._S, key: .dubeolsik), Jamo(._C, key: .dubeolsik)]: Jamo(._SC, key: .dubeolsik),
+                [Jamo(._S, key: .dubeolsik), Jamo(._T, key: .dubeolsik)]: Jamo(._ST, key: .dubeolsik),
+                [Jamo(._S, key: .dubeolsik), Jamo(._H, key: .dubeolsik)]: Jamo(._SH, key: .dubeolsik),
+                [Jamo(._SB, key: .dubeolsik), Jamo(._Q, key: .dubeolsik)]: Jamo(._SBQ, key: .dubeolsik),
+                [Jamo(._SS, key: .dubeolsik), Jamo(._G, key: .dubeolsik)]: Jamo(._SSG, key: .dubeolsik),
+                [Jamo(._SS, key: .dubeolsik), Jamo(._D, key: .dubeolsik)]: Jamo(._SSD, key: .dubeolsik),
+                [Jamo(._Z, key: .dubeolsik), Jamo(._B, key: .dubeolsik)]: Jamo(._ZB, key: .dubeolsik),
+                [Jamo(._ZB, key: .dubeolsik), Jamo(._Q, key: .dubeolsik)]: Jamo(._ZBQ, key: .dubeolsik),
+                [Jamo(._V, key: .dubeolsik), Jamo(._G, key: .dubeolsik)]: Jamo(._VG, key: .dubeolsik),
+                [Jamo(._V, key: .dubeolsik), Jamo(._GG, key: .dubeolsik)]: Jamo(._VGG, key: .dubeolsik),
+                [Jamo(._V, key: .dubeolsik), Jamo(._M, key: .dubeolsik)]: Jamo(._VM, key: .dubeolsik),
+                [Jamo(._V, key: .dubeolsik), Jamo(._S, key: .dubeolsik)]: Jamo(._VS, key: .dubeolsik),
+                [Jamo(._V, key: .dubeolsik), Jamo(._Z, key: .dubeolsik)]: Jamo(._VZ, key: .dubeolsik),
+                [Jamo(._V, key: .dubeolsik), Jamo(._V, key: .dubeolsik)]: Jamo(._VV, key: .dubeolsik),
+                [Jamo(._V, key: .dubeolsik), Jamo(._K, key: .dubeolsik)]: Jamo(._VK, key: .dubeolsik),
+                [Jamo(._V, key: .dubeolsik), Jamo(._H, key: .dubeolsik)]: Jamo(._VH, key: .dubeolsik),
+                [Jamo(._J, key: .dubeolsik), Jamo(._B, key: .dubeolsik)]: Jamo(._JB, key: .dubeolsik),
+                [Jamo(._JB, key: .dubeolsik), Jamo(._B, key: .dubeolsik)]: Jamo(._JBB, key: .dubeolsik),
+                [Jamo(._P, key: .dubeolsik), Jamo(._B, key: .dubeolsik)]: Jamo(._PB, key: .dubeolsik),
+                [Jamo(._P, key: .dubeolsik), Jamo(._S, key: .dubeolsik)]: Jamo(._PS, key: .dubeolsik),
+                [Jamo(._P, key: .dubeolsik), Jamo(._T, key: .dubeolsik)]: Jamo(._PT, key: .dubeolsik),
+                [Jamo(._P, key: .dubeolsik), Jamo(._Q, key: .dubeolsik)]: Jamo(._PQ, key: .dubeolsik),
+                [Jamo(._H, key: .dubeolsik), Jamo(._N, key: .dubeolsik)]: Jamo(._HN, key: .dubeolsik),
+                [Jamo(._H, key: .dubeolsik), Jamo(._R, key: .dubeolsik)]: Jamo(._HR, key: .dubeolsik),
+                [Jamo(._H, key: .dubeolsik), Jamo(._M, key: .dubeolsik)]: Jamo(._HM, key: .dubeolsik),
+                [Jamo(._H, key: .dubeolsik), Jamo(._B, key: .dubeolsik)]: Jamo(._HB, key: .dubeolsik),
+            ]
+        ),
+        
+        automataRules: [
+            0: AutomataEntry(expression: Expression.parse("A ? 1 : B ? 2 : C ? 3 : 0")),
+            1: AutomataEntry(expression: Expression.parse("A ? 1 : B ? 2 : C ? 3 : 0")),
+            2: AutomataEntry(expression: Expression.parse("B ? 2 : C ? 3 : 0")),
+            3: AutomataEntry(expression: Expression.parse("C ? 3 : 0")),
+        ]
+    )
 )

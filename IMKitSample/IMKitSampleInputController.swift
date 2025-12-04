@@ -8,9 +8,11 @@
 import Cocoa
 import InputMethodKit
 
+let fallBackKeyboard = dubeolsikOld
+
 @objc(IMKitSampleInputController)
 class IMKitSampleInputController: IMKInputController {
-    var receiver = InputReceiver(dubeolsikOld)
+    var receiver = InputReceiver(fallBackKeyboard)
     
     // Empty these lists when generating release build
     var activeKeyboards: [Keyboard] = []
@@ -22,12 +24,12 @@ class IMKitSampleInputController: IMKInputController {
         setValue(0, forTag: 0, client: inputClient)
         
         if self.activeKeyboards.isEmpty {
-            NSLog("Warning: Failed to load keyboards. Using dubeolsik instead.")
+            NSLog("Warning: Failed to load keyboards. Using \(fallBackKeyboard.name) instead.")
             do {
-                try KeyboardFileManager.shared.save(keyboard: dubeolsik)
+                try KeyboardFileManager.shared.save(keyboard: fallBackKeyboard)
                 loadActiveKeyboards()
             } catch {
-                activeKeyboards = [dubeolsik]
+                activeKeyboards = [fallBackKeyboard]
                 NSLog("Error: Failed to save default keyboard. \(error.localizedDescription)")
             }
         } else {
@@ -52,17 +54,19 @@ class IMKitSampleInputController: IMKInputController {
             return
         }
         
+        var keyboard: Keyboard = fallBackKeyboard
         if let activeKeyboardID = userDefaults.string(forKey: "ActiveKeyboardID") {
-            receiver.keyboard = (activeKeyboards.first(where: { $0.id == activeKeyboardID })) ?? activeKeyboards.first ?? dubeolsik
+            keyboard = (activeKeyboards.first(where: { $0.id == activeKeyboardID })) ?? activeKeyboards.first ?? fallBackKeyboard
         } else {
             NSLog("Warning: Previous default value not found. Setting to first available keyboard.")
-            receiver.keyboard = (activeKeyboards.first) ?? dubeolsik
+            keyboard = (activeKeyboards.first) ?? fallBackKeyboard
         }
         
+        receiver = InputReceiver(keyboard)
 //        receiver.keyboard = dubeolsikOld
         
-        userDefaults.set(receiver.keyboard.id, forKey: "ActiveKeyboardID")
-        NSLog("Info: Active keyboard set to \(receiver.keyboard.id).")
+        userDefaults.set(keyboard.id, forKey: "ActiveKeyboardID")
+        NSLog("Info: Active keyboard set to \(keyboard.id).")
     }
     
     override open func activateServer(_ sender: Any!) {
@@ -79,10 +83,12 @@ class IMKitSampleInputController: IMKInputController {
         case .keyDown:
             let handledResult = receiver.keyDownHandler(event, client: sender)
             return handledResult
+        case .keyUp:
+            let handledResult = receiver.keyUpHandler(event, client: sender)
+            return handledResult
         default:
-            break
+            return false
         }
-        return false
     }
     
     override open func recognizedEvents(_ sender: Any!) -> Int {
@@ -125,341 +131,193 @@ class IMKitSampleInputController: IMKInputController {
 }
 
 struct InputReceiver {
-    var keyboard: Keyboard
-    var status: Int
-    var compositionResult: Bool
-    var keyBuffer: [Key]
-    var charBuffer: [String]
-    var hangulBuffer: [Hangul]
-    var automataStateHistory: [Int]
+//    var keyboard: Keyboard
+    var stateLog: [Int]
+    var hangulBufferLog: [[PreSyllable]]
+    var environment: Environment
+    
+    var inputProcessor: InputProcessor
+    var outputProcessor: OutputProcessor
+    
+    var text: String = ""
     
     init(_ keyboard: Keyboard) {
-        self.keyboard = keyboard
-        self.status = -1 // -1: 조합 중이 아님, 0: 한글 조합 완료, 1 이상: 한글 조합 중
-        self.compositionResult = false
-        self.keyBuffer = []
-        self.charBuffer = []
-        self.hangulBuffer = []
-        self.automataStateHistory = []
+        self.stateLog = []
+        self.hangulBufferLog = []
+        self.environment = [:]
+        
+        switch keyboard.inputLevel {
+        case .plain:
+            self.inputProcessor = PlainInputProcessor()
+        case .basic:
+            self.inputProcessor = BasicInputProcessor(data: keyboard.inputProcessorData)
+        case .advanced:
+            self.inputProcessor = AdvancedInputProcessor(data: keyboard.inputProcessorData)
+        }
+        
+        switch keyboard.outputLevel {
+        case .plain:
+            self.outputProcessor = PlainOutputProcessor()
+        case .basic:
+            self.outputProcessor = BasicOutputProcessor(data: keyboard.outputProcessorData)
+        case .advanced:
+            // AdvancedOutputProcessor 만들면 고치세요
+            self.outputProcessor = BasicOutputProcessor(data: keyboard.outputProcessorData)
+        }
     }
     
     mutating func keyDownHandler(_ event: NSEvent, client sender: Any!) -> Bool {
-        let flags = event.modifierFlags
-        
-        if flags.contains(.command) || flags.contains(.control) {
-            NSLog("Key skipped: \(flags.contains(.command) ? "Command" : "Control") key is pressed.")
-            self.flush(sender)
+        if type(of: self.inputProcessor) == PlainInputProcessor.self {
             return false
         }
         
-        // delete, return 처리
+        // 1. 입력기 전체 설정 처리
+        // 1.1. 단축키
+        
+        // 일단은 특정 키는 바로 보내도록 함
+        if [0x24, 0x30, 0x31].contains(event.keyCode) || (0x34 < event.keyCode && event.keyCode < 0x5D) || (0x5F < event.keyCode) {
+            self.flush(sender)
+            return false
+        }
         if event.keyCode == 0x33 {
-            // delete
-            guard !self.hangulBuffer.isEmpty else {
+            if self.hangulBufferLog.isEmpty {
                 return false
-            }
-            
-            // 조합된 글자의 경우, 원래 문자열로 되돌리기
-            if self.hangulBuffer.count > 0 {
-                for (key, value) in self.keyboard.compositionRules {
-                    if value != self.hangulBuffer.last! {
-                        continue
-                    }
-                    // 입력 기록에 따라 더 엄밀한 처리 필요
-                    NSLog("Reverted to \(key.map { $0.getCharacterString() }.joined(separator: "+"))")
-                    self.hangulBuffer.removeLast()
-                    key.forEach { self.hangulBuffer.append($0.copy()) }
-                    break
-                }
-            }
-            
-            self.status = self.automataStateHistory.last ?? -1
-            self.hangulBuffer.removeLast()
-            self.charBuffer.removeLast()
-            self.keyBuffer.removeLast()
-            self.automataStateHistory.removeLast()
-            self.sendText(sender)
-            return true
-        }
-        
-        // 입력기에서 처리하지 않는 키들
-        guard KeyCode(rawValue: event.keyCode) != nil else {
-            NSLog("Key skipped: No action found for key \(String(describing: event.keyCode)).")
-            self.flush(sender)
-            return false
-        }
-        
-        let key = Key(event: event)
-        self.keyBuffer.append(key)
-        guard let action = self.getAction(event: event) else {
-            NSLog("Key skipped: No action found for key \(String(describing: KeyCode(rawValue: event.keyCode))).")
-            self.flush(sender)
-            return false
-        }
-        
-        // 키에 지정된 동작 실행 -> 함수로 보낼 것
-        switch action {
-        case .insert(let text):
-            self.charBuffer.append(text)
-            self.flush(sender)
-            return true
-            
-        case .insertHangul(let hangul):
-            // 마지막 글자, 마지막에서 두 번째 글자
-            let hangul1 = hangul.copy()
-            let hangul2: Hangul? = self.hangulBuffer.last
-            
-            // 두벌식에서 종성 다음에 중성이 입력된 경우 마지막 종성을 초성으로 처리 (겹받침으로 변환된 경우 역변환 필요)
-            if let hangul2 = hangul2,
-               hangul2.position == .final,
-               hangul1.position == .medial {
-                // 특수한 배열을 사용하여, 겹받침을 두 종성의 결합으로 입력하지 않은 경우도 생각해야 함 (아직은 안 함)
-                for (key, value) in self.keyboard.compositionRules {
-                    if value != hangul2 {
-                        continue
-                    }
-                    NSLog("Reverted to \(key.map { $0.getCharacterString() }.joined(separator: "+"))")
-                    if !key.last!.isTwoSet {
-                        break
-                    }
-                    self.hangulBuffer.removeLast()
-                    key.forEach { self.hangulBuffer.append($0.copy()) }
-                    self.hangulBuffer.last!.position = .initial
-                    break
-                }
-                
-                hangul2.position = .initial
-                // 초성을 입력한 것처럼 오토마타 상태 변환
-                if let rules: [Condition: Int] = keyboard.automata[self.status] {
-                    if let testResult = rules.first(where: { (condition, _) in condition.test(automataState: self.status, capsLockState: flags.contains(.capsLock), currentHangulPosition: .initial) }) {
-                        self.status = testResult.value
-                    } else {
-                        self.status = 0
-                    }
-                } else {
-                    self.status = 0
-                }
-            }
-            
-            self.hangulBuffer.append(hangul1)
-            self.compositionResult = self.applyComposition() // 조합 적용
-            
-            // 겹받침 조합 실패한 두벌식 종성 초성으로 처리
-            if !self.compositionResult, self.hangulBuffer.count > 1 {
-                let hangul2: Hangul = self.hangulBuffer[self.hangulBuffer.count - 2]
-                if hangul2.position == .final, hangul1.position == .final {
-                    NSLog("Current jongseong \(hangul1.getCharacterString()) could not be composed")
-                    hangul1.position = .initial
-                }
-            }
-            
-            // 오토마타 상태 설정 -> 함수로 보낼 것
-            if let rules: [Condition: Int] = keyboard.automata[self.status] {
-                if let testResult = rules.first(where: { (condition, _) in condition.test(automataState: self.status, capsLockState: flags.contains(.capsLock), currentHangulPosition: hangul1.position) }) {
-                    self.status = testResult.value
-                } else {
-                    self.status = 0
-                }
             } else {
-                self.status = 0
-            }
-            self.automataStateHistory.append(self.status)
-            NSLog("Current letter position: \(String(describing: self.hangulBuffer.last!.position)), Current automata state: \(self.status)")
-            self.sendText(sender)
-            return true
-            
-        case .noop(let stopComposition):
-            if stopComposition {
-                self.status = 0
+                self.hangulBufferLog.removeLast()
                 self.sendText(sender)
-            }
-            return true
-            
-        default:
-            self.flush(sender)
-            break
-        }
-        
-        return false
-    }
-    func getAction(event: NSEvent) -> KeyAction? {
-        guard let value = self.keyboard.layout.first(where: { (key, _) in key.test(event: event) }) else {
-            print("nil!")
-            return nil
-        }
-        let actionDictionary = value.value
-        
-        let capsLockPressed = event.modifierFlags.contains(.capsLock)
-        for (condition, action) in actionDictionary {
-            if condition.test(automataState: self.status, capsLockState: capsLockPressed) {
-                print("Matched with automata state \(self.status)")
-                return action
-            }
-        }
-        
-        return nil
-    }
-    func actionHandler(_ action: KeyAction) -> Bool {
-        return false
-    }
-    
-    mutating func applyComposition() -> Bool {
-        // 조합 데이터가 없는 경우: 바로 실패
-        guard self.keyboard.compositionRules.count > 0 else {
-            print("Info: Composition failed due to the absence of composintion rules.")
-            return false
-        }
-        
-        if self.hangulBuffer.count < 2 {
-            return false
-        }
-        
-        func getPositionString(_ hangul: Hangul) -> String {
-            switch hangul.position {
-            case .initial: return hangul.isTwoSet ? "i2" : "i"
-            case .medial: return "j"
-            case .final: return hangul.isTwoSet ? "f2" : "f"
-            default: return ""
-            }
-        }
-        
-        let target = Array(self.hangulBuffer[(self.hangulBuffer.count - 2)...])
-        print("Target: " + target.map({$0.getCharacterString() + getPositionString($0)}).joined(separator: "+"))
-        
-        for (key, value) in self.keyboard.compositionRules {
-            print("From rule: " + key.map({$0.getCharacterString() + getPositionString($0)}).joined(separator: "+"))
-            if key == target {
-                // 조합 성공
-                self.hangulBuffer.removeLast(2)
-                self.hangulBuffer.append(value.copy())
+                self.stateLog.removeLast()
                 return true
             }
         }
         
+        
+        /* 2. 입력 처리 */
+        
+        self.environment["A"] = 0 // 나중에 현재 글자판의 번호로 바꿀 것
+        if let hangulBuffer = self.hangulBufferLog.last, let currentSyllable = hangulBuffer.last {
+            self.environment["D"] = Int64(currentSyllable.leading.code)
+            self.environment["E"] = Int64(currentSyllable.leading.code)
+            self.environment["F"] = Int64(currentSyllable.leading.code)
+        } else {
+            self.environment["D"] = 0
+            self.environment["E"] = 0
+            self.environment["F"] = 0
+        }
+        self.environment["J"] = 0 // 연타 횟수로 바꿀 것
+        self.environment["K"] = 0 // 현재 시각으로 바꿀 것 (ms)
+        self.environment["N"] = 0
+        self.environment["P"] = event.modifierFlags.contains(.capsLock) ? 1 : 0
+        if self.inputProcessor.data.flags.contains(.useRandomNumber) {
+            self.environment["R"] = Int64.random(in: Int64(Int32.min)...Int64(Int32.max))
+        }
+        self.environment["T"] = Int64(self.stateLog.last ?? 0)
+        self.environment["V"] = 1 // 현재 눌린 키의 수
+        self.environment["W"] = 1 // 눌린 키의 최댓값
+        
+        guard let keyAction = inputProcessor.getKeyAction(event: event, env: &self.environment) else {
+            self.flush(sender)
+            return false
+        }
+        
+        
+        /* 3. 출력 처리 */
+        
+        let processedText = self.outputProcessor.executeKeyAction(keyAction, hangulBufferLog: &self.hangulBufferLog, stateLog: &self.stateLog, env: &self.environment)
+        
+        if let text = processedText {
+            if text != "" {
+                self.flush(sender)
+            }
+            self.sendText(sender, text: text)
+        } else {
+            self.flush(sender)
+        }
+        
+        // (특수글쇠일 때)             (한글 글쇠일 때)              (일반 글쇠일 때)
+        // 3.1. 글쇠 처리             3.1. 낱자 결합 확인            3.1. 글쇠 치환 -> 성공 시 한글 글쇠인 경우 왼쪽 과정을 따라 처리
+        //                          3.2. 가상 낱자 대응            3.2. 사용자 정의 조합
+        //                          3.3. 종성에서 초성 넘겨주기       3.3. 사용자 정의 조합의 지정된 상태로 이동
+        //                          3.4. 결합 축약
+        //                          3.5. 음절 조합
+        //                          3.6. 한글 음절 치환 -> 낱자 치환(단, 가상 낱자 변환 전을 기준으로)
+        // 3.2. 오토마타 상태 전환       3.7. 오토마타 상태 전환
+        
+        return true
+    }
+    
+    mutating func keyUpHandler(_ event: NSEvent, client sender: Any!) -> Bool {
         return false
     }
     
-    mutating func flush(_ sender: Any!) {
-        self.status = -1
-        self.sendText(sender)
-        self.compositionResult = false
-        self.keyBuffer.removeAll()
-        self.charBuffer.removeAll()
-        self.hangulBuffer.removeAll()
-        self.automataStateHistory.removeAll()
+    func buildHangulSyllable() -> String {
+        guard let hangulBuffer = self.hangulBufferLog.last else {
+            return ""
+        }
+        let syllables = hangulBuffer.map {
+            let leadingIndex = [0x0001, 0x0002, 0x000C, 0x0018, 0x001A, 0x0024, 0x0046, 0x0056, 0x005D, 0x006D, 0x0076, 0x008A, 0x00A1, 0x00A5, 0x00AB, 0x00B0, 0x00B1, 0x00B3, 0x00B9].firstIndex(of: $0.leading.code)
+            let medialIndex = [0x0001, 0x0005, 0x0006, 0x000A, 0x000B, 0x000F, 0x0010, 0x0014, 0x0015, 0x0016, 0x0017, 0x0021, 0x0022, 0x002B, 0x002E, 0x0030, 0x0034, 0x0036, 0x0040, 0x0047, 0x0049].firstIndex(of: $0.medial.code)
+            let trailingIndex = [0x0000, 0x0001, 0x0002, 0x0007, 0x000C, 0x0014, 0x0017, 0x0018, 0x0024, 0x0025, 0x002F, 0x0033, 0x003A, 0x0040, 0x0041, 0x0042, 0x0046, 0x0056, 0x005E, 0x006D, 0x0076, 0x008A, 0x00A1, 0x00AB, 0x00B0, 0x00B1, 0x00B3, 0x00B9].firstIndex(of: $0.trailing.code)
+            if let leadingIndex = leadingIndex, let medialIndex = medialIndex, let trailingIndex = trailingIndex {
+                let syllableUnicode = UnicodeScalar(0xAC00 + (21 * 28) * leadingIndex + 28 * medialIndex + trailingIndex)
+                return String(Character(syllableUnicode!))
+            }
+            
+            if let leadingJamoCode = LeadingJamoCode[$0.leading.code],
+               let compatibilityJamoCode = LeadingToCompatibility[leadingJamoCode],
+               $0.medial.code == 0, $0.trailing.code == 0 {
+                let unicodeScalar = UnicodeScalar(compatibilityJamoCode)!
+                return String(Character(unicodeScalar))
+            }
+            if let medialJamoCode = MedialJamoCode[$0.medial.code],
+               let compatibilityJamoCode = MedialToCompatibility[medialJamoCode],
+               $0.leading.code == 0, $0.trailing.code == 0 {
+                let unicodeScalar = UnicodeScalar(compatibilityJamoCode)!
+                return String(Character(unicodeScalar))
+            }
+            if let trailingJamoCode = TrailingJamoCode[$0.trailing.code],
+               let compatibilityJamoCode = TrailingToCompatibility[trailingJamoCode],
+               $0.leading.code == 0, $0.medial.code == 0 {
+                let unicodeScalar = UnicodeScalar(compatibilityJamoCode)!
+                return String(Character(unicodeScalar))
+            }
+            
+            let leadingUnicodeScalar = UnicodeScalar(LeadingJamoCode[$0.leading.code] ?? 0x115F)
+            let medialUnicodeScalar = UnicodeScalar(MedialJamoCode[$0.medial.code] ?? 0x1160)
+            if $0.trailing.code != 0, let trailingJamoCode = TrailingJamoCode[$0.trailing.code] {
+                let trailingUnicodeScalar = UnicodeScalar(trailingJamoCode)
+                if let leadingUnicodeScalar = leadingUnicodeScalar, let medialUnicodeScalar = medialUnicodeScalar, let trailingUnicodeScalar = trailingUnicodeScalar {
+                    return String(Character(leadingUnicodeScalar)) + String(Character(medialUnicodeScalar)) + String(Character(trailingUnicodeScalar))
+                }
+            } else {
+                if let leadingUnicodeScalar = leadingUnicodeScalar, let medialUnicodeScalar = medialUnicodeScalar {
+                    return String(Character(leadingUnicodeScalar)) + String(Character(medialUnicodeScalar))
+                }
+            }
+            return ""
+        }
+        let string = syllables.joined()
+        return string
     }
     
-    mutating func sendText(_ sender: Any!) {
+    mutating func flush(_ sender: Any!) {
+        let string = self.buildHangulSyllable()
+        self.hangulBufferLog.removeAll()
+        self.stateLog.removeAll()
+        self.environment.removeAll()
+        self.sendText(sender, text: string)
+    }
+    
+    mutating func sendText(_ sender: Any!, text: String = "") {
         guard let target = sender as? IMKTextInput else {
             return
         }
-        if (self.status < 0) {
-            let string = self.charBuffer.joined()
-            target.insertText(string, replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
-        } else {
-            let string = self.hangulToString()
-            target.setMarkedText(string, selectionRange: NSRange(location: 0, length: string.count), replacementRange: NSRange(location: NSNotFound, length: NSNotFound))
-            self.charBuffer = [string]
-        }
-    }
-    
-    func hangulToString() -> String {
-        let input = self.hangulBuffer
-        var output = ""
         
-        var currentInitial = Hangul(.initial, .none)
-        var currentMedial = Hangul(.medial, .none)
-        var currentFinal = Hangul(.final, .none)
-        var currentToneMark = Hangul(.toneMark, .none)
-        
-        var i = 0
-        while (i < input.count) {
-            let currentPosition = input[i].position
-            
-            currentInitial = Hangul(.initial, .none)
-            currentMedial = Hangul(.medial, .none)
-            currentFinal = Hangul(.final, .none)
-            currentToneMark = Hangul(.toneMark, .none)
-            
-            switch currentPosition {
-            case .initial:
-                currentInitial = input[i]
-                if i + 1 < input.count, input[i + 1].position == .medial {
-                    i += 1
-                    currentMedial = input[i]
-                    if i + 1 < input.count, input[i + 1].position == .final {
-                        i += 1
-                        currentFinal = input[i]
-                    }
-                }
-                if i + 1 < input.count, input[i + 1].position == .toneMark {
-                    i += 1
-                    currentToneMark = input[i]
-                }
-            case .medial:
-                currentMedial = input[i]
-                if i + 1 < input.count, input[i + 1].position == .final {
-                    i += 1
-                    currentFinal = input[i]
-                }
-                if i + 1 < input.count, input[i + 1].position == .toneMark {
-                    i += 1
-                    currentToneMark = input[i]
-                }
-            case .final:
-                currentFinal = input[i]
-                if i + 1 < input.count, input[i + 1].position == .toneMark {
-                    i += 1
-                    fallthrough
-                }
-            case .toneMark:
-                currentToneMark = input[i]
-            case .compatibility:
-                output += input[i].getCharacterString()
-                if i + 1 < input.count, input[i + 1].position == .toneMark {
-                    i += 1
-                    if input[i].getUnicode() != 0 {
-                        output += currentFinal.getCharacterString()
-                    }
-                }
-                i += 1
-                continue
-            }
-            
-            if 0x1100 <= currentInitial.getUnicode(), currentInitial.getUnicode() <= 0x1112, 0x1160 < currentMedial.getUnicode(), currentMedial.getUnicode() <= 0x1175, currentFinal.getUnicode() <= 0x11C2 {
-                // 현대 한글 음절자
-                let initialIndex = currentInitial.getUnicode() - 0x1100
-                let medialIndex = currentMedial.getUnicode() - 0x1161
-                let finalIndex = currentFinal.getUnicode() == 0 ? 0 : (currentFinal.getUnicode() - 0x11A7)
-                
-                let unicode: unichar = 0xAC00 + initialIndex * 21 * 28 + medialIndex * 28 + finalIndex
-                let character = Character(UnicodeScalar(unicode)!)
-                let string = String(character)
-                
-                output += string
-            } else if Array(currentInitial.compatibility.keys).contains(currentInitial.name) && currentMedial.name == .none && currentFinal.name == .none {
-                // 초성 단독 표현
-                output += Hangul(unicode: currentInitial.compatibility[currentInitial.name]!).getCharacterString()
-            } else if currentInitial.name == .none && Array(currentMedial.compatibility.keys).contains(currentMedial.name) && currentFinal.name == .none {
-                // 중성 단독 표현
-                output += Hangul(unicode: currentMedial.compatibility[currentMedial.name]!).getCharacterString()
-            } else if currentInitial.name == .none && currentMedial.name == .none && Array(currentFinal.compatibility.keys).contains(currentFinal.name) {
-                // 종성 단독 표현
-                output += Hangul(unicode: currentFinal.compatibility[currentFinal.name]!).getCharacterString()
-            } else {
-                output += currentInitial.getCharacterString()
-                output += currentMedial.getCharacterString()
-                if currentFinal.getUnicode() != 0 {
-                    output += currentFinal.getCharacterString()
-                }
-            }
-            
-            if currentToneMark.getUnicode() != 0 {
-                output += currentToneMark.getCharacterString()
-            }
-            
-            i += 1
+        let replacementRange = NSRange(location: NSNotFound, length: NSNotFound)
+        target.insertText(text, replacementRange: replacementRange)
+        if !self.stateLog.isEmpty {
+            let composing = buildHangulSyllable()
+            let selectRange = NSRange(location: 0, length: composing.count)
+            target.setMarkedText(composing, selectionRange: selectRange, replacementRange: replacementRange)
         }
-        return output
     }
 }

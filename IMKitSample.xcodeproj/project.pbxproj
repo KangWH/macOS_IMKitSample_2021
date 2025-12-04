@@ -34,6 +34,9 @@
 		43BC36672EDB3AD2001ED719 /* LayoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BC36662EDB3AD2001ED719 /* LayoutView.swift */; };
 		43BC36692EDBC018001ED719 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BC36682EDBC018001ED719 /* Expression.swift */; };
 		43BC366A2EDBC018001ED719 /* Expression.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BC36682EDBC018001ED719 /* Expression.swift */; };
+		43BC366F2EDBF402001ED719 /* KeyOptionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BC366E2EDBF402001ED719 /* KeyOptionView.swift */; };
+		43BC36722EDD21D4001ED719 /* InputProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BC36712EDD21D4001ED719 /* InputProcessor.swift */; };
+		43BC36742EDD22C6001ED719 /* OutputProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43BC36732EDD22C6001ED719 /* OutputProcessor.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -87,6 +90,9 @@
 		43BC36572EDB327A001ED719 /* HaneulIMESettingsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HaneulIMESettingsApp.swift; sourceTree = "<group>"; };
 		43BC36662EDB3AD2001ED719 /* LayoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayoutView.swift; sourceTree = "<group>"; };
 		43BC36682EDBC018001ED719 /* Expression.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Expression.swift; sourceTree = "<group>"; };
+		43BC366E2EDBF402001ED719 /* KeyOptionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyOptionView.swift; sourceTree = "<group>"; };
+		43BC36712EDD21D4001ED719 /* InputProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InputProcessor.swift; sourceTree = "<group>"; };
+		43BC36732EDD22C6001ED719 /* OutputProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutputProcessor.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,6 +154,8 @@
 				1A41E64526E7470D009B65D7 /* Info.plist */,
 				1A41E64826E7495A009B65D7 /* IMKitSample.entitlements */,
 				1A41E64326E74669009B65D7 /* IMKitSampleInputController.swift */,
+				43BC36712EDD21D4001ED719 /* InputProcessor.swift */,
+				43BC36732EDD22C6001ED719 /* OutputProcessor.swift */,
 				1A41E64126E74627009B65D7 /* AppDelegate.swift */,
 				1A41E61B26E745DD009B65D7 /* Assets.xcassets */,
 				1A41E64626E74937009B65D7 /* main.tiff */,
@@ -193,6 +201,7 @@
 				43BC36482EDB327A001ED719 /* GeneralView.swift */,
 				43BC36492EDB327A001ED719 /* KeyboardDataView.swift */,
 				43BC36662EDB3AD2001ED719 /* LayoutView.swift */,
+				43BC366E2EDBF402001ED719 /* KeyOptionView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -391,8 +400,10 @@
 				43779DF02ED442390058E07C /* Hangul.swift in Sources */,
 				436BCD012ED7CA5B00570B5C /* FileManager.swift in Sources */,
 				1A41E64226E74627009B65D7 /* AppDelegate.swift in Sources */,
+				43BC36742EDD22C6001ED719 /* OutputProcessor.swift in Sources */,
 				438BBBEA2ED5B88000A269BA /* dubeolsik.swift in Sources */,
 				438BBBEE2ED6ECEA00A269BA /* dubeolsikOld.swift in Sources */,
+				43BC36722EDD21D4001ED719 /* InputProcessor.swift in Sources */,
 				1A41E64426E74669009B65D7 /* IMKitSampleInputController.swift in Sources */,
 				43BC36692EDBC018001ED719 /* Expression.swift in Sources */,
 			);
@@ -423,6 +434,7 @@
 				43BC365B2EDB327A001ED719 /* SettingsView.swift in Sources */,
 				43BC36622EDB327A001ED719 /* AppEnvironment.swift in Sources */,
 				43BC36632EDB327A001ED719 /* ContentView.swift in Sources */,
+				43BC366F2EDBF402001ED719 /* KeyOptionView.swift in Sources */,
 				43BC36642EDB327A001ED719 /* HaneulIMESettingsApp.swift in Sources */,
 				43BC366A2EDBC018001ED719 /* Expression.swift in Sources */,
 				43BC36672EDB3AD2001ED719 /* LayoutView.swift in Sources */,

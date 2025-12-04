@@ -12,189 +12,245 @@ let dubeolsik = Keyboard(
     name: "두벌식",
     description: "기본 두벌식 자판입니다.",
     
-    layout: [
-        Key(keyCode: .grave, shift: false, option: false): [
-            Condition(): KeyAction.insert("₩")
-        ],
-        Key(keyCode: .grave, shift: true, option: false): [
-            Condition(): KeyAction.insert("~")
-        ],
-        Key(keyCode: .grave, shift: false, option: true): [
-            Condition(): KeyAction.insert("`")
-        ],
-        Key(keyCode: .grave, shift: true, option: true): [
-            Condition(): KeyAction.insert("~")
-        ],
-        
-        Key(keyCode: .q, shift: false, option: false): [
-            Condition(allowedAutomataStates: [0, 1]): KeyAction.insertHangul(Hangul(.initial, .b)),
-            Condition(allowedAutomataStates: [2, 3]): KeyAction.insertHangul(Hangul(.final, .b, isTwoSet: true))
-        ],
-        Key(keyCode: .q, shift: true, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.initial, .b_b))
-        ],
-        Key(keyCode: .w, shift: false, option: false): [
-            Condition(allowedAutomataStates: [0, 1]): KeyAction.insertHangul(Hangul(.initial, .j)),
-            Condition(allowedAutomataStates: [2, 3]): KeyAction.insertHangul(Hangul(.final, .j, isTwoSet: true))
-        ],
-        Key(keyCode: .w, shift: true, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.initial, .j_j))
-        ],
-        Key(keyCode: .e, shift: false, option: false): [
-            Condition(allowedAutomataStates: [0, 1]): KeyAction.insertHangul(Hangul(.initial, .d)),
-            Condition(allowedAutomataStates: [2, 3]): KeyAction.insertHangul(Hangul(.final, .d, isTwoSet: true))
-        ],
-        Key(keyCode: .e, shift: true, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.initial, .d_d))
-        ],
-        Key(keyCode: .r, shift: false, option: false): [
-            Condition(allowedAutomataStates: [0, 1]): KeyAction.insertHangul(Hangul(.initial, .g)),
-            Condition(allowedAutomataStates: [2, 3]): KeyAction.insertHangul(Hangul(.final, .g, isTwoSet: true))
-        ],
-        Key(keyCode: .r, shift: true, option: false): [
-            Condition(allowedAutomataStates: [0, 1]): KeyAction.insertHangul(Hangul(.initial, .g_g)),
-            Condition(allowedAutomataStates: [2, 3]): KeyAction.insertHangul(Hangul(.final, .g_g, isTwoSet: true))
-        ],
-        Key(keyCode: .t, shift: false, option: false): [
-            Condition(allowedAutomataStates: [0, 1]): KeyAction.insertHangul(Hangul(.initial, .s)),
-            Condition(allowedAutomataStates: [2, 3]): KeyAction.insertHangul(Hangul(.final, .s, isTwoSet: true))
-        ],
-        Key(keyCode: .t, shift: true, option: false): [
-            Condition(allowedAutomataStates: [0, 1]): KeyAction.insertHangul(Hangul(.initial, .s_s)),
-            Condition(allowedAutomataStates: [2, 3]): KeyAction.insertHangul(Hangul(.final, .s_s, isTwoSet: true))
-        ],
-        
-        Key(keyCode: .y, shift: false, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.medial, .yo))
-        ],
-        Key(keyCode: .y, shift: true, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.medial, .yo))
-        ],
-        Key(keyCode: .u, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.medial, .yeo))
-        ],
-        Key(keyCode: .i, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.medial, .ya))
-        ],
-        Key(keyCode: .o, shift: false, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.medial, .ae))
-        ],
-        Key(keyCode: .o, shift: true, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.medial, .yae))
-        ],
-        Key(keyCode: .p, shift: false, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.medial, .e))
-        ],
-        Key(keyCode: .p, shift: true, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.medial, .ye))
-        ],
-        
-        Key(keyCode: .a, option: false): [
-            Condition(allowedAutomataStates: [0, 1]): KeyAction.insertHangul(Hangul(.initial, .m)),
-            Condition(allowedAutomataStates: [2, 3]): KeyAction.insertHangul(Hangul(.final, .m, isTwoSet: true))
-        ],
-        Key(keyCode: .s, option: false): [
-            Condition(allowedAutomataStates: [0, 1]): KeyAction.insertHangul(Hangul(.initial, .n)),
-            Condition(allowedAutomataStates: [2, 3]): KeyAction.insertHangul(Hangul(.final, .n, isTwoSet: true))
-        ],
-        Key(keyCode: .d, option: false): [
-            Condition(allowedAutomataStates: [0, 1]): KeyAction.insertHangul(Hangul(.initial, .ie)),
-            Condition(allowedAutomataStates: [2, 3]): KeyAction.insertHangul(Hangul(.final, .ie, isTwoSet: true))
-        ],
-        Key(keyCode: .f, option: false): [
-            Condition(allowedAutomataStates: [0, 1]): KeyAction.insertHangul(Hangul(.initial, .r)),
-            Condition(allowedAutomataStates: [2, 3]): KeyAction.insertHangul(Hangul(.final, .r, isTwoSet: true))
-        ],
-        Key(keyCode: .g, option: false): [
-            Condition(allowedAutomataStates: [0, 1]): KeyAction.insertHangul(Hangul(.initial, .h)),
-            Condition(allowedAutomataStates: [2, 3]): KeyAction.insertHangul(Hangul(.final, .h, isTwoSet: true))
-        ],
-        
-        Key(keyCode: .h, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.medial, .o))
-        ],
-        Key(keyCode: .j, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.medial, .eo))
-        ],
-        Key(keyCode: .k, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.medial, .a))
-        ],
-        Key(keyCode: .l, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.medial, .i))
-        ],
-        
-        Key(keyCode: .z, option: false): [
-            Condition(allowedAutomataStates: [0, 1]): KeyAction.insertHangul(Hangul(.initial, .k, isTwoSet: true)),
-            Condition(allowedAutomataStates: [2, 3]): KeyAction.insertHangul(Hangul(.final, .k, isTwoSet: true))
-        ],
-        Key(keyCode: .x, option: false): [
-            Condition(allowedAutomataStates: [0, 1]): KeyAction.insertHangul(Hangul(.initial, .t, isTwoSet: true)),
-            Condition(allowedAutomataStates: [2, 3]): KeyAction.insertHangul(Hangul(.final, .t, isTwoSet: true))
-        ],
-        Key(keyCode: .c, option: false): [
-            Condition(allowedAutomataStates: [0, 1]): KeyAction.insertHangul(Hangul(.initial, .ch, isTwoSet: true)),
-            Condition(allowedAutomataStates: [2, 3]): KeyAction.insertHangul(Hangul(.final, .ch, isTwoSet: true))
-        ],
-        Key(keyCode: .v, option: false): [
-            Condition(allowedAutomataStates: [0, 1]): KeyAction.insertHangul(Hangul(.initial, .p, isTwoSet: true)),
-            Condition(allowedAutomataStates: [2, 3]): KeyAction.insertHangul(Hangul(.final, .p, isTwoSet: true))
-        ],
-        
-        Key(keyCode: .b, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.medial, .yu))
-        ],
-        Key(keyCode: .n, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.medial, .u))
-        ],
-        Key(keyCode: .m, option: false): [
-            Condition(): KeyAction.insertHangul(Hangul(.medial, .eu))
-        ],
-    ],
+    inputLevel: .basic,
+    outputLevel: .basic,
     
-    compositionRules: [
-        [Hangul(.medial, .o), Hangul(.medial, .a)]: Hangul(.medial, .o_a),
-        [Hangul(.medial, .o), Hangul(.medial, .ae)]: Hangul(.medial, .o_ae),
-        [Hangul(.medial, .o), Hangul(.medial, .i)]: Hangul(.medial, .o_i),
-        [Hangul(.medial, .u), Hangul(.medial, .eo)]: Hangul(.medial, .u_eo),
-        [Hangul(.medial, .u), Hangul(.medial, .e)]: Hangul(.medial, .u_ae),
-        [Hangul(.medial, .u), Hangul(.medial, .i)]: Hangul(.medial, .u_i),
-        [Hangul(.medial, .eu), Hangul(.medial, .i)]: Hangul(.medial, .eu_i),
+    inputProcessorData: InputProcessorData(keyTable: [
+        Key(keyCode: .grave, shift: false, option: false): Expression.parse("'₩'"),
+        Key(keyCode: .grave, shift: true,  option: false): Expression.parse("'~'"),
+        Key(keyCode: .grave, shift: false, option: true):  Expression.parse("'`'"),
+        Key(keyCode: .grave, shift: true,  option: true):  Expression.parse("'~'"),
+        Key(keyCode: .one, shift: false, option: false): Expression.parse("'1'"),
+        Key(keyCode: .one, shift: true,  option: false): Expression.parse("'!'"),
+        Key(keyCode: .one, shift: false, option: true):  Expression.parse("'1'"),
+        Key(keyCode: .one, shift: true,  option: true):  Expression.parse("'!'"),
+        Key(keyCode: .two, shift: false, option: false): Expression.parse("'2'"),
+        Key(keyCode: .two, shift: true,  option: false): Expression.parse("'@'"),
+        Key(keyCode: .two, shift: false, option: true):  Expression.parse("'2'"),
+        Key(keyCode: .two, shift: true,  option: true):  Expression.parse("'@'"),
+        Key(keyCode: .three, shift: false, option: false): Expression.parse("'3'"),
+        Key(keyCode: .three, shift: true,  option: false): Expression.parse("'#'"),
+        Key(keyCode: .three, shift: false, option: true):  Expression.parse("'3'"),
+        Key(keyCode: .three, shift: true,  option: true):  Expression.parse("'#'"),
+        Key(keyCode: .four, shift: false, option: false): Expression.parse("'4'"),
+        Key(keyCode: .four, shift: true,  option: false): Expression.parse("'$'"),
+        Key(keyCode: .four, shift: false, option: true):  Expression.parse("'4'"),
+        Key(keyCode: .four, shift: true,  option: true):  Expression.parse("'$'"),
+        Key(keyCode: .five, shift: false, option: false): Expression.parse("'5'"),
+        Key(keyCode: .five, shift: true,  option: false): Expression.parse("'%'"),
+        Key(keyCode: .five, shift: false, option: true):  Expression.parse("'5'"),
+        Key(keyCode: .five, shift: true,  option: true):  Expression.parse("'%'"),
+        Key(keyCode: .six, shift: false, option: false): Expression.parse("'6'"),
+        Key(keyCode: .six, shift: true,  option: false): Expression.parse("'^'"),
+        Key(keyCode: .six, shift: false, option: true):  Expression.parse("'6'"),
+        Key(keyCode: .six, shift: true,  option: true):  Expression.parse("'^'"),
+        Key(keyCode: .seven, shift: false, option: false): Expression.parse("'7'"),
+        Key(keyCode: .seven, shift: true,  option: false): Expression.parse("'&'"),
+        Key(keyCode: .seven, shift: false, option: true):  Expression.parse("'7'"),
+        Key(keyCode: .seven, shift: true,  option: true):  Expression.parse("'&'"),
+        Key(keyCode: .eight, shift: false, option: false): Expression.parse("'8'"),
+        Key(keyCode: .eight, shift: true,  option: false): Expression.parse("'*'"),
+        Key(keyCode: .eight, shift: false, option: true):  Expression.parse("'8'"),
+        Key(keyCode: .eight, shift: true,  option: true):  Expression.parse("'*'"),
+        Key(keyCode: .nine, shift: false, option: false): Expression.parse("'9'"),
+        Key(keyCode: .nine, shift: true,  option: false): Expression.parse("'('"),
+        Key(keyCode: .nine, shift: false, option: true):  Expression.parse("'9'"),
+        Key(keyCode: .nine, shift: true,  option: true):  Expression.parse("'('"),
+        Key(keyCode: .zero, shift: false, option: false): Expression.parse("'0'"),
+        Key(keyCode: .zero, shift: true,  option: false): Expression.parse("')'"),
+        Key(keyCode: .zero, shift: false, option: true):  Expression.parse("'0'"),
+        Key(keyCode: .zero, shift: true,  option: true):  Expression.parse("')'"),
+        Key(keyCode: .minus, shift: false, option: false): Expression.parse("'-'"),
+        Key(keyCode: .minus, shift: true,  option: false): Expression.parse("'_'"),
+        Key(keyCode: .minus, shift: false, option: true):  Expression.parse("'-'"),
+        Key(keyCode: .minus, shift: true,  option: true):  Expression.parse("'_'"),
+        Key(keyCode: .equal, shift: false, option: false): Expression.parse("'='"),
+        Key(keyCode: .equal, shift: true,  option: false): Expression.parse("'+'"),
+        Key(keyCode: .equal, shift: false, option: true):  Expression.parse("'='"),
+        Key(keyCode: .equal, shift: true,  option: true):  Expression.parse("'+'"),
         
-        // 결합된 겹받침은 초성으로 올 수 없으므로 isTwoSet에 true를 지정하지 않음
-        [Hangul(.final, .g, isTwoSet: true), Hangul(.final, .s, isTwoSet: true)]: Hangul(.final, .g_s),
-        [Hangul(.final, .n, isTwoSet: true), Hangul(.final, .j, isTwoSet: true)]: Hangul(.final, .n_j),
-        [Hangul(.final, .n, isTwoSet: true), Hangul(.final, .h, isTwoSet: true)]: Hangul(.final, .n_h),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .g, isTwoSet: true)]: Hangul(.final, .r_g),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .m, isTwoSet: true)]: Hangul(.final, .r_m),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .b, isTwoSet: true)]: Hangul(.final, .r_b),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .s, isTwoSet: true)]: Hangul(.final, .r_s),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .t, isTwoSet: true)]: Hangul(.final, .r_t),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .p, isTwoSet: true)]: Hangul(.final, .r_p),
-        [Hangul(.final, .r, isTwoSet: true), Hangul(.final, .h, isTwoSet: true)]: Hangul(.final, .r_h),
-        [Hangul(.final, .b, isTwoSet: true), Hangul(.final, .s, isTwoSet: true)]: Hangul(.final, .b_s)
-    ],
+        Key(keyCode: .q, shift: false, option: false): Expression.parse("T < 2 ? H2|B_ : H2|_B"),
+        Key(keyCode: .q, shift: true,  option: false): Expression.parse("H3|BB"),
+        Key(keyCode: .q, shift: false, option: true):  Expression.parse("'q'"),
+        Key(keyCode: .q, shift: true,  option: true):  Expression.parse("'Q'"),
+        Key(keyCode: .w, shift: false, option: false): Expression.parse("T < 2 ? H2|J_ : H2|_J"),
+        Key(keyCode: .w, shift: true,  option: false): Expression.parse("H3|JJ"),
+        Key(keyCode: .w, shift: false, option: true):  Expression.parse("'w'"),
+        Key(keyCode: .w, shift: true,  option: true):  Expression.parse("'W'"),
+        Key(keyCode: .e, shift: false, option: false): Expression.parse("T < 2 ? H2|D_ : H2|_D"),
+        Key(keyCode: .e, shift: true,  option: false): Expression.parse("H3|DD"),
+        Key(keyCode: .e, shift: false, option: true):  Expression.parse("'e'"),
+        Key(keyCode: .e, shift: true,  option: true):  Expression.parse("'E'"),
+        Key(keyCode: .r, shift: false, option: false): Expression.parse("T < 2 ? H2|G_ : H2|_G"),
+        Key(keyCode: .r, shift: true,  option: false): Expression.parse("T < 2 ? H2|GG : H2|_GG"),
+        Key(keyCode: .r, shift: false, option: true):  Expression.parse("'r'"),
+        Key(keyCode: .r, shift: true,  option: true):  Expression.parse("'R'"),
+        Key(keyCode: .t, shift: false, option: false): Expression.parse("T < 2 ? H2|S_ : H2|_S"),
+        Key(keyCode: .t, shift: true,  option: false): Expression.parse("T < 2 ? H2|SS : H2|_SS"),
+        Key(keyCode: .t, shift: false, option: true):  Expression.parse("'t'"),
+        Key(keyCode: .t, shift: true,  option: true):  Expression.parse("'T'"),
+        Key(keyCode: .y, shift: false, option: false): Expression.parse("H2|YO"),
+        Key(keyCode: .y, shift: true,  option: false): Expression.parse("H2|YO"),
+        Key(keyCode: .y, shift: false, option: true):  Expression.parse("'y'"),
+        Key(keyCode: .y, shift: true,  option: true):  Expression.parse("'Y'"),
+        Key(keyCode: .u, shift: false, option: false): Expression.parse("H2|YEO"),
+        Key(keyCode: .u, shift: true,  option: false): Expression.parse("H2|YEO"),
+        Key(keyCode: .u, shift: false, option: true):  Expression.parse("'u'"),
+        Key(keyCode: .u, shift: true,  option: true):  Expression.parse("'U'"),
+        Key(keyCode: .i, shift: false, option: false): Expression.parse("H2|YA"),
+        Key(keyCode: .i, shift: true,  option: false): Expression.parse("H2|YA"),
+        Key(keyCode: .i, shift: false, option: true):  Expression.parse("'i'"),
+        Key(keyCode: .i, shift: true,  option: true):  Expression.parse("'I'"),
+        Key(keyCode: .o, shift: false, option: false): Expression.parse("H2|AE"),
+        Key(keyCode: .o, shift: true,  option: false): Expression.parse("H2|YAE"),
+        Key(keyCode: .o, shift: false, option: true):  Expression.parse("'o'"),
+        Key(keyCode: .o, shift: true,  option: true):  Expression.parse("'O'"),
+        Key(keyCode: .p, shift: false, option: false): Expression.parse("H2|E_"),
+        Key(keyCode: .p, shift: true,  option: false): Expression.parse("H2|YE"),
+        Key(keyCode: .p, shift: false, option: true):  Expression.parse("'p'"),
+        Key(keyCode: .p, shift: true,  option: true):  Expression.parse("'P'"),
+        Key(keyCode: .leftBracket, shift: false, option: false): Expression.parse("'['"),
+        Key(keyCode: .leftBracket, shift: true,  option: false): Expression.parse("'{'"),
+        Key(keyCode: .leftBracket, shift: false, option: true):  Expression.parse("'['"),
+        Key(keyCode: .leftBracket, shift: true,  option: true):  Expression.parse("'{'"),
+        Key(keyCode: .rightBracket, shift: false, option: false): Expression.parse("']'"),
+        Key(keyCode: .rightBracket, shift: true,  option: false): Expression.parse("'}'"),
+        Key(keyCode: .rightBracket, shift: false, option: true):  Expression.parse("']'"),
+        Key(keyCode: .rightBracket, shift: true,  option: true):  Expression.parse("'}'"),
+        Key(keyCode: .backslash, shift: false, option: false): Expression.parse("'\\'"),
+        Key(keyCode: .backslash, shift: true,  option: false): Expression.parse("'|'"),
+        Key(keyCode: .backslash, shift: false, option: true):  Expression.parse("'\\'"),
+        Key(keyCode: .backslash, shift: true,  option: true):  Expression.parse("'|'"),
+        
+        Key(keyCode: .a, shift: false, option: false): Expression.parse("T < 2 ? H2|M_ : H2|_M"),
+        Key(keyCode: .a, shift: true,  option: false): Expression.parse("T < 2 ? H2|M_ : H2|_M"),
+        Key(keyCode: .a, shift: false, option: true):  Expression.parse("'a'"),
+        Key(keyCode: .a, shift: true,  option: true):  Expression.parse("'A'"),
+        Key(keyCode: .s, shift: false, option: false): Expression.parse("T < 2 ? H2|N_ : H2|_N"),
+        Key(keyCode: .s, shift: true,  option: false): Expression.parse("T < 2 ? H2|N_ : H2|_N"),
+        Key(keyCode: .s, shift: false, option: true):  Expression.parse("'s'"),
+        Key(keyCode: .s, shift: true,  option: true):  Expression.parse("'S'"),
+        Key(keyCode: .d, shift: false, option: false): Expression.parse("T < 2 ? H2|Q_ : H2|_Q"),
+        Key(keyCode: .d, shift: true,  option: false): Expression.parse("T < 2 ? H2|Q_ : H2|_Q"),
+        Key(keyCode: .d, shift: false, option: true):  Expression.parse("'d'"),
+        Key(keyCode: .d, shift: true,  option: true):  Expression.parse("'D'"),
+        Key(keyCode: .f, shift: false, option: false): Expression.parse("T < 2 ? H2|R_ : H2|_R"),
+        Key(keyCode: .f, shift: true,  option: false): Expression.parse("T < 2 ? H2|R_ : H2|_R"),
+        Key(keyCode: .f, shift: false, option: true):  Expression.parse("'f'"),
+        Key(keyCode: .f, shift: true,  option: true):  Expression.parse("'F'"),
+        Key(keyCode: .g, shift: false, option: false): Expression.parse("T < 2 ? H2|H_ : H2|_H"),
+        Key(keyCode: .g, shift: true,  option: false): Expression.parse("T < 2 ? H2|H_ : H2|_H"),
+        Key(keyCode: .g, shift: false, option: true):  Expression.parse("'g'"),
+        Key(keyCode: .g, shift: true,  option: true):  Expression.parse("'G'"),
+        Key(keyCode: .h, shift: false, option: false): Expression.parse("H2|O_"),
+        Key(keyCode: .h, shift: true,  option: false): Expression.parse("H2|O_"),
+        Key(keyCode: .h, shift: false, option: true):  Expression.parse("'h'"),
+        Key(keyCode: .h, shift: true,  option: true):  Expression.parse("'H'"),
+        Key(keyCode: .j, shift: false, option: false): Expression.parse("H2|EO"),
+        Key(keyCode: .j, shift: true,  option: false): Expression.parse("H2|EO"),
+        Key(keyCode: .j, shift: false, option: true):  Expression.parse("'j'"),
+        Key(keyCode: .j, shift: true,  option: true):  Expression.parse("'J'"),
+        Key(keyCode: .k, shift: false, option: false): Expression.parse("H2|A_"),
+        Key(keyCode: .k, shift: true,  option: false): Expression.parse("H2|A_"),
+        Key(keyCode: .k, shift: false, option: true):  Expression.parse("'k'"),
+        Key(keyCode: .k, shift: true,  option: true):  Expression.parse("'K'"),
+        Key(keyCode: .l, shift: false, option: false): Expression.parse("H2|I_"),
+        Key(keyCode: .l, shift: true,  option: false): Expression.parse("H2|I_"),
+        Key(keyCode: .l, shift: false, option: true):  Expression.parse("'l'"),
+        Key(keyCode: .l, shift: true,  option: true):  Expression.parse("'L'"),
+        Key(keyCode: .semicolon, shift: false, option: false): Expression.parse("';'"),
+        Key(keyCode: .semicolon, shift: true,  option: false): Expression.parse("':'"),
+        Key(keyCode: .semicolon, shift: false, option: true):  Expression.parse("';'"),
+        Key(keyCode: .semicolon, shift: true,  option: true):  Expression.parse("':'"),
+        
+        Key(keyCode: .section, shift: false, option: false): Expression.parse("'§'"),
+        Key(keyCode: .section, shift: true,  option: false): Expression.parse("'±'"),
+        Key(keyCode: .section, shift: false, option: true):  Expression.parse("'§'"),
+        Key(keyCode: .section, shift: true,  option: true):  Expression.parse("'±'"),
+        Key(keyCode: .z, shift: false, option: false): Expression.parse("T < 2 ? H2|K_ : H2|_K"),
+        Key(keyCode: .z, shift: true,  option: false): Expression.parse("T < 2 ? H2|K_ : H2|_K"),
+        Key(keyCode: .z, shift: false, option: true):  Expression.parse("'z'"),
+        Key(keyCode: .z, shift: true,  option: true):  Expression.parse("'Z'"),
+        Key(keyCode: .x, shift: false, option: false): Expression.parse("T < 2 ? H2|T_ : H2|_T"),
+        Key(keyCode: .x, shift: true,  option: false): Expression.parse("T < 2 ? H2|T_ : H2|_T"),
+        Key(keyCode: .x, shift: false, option: true):  Expression.parse("'x'"),
+        Key(keyCode: .x, shift: true,  option: true):  Expression.parse("'X'"),
+        Key(keyCode: .c, shift: false, option: false): Expression.parse("T < 2 ? H2|C_ : H2|_C"),
+        Key(keyCode: .c, shift: true,  option: false): Expression.parse("T < 2 ? H2|C_ : H2|_C"),
+        Key(keyCode: .c, shift: false, option: true):  Expression.parse("'c'"),
+        Key(keyCode: .c, shift: true,  option: true):  Expression.parse("'C'"),
+        Key(keyCode: .v, shift: false, option: false): Expression.parse("T < 2 ? H2|P_ : H2|_P"),
+        Key(keyCode: .v, shift: true,  option: false): Expression.parse("T < 2 ? H2|P_ : H2|_P"),
+        Key(keyCode: .v, shift: false, option: true):  Expression.parse("'v'"),
+        Key(keyCode: .v, shift: true,  option: true):  Expression.parse("'V'"),
+        Key(keyCode: .b, shift: false, option: false): Expression.parse("H2|YU"),
+        Key(keyCode: .b, shift: true,  option: false): Expression.parse("H2|YU"),
+        Key(keyCode: .b, shift: false, option: true):  Expression.parse("'b'"),
+        Key(keyCode: .b, shift: true,  option: true):  Expression.parse("'B'"),
+        Key(keyCode: .n, shift: false, option: false): Expression.parse("H2|U_"),
+        Key(keyCode: .n, shift: true,  option: false): Expression.parse("H2|U_"),
+        Key(keyCode: .n, shift: false, option: true):  Expression.parse("'n'"),
+        Key(keyCode: .n, shift: true,  option: true):  Expression.parse("'N'"),
+        Key(keyCode: .m, shift: false, option: false): Expression.parse("H2|EU"),
+        Key(keyCode: .m, shift: true,  option: false): Expression.parse("H2|EU"),
+        Key(keyCode: .m, shift: false, option: true):  Expression.parse("'m'"),
+        Key(keyCode: .m, shift: true,  option: true):  Expression.parse("'M'"),
+        Key(keyCode: .comma, shift: false, option: false): Expression.parse("','"),
+        Key(keyCode: .comma, shift: true,  option: false): Expression.parse("'<'"),
+        Key(keyCode: .comma, shift: false, option: true):  Expression.parse("','"),
+        Key(keyCode: .comma, shift: true,  option: true):  Expression.parse("'<'"),
+        Key(keyCode: .period, shift: false, option: false): Expression.parse("'.'"),
+        Key(keyCode: .period, shift: true,  option: false): Expression.parse("'>'"),
+        Key(keyCode: .period, shift: false, option: true):  Expression.parse("'.'"),
+        Key(keyCode: .period, shift: true,  option: true):  Expression.parse("'>'"),
+        Key(keyCode: .slash, shift: false, option: false): Expression.parse("'/'"),
+        Key(keyCode: .slash, shift: true,  option: false): Expression.parse("'?'"),
+        Key(keyCode: .slash, shift: false, option: true):  Expression.parse("'/'"),
+        Key(keyCode: .slash, shift: true,  option: true):  Expression.parse("'?'"),
+    ]),
     
-    automata: [
-        // 조합 중이 아니거나 한글 조합 완료
-        0: [
-            Condition(lastHangulPosition: .initial): 1,
-            Condition(lastHangulPosition: .medial): 2
-        ],
-        // 초성 조합 중임
-        1: [
-            Condition(lastHangulPosition: .initial): 1,
-            Condition(lastHangulPosition: .medial): 2
-        ],
-        // 중성 조합 중임
-        2: [
-            Condition(lastHangulPosition: .medial): 2,
-            Condition(lastHangulPosition: .final): 3
-        ],
-        // 종성 조합 중임
-        3: [
-            Condition(lastHangulPosition: .final): 3
+    outputProcessorData: OutputProcessorData(
+        deleteKeyRules: [],
+        
+        compositionRules: CompositionRule(
+            leading: [
+                [Jamo(.G_, key: .dubeolsik), Jamo(.G_, key: .dubeolsik)]: Jamo(.GG, key: .dubeolsik),
+                [Jamo(.D_, key: .dubeolsik), Jamo(.D_, key: .dubeolsik)]: Jamo(.DD, key: .dubeolsik),
+                [Jamo(.B_, key: .dubeolsik), Jamo(.B_, key: .dubeolsik)]: Jamo(.BB, key: .dubeolsik),
+                [Jamo(.S_, key: .dubeolsik), Jamo(.S_, key: .dubeolsik)]: Jamo(.SS, key: .dubeolsik),
+                [Jamo(.J_, key: .dubeolsik), Jamo(.J_, key: .dubeolsik)]: Jamo(.JJ, key: .dubeolsik),
+            ],
+            medial: [
+                [Jamo(.O_, key: .dubeolsik), Jamo(.A_, key: .dubeolsik)]: Jamo(.WA, key: .dubeolsik),
+                [Jamo(.O_, key: .dubeolsik), Jamo(.AE, key: .dubeolsik)]: Jamo(.WAE, key: .dubeolsik),
+                [Jamo(.O_, key: .dubeolsik), Jamo(.I_, key: .dubeolsik)]: Jamo(.OI, key: .dubeolsik),
+                [Jamo(.U_, key: .dubeolsik), Jamo(.EO, key: .dubeolsik)]: Jamo(.UEO, key: .dubeolsik),
+                [Jamo(.U_, key: .dubeolsik), Jamo(.E_, key: .dubeolsik)]: Jamo(.WE, key: .dubeolsik),
+                [Jamo(.U_, key: .dubeolsik), Jamo(.I_, key: .dubeolsik)]: Jamo(.WI, key: .dubeolsik),
+                [Jamo(.EU, key: .dubeolsik), Jamo(.I_, key: .dubeolsik)]: Jamo(.EUI, key: .dubeolsik),
+            ],
+            trailing: [
+                [Jamo(._G, key: .dubeolsik), Jamo(._G, key: .dubeolsik)]: Jamo(._GG, key: .dubeolsik),
+                [Jamo(._G, key: .dubeolsik), Jamo(._S, key: .dubeolsik)]: Jamo(._GS, key: .dubeolsik),
+                [Jamo(._N, key: .dubeolsik), Jamo(._J, key: .dubeolsik)]: Jamo(._NJ, key: .dubeolsik),
+                [Jamo(._N, key: .dubeolsik), Jamo(._H, key: .dubeolsik)]: Jamo(._NH, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._G, key: .dubeolsik)]: Jamo(._RG, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._M, key: .dubeolsik)]: Jamo(._RM, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._B, key: .dubeolsik)]: Jamo(._RB, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._S, key: .dubeolsik)]: Jamo(._RS, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._T, key: .dubeolsik)]: Jamo(._RT, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._P, key: .dubeolsik)]: Jamo(._RP, key: .dubeolsik),
+                [Jamo(._R, key: .dubeolsik), Jamo(._H, key: .dubeolsik)]: Jamo(._RH, key: .dubeolsik),
+                [Jamo(._B, key: .dubeolsik), Jamo(._S, key: .dubeolsik)]: Jamo(._BS, key: .dubeolsik),
+                [Jamo(._S, key: .dubeolsik), Jamo(._S, key: .dubeolsik)]: Jamo(._SS, key: .dubeolsik),
+            ]
+        ),
+        
+        automataRules: [
+            0: AutomataEntry(expression: Expression.parse("A ? 1 : B ? 2 : C ? 3 : 0")),
+            1: AutomataEntry(expression: Expression.parse("A ? 1 : B ? 2 : C ? 3 : 0")),
+            2: AutomataEntry(expression: Expression.parse("B ? 2 : C ? 3 : 0")),
+            3: AutomataEntry(expression: Expression.parse("C ? 3 : 0")),
         ]
-    ],
-    
-    hangulRange: .modernFull
+    )
 )

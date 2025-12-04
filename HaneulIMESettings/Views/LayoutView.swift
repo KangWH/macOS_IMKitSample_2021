@@ -15,21 +15,26 @@ enum LayoutType {
 
 struct KeyView: View {
     let keyCode: KeyCode
-    let keyData: [Key: [Condition: KeyAction]]
+//    let keyData: [Key: [Condition: KeyAction]]
     let status: (shift: Bool, option: Bool, formula: String)
     
+    @State var keyEditing: Bool = false
+    
     var body: some View {
-        Button(action: {}) {
+        Button(action: {keyEditing = true}) {
             ZStack {
                 Rectangle()
                     .foregroundStyle(Color.secondary.opacity(0.2))
                     .clipShape(RoundedRectangle(cornerRadius: 8))
-                Text(keyCode.rawValue.description)
+                Text(keyCode.name)
             }
         }
         .padding(2)
         .buttonStyle(.plain)
         .frame(width: 36, height: 36)
+        .sheet(isPresented: $keyEditing) {
+            KeyOptionView(key: Key(keyCode: keyCode, shift: status.shift, option: status.option))
+        }
     }
 }
 
@@ -114,7 +119,7 @@ struct KeyboardView: View {
                     .fill(.clear)
                     .frame(width: keyLayout[layoutType]![0].leftMargin, height: 4)
                 ForEach(keyLayout[layoutType]![0].keys) { keyCode in
-                    KeyView(keyCode: keyCode, keyData: keyboard.layout, status: status)
+                    KeyView(keyCode: keyCode, /*keyData: keyboard.layout,*/ status: status)
                 }
                 Rectangle()
                     .fill(.clear)
@@ -125,7 +130,7 @@ struct KeyboardView: View {
                     .fill(.clear)
                     .frame(width: keyLayout[layoutType]![1].leftMargin, height: 4)
                 ForEach(keyLayout[layoutType]![1].keys) { keyCode in
-                    KeyView(keyCode: keyCode, keyData: keyboard.layout, status: status)
+                    KeyView(keyCode: keyCode, /*keyData: keyboard.layout,*/ status: status)
                 }
                 Rectangle()
                     .fill(.clear)
@@ -136,7 +141,7 @@ struct KeyboardView: View {
                     .fill(.clear)
                     .frame(width: keyLayout[layoutType]![2].leftMargin, height: 4)
                 ForEach(keyLayout[layoutType]![2].keys) { keyCode in
-                    KeyView(keyCode: keyCode, keyData: keyboard.layout, status: status)
+                    KeyView(keyCode: keyCode, /*keyData: keyboard.layout,*/ status: status)
                 }
                 Rectangle()
                     .fill(.clear)
@@ -147,7 +152,7 @@ struct KeyboardView: View {
                     .fill(.clear)
                     .frame(width: keyLayout[layoutType]![3].leftMargin, height: 4)
                 ForEach(keyLayout[layoutType]![3].keys) { keyCode in
-                    KeyView(keyCode: keyCode, keyData: keyboard.layout, status: status)
+                    KeyView(keyCode: keyCode, /*keyData: keyboard.layout,*/ status: status)
                 }
                 Rectangle()
                     .fill(.clear)
@@ -165,11 +170,16 @@ struct LayoutView: View {
     
     var body: some View {
         Form {
-            KeyboardView(keyboard: keyboard, layoutType: layoutType, status: (shift: shiftActive, option: optionActive, formula: ""))
+            Section(footer: Text("편집하려는 키를 클릭하십시오. 위의 토글 스위치를 사용하여 shift 또는 option 키를 누른 상태의 동작을 편집합니다.")) {
+                KeyboardView(keyboard: keyboard, layoutType: layoutType, status: (shift: shiftActive, option: optionActive, formula: ""))
+                HStack {
+                    Toggle(isOn: $shiftActive) {Text("\(Image(systemName: "shift")) Shift 키")}
+                    Divider()
+                    Toggle(isOn: $optionActive) {Text("\(Image(systemName: "option")) Option 키")}
+                }
+            }
             
-            Section(header: Text("상태 및 레이아웃 설정")) {
-                Toggle(isOn: $shiftActive) {Text("Shift 키")}
-                Toggle(isOn: $optionActive) {Text("Option 키")}
+            Section {
                 Picker(selection: $layoutType, label: Text("키보드 종류")) {
                     Text("ANSI").tag(LayoutType.ansi)
                     Text("ISO").tag(LayoutType.iso)

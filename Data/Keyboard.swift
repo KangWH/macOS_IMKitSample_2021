@@ -8,77 +8,15 @@
 import Foundation
 import AppKit
 
-class Condition: Hashable, Equatable, Codable {
-    // 각 조건을 모두 만족해야 함
-    var allowedAutomataStates: [Int]?
-    var onCapsLock: Bool?
-    var lastInitial: Hangul.Name?
-    var lastMedial: Hangul.Name?
-    var lastFinal: Hangul.Name?
-    var lastHangulPosition: Hangul.Position?
-    var compositionResult: Bool?
-    
-    init(allowedAutomataStates: [Int]? = nil, onCapsLock: Bool? = nil, lastInitial: Hangul.Name? = nil, lastMedial: Hangul.Name? = nil, lastFinal: Hangul.Name? = nil, lastHangulPosition: Hangul.Position? = nil, compositionResult: Bool? = nil) {
-        self.allowedAutomataStates = allowedAutomataStates
-        self.onCapsLock = onCapsLock
-        self.lastInitial = lastInitial
-        self.lastMedial = lastMedial
-        self.lastFinal = lastFinal
-        self.lastHangulPosition = lastHangulPosition
-        self.compositionResult = compositionResult
-    }
-    
-    static func == (lhs: Condition, rhs: Condition) -> Bool {
-        return lhs.allowedAutomataStates == rhs.allowedAutomataStates
-            && lhs.onCapsLock == rhs.onCapsLock
-            && lhs.lastInitial == rhs.lastInitial
-            && lhs.lastMedial == rhs.lastMedial
-            && lhs.lastFinal == rhs.lastFinal
-            && lhs.lastHangulPosition == rhs.lastHangulPosition
-            && lhs.compositionResult == rhs.compositionResult
-    }
-    func hash(into hasher: inout Hasher) {
-        hasher.combine(self.allowedAutomataStates)
-        hasher.combine(self.onCapsLock)
-        hasher.combine(self.lastInitial)
-        hasher.combine(self.lastMedial)
-        hasher.combine(self.lastFinal)
-        hasher.combine(self.lastHangulPosition)
-        hasher.combine(self.compositionResult)
-    }
-    
-    func test(automataState: Int, capsLockState: Bool, currentInitial: Hangul.Name? = nil, currentMedial: Hangul.Name? = nil, currentFinal: Hangul.Name? = nil, currentHangulPosition: Hangul.Position? = nil, currentCompositionResult: Bool? = nil) -> Bool {
-        if let allowedAutomataStates = allowedAutomataStates, !allowedAutomataStates.contains(automataState) && !(allowedAutomataStates.contains(0) && automataState == -1) {
-            return false
-        }
-        if let onCapsLock = onCapsLock, onCapsLock != capsLockState {
-            return false
-        }
-        if let lastInitial = self.lastInitial, let currentInitial = currentInitial, lastInitial != currentInitial {
-            return false
-        }
-        if let lastMedial = self.lastMedial, let currentMedial = currentMedial, lastMedial != currentMedial {
-            return false
-        }
-        if let lastFinal = self.lastFinal, let currentFinal = currentFinal, lastFinal != currentFinal {
-            return false
-        }
-        if let lastHangulPosition = self.lastHangulPosition, let currentHangulPosition = currentHangulPosition, lastHangulPosition != currentHangulPosition {
-            return false
-        }
-        if let compositionResult = self.compositionResult, let currentCompositionResult = currentCompositionResult, compositionResult != currentCompositionResult {
-            return false
-        }
-        return true
-    }
-}
+
+/* INPUT PROCESSOR OBJECT */
 
 struct Key: Hashable, Equatable, Codable {
     var keyCode: KeyCode
-    var shift: Bool?
-    var option: Bool?
+    var shift: Bool
+    var option: Bool
     
-    init(keyCode: KeyCode, shift: Bool? = nil, option: Bool? = nil) {
+    init(keyCode: KeyCode, shift: Bool = false, option: Bool = false) {
         self.keyCode = keyCode
         self.shift = shift
         self.option = option
@@ -100,128 +38,190 @@ struct Key: Hashable, Equatable, Codable {
     
     func test(event: NSEvent) -> Bool {
         guard let keyCode = KeyCode(rawValue: event.keyCode), keyCode == self.keyCode else { return false }
-        switch (self.shift, self.option) {
-        case (.some(let shift), .some(let option)):
-            return event.modifierFlags.contains(.shift) == shift && event.modifierFlags.contains(.option) == option
-        case (.some(let shift), .none): return event.modifierFlags.contains(.shift) == shift
-        case (.none, .some(let option)): return event.modifierFlags.contains(.option) == option
-        case (.none, .none): return true
-        }
+        return self.shift == event.modifierFlags.contains(.shift) && self.option == event.modifierFlags.contains(.option)
     }
 }
-
-enum KeyAction: Codable, Hashable, Equatable {
-    case insert(String)
-    case insertHangul(Hangul)
-    case delete(direction: Direction)
-    case transition(to: Int)
-    case moveCursor(direction: Direction)
-    case convert
-    case noop(stopComposition: Bool)
+struct ShortcutKey: Hashable, Equatable, Codable {
+    var keyCode: KeyCode
+    var control: ModifierCondition
+    var option: ModifierCondition
+    var shift: ModifierCondition
+    var command: ModifierCondition
     
-    enum Position: Codable {
-        case isolated
-        case initial
-        case medial
-        case final
-        case toneMark
+    enum ModifierCondition: Codable {
+        case none
+        case left
+        case right
+        case any
     }
-    enum Direction: Codable {
-        case foreward
-        case backward
-    }
+}
+enum KeyAction: Equatable, Codable {
+    case normalCharacter(unicode: Int32)
+    case multipleCharacter(Int16, Int16, Int16)
+    case dubeolsikHangul(leading: Int16, medial: Int16, trailing: Int16)
+    case dubeolsikJongseongHangul(leading: Int16, medial: Int16, trailing: Int16)
+    case sebeolsikHangul(leading: Int16, medial: Int16, trailing: Int16)
+    case sebeolsikMTLHangul(leading: Int16, medial: Int16, trailing: Int16)
+    case sebeolsikTLMHangul(leading: Int16, medial: Int16, trailing: Int16)
+    case specialKey(keyCode: Int32)
+    case keyPress(keyCode: Int16, control: Bool, option: Bool, shift: Bool, command: Bool)
+    case automataState(to: Int32)
     
-    enum CodingKeys: String, CodingKey {
-        case actionType
-        case character
-        case unicode
-        case isTwoSet
-        case direction
-        case to
-        case stopComposition
-    }
-    
-    func encode(to encoder: any Encoder) throws {
-        var container = encoder.container(keyedBy: CodingKeys.self)
-        switch self {
-        case .insert(let character):
-            try container.encode("insert", forKey: .actionType)
-            try container.encode(character, forKey: .character)
-        case .insertHangul(let hangul):
-            try container.encode("insertHangul", forKey: .actionType)
-            try container.encode(String(format: "0x%04X", hangul.getUnicode()), forKey: .unicode)
-            try container.encode(hangul.isTwoSet, forKey: .isTwoSet)
-        case .delete(direction: let direction):
-            try container.encode("delete", forKey: .actionType)
-            try container.encode(direction, forKey: .direction)
-        case .transition(to: let to):
-            try container.encode("transition", forKey: .actionType)
-            try container.encode(to, forKey: .to)
-        case .moveCursor(direction: let direction):
-            try container.encode("moveCursor", forKey: .actionType)
-            try container.encode(direction, forKey: .direction)
-        case .convert:
-            try container.encode("convert", forKey: .actionType)
-        case .noop(stopComposition: let stopComposition):
-            try container.encode("noop", forKey: .actionType)
-            try container.encode(stopComposition, forKey: .stopComposition)
-        }
-    }
-    
-    init(from decoder: Decoder) throws {
-        let container = try decoder.container(keyedBy: CodingKeys.self)
-        let type = try container.decode(String.self, forKey: .actionType)
-        switch type {
-        case "insert":
-            let character = try container.decode(String.self, forKey: .character)
-            self = .insert(character)
-        case "insertHangul":
-            let unicodeString = try container.decode(String.self, forKey: .unicode)
-            guard let unicodeValue = unichar(unicodeString.replacingOccurrences(of: "0x", with: ""), radix: 16) else {
-                throw DecodingError.dataCorruptedError(forKey: .unicode, in: container, debugDescription: "Invalid unicode format")
-            }
-            let isTwoSet = try container.decode(Bool.self, forKey: .isTwoSet)
-            let hangul = Hangul(unicode: unicodeValue, isTwoSet: isTwoSet)
-            self = .insertHangul(hangul)
-        case "delete":
-            let direction = try container.decode(String.self, forKey: .direction)
-            switch direction {
-            case "forward":
-                self = .delete(direction: .foreward)
-            case "backward":
-                self = .delete(direction: .backward)
-            default:
-                throw DecodingError.dataCorruptedError(forKey: .direction, in: container, debugDescription: "Unknown Direction")
-            }
-        case "transition":
-            let state = try container.decode(Int.self, forKey: .to)
-            self = .transition(to: state)
-        case "convert":
-            self = .convert
-        case "noop":
-            let stopComposition = try container.decode(Bool.self, forKey: .stopComposition)
-            self = .noop(stopComposition: stopComposition)
+    static func fromRawValue(_ rawValue: Int64) -> KeyAction {
+        let typeInteger = rawValue >> 48
+        let entry1 = Int16(rawValue & 0xFFFF)
+        let entry2 = Int16((rawValue & 0xFFFF0000) >> 16)
+        let entry3 = Int16((rawValue & 0xFFFF00000000) >> 32)
+        
+        switch typeInteger {
+        case 0x00:
+            return .normalCharacter(unicode: Int32(rawValue & 0x10FFFF))
+        case 0x01:
+            return .sebeolsikHangul(leading: entry1, medial: entry2, trailing: entry3)
+        case 0x02:
+            return .dubeolsikHangul(leading: entry1, medial: entry2, trailing: entry3)
+        case 0x03:
+            return .specialKey(keyCode: Int32(rawValue & 0xFFFFFFFF))
+        case 0x05:
+            return .multipleCharacter(entry1, entry2, entry3)
+        case 0x06:
+            return .sebeolsikMTLHangul(leading: entry1, medial: entry2, trailing: entry3)
+        case 0x07:
+            return .sebeolsikTLMHangul(leading: entry1, medial: entry2, trailing: entry3)
+        case 0x08:
+            return .automataState(to: Int32(rawValue & 0xFFFFFFFF))
+        case 0x09:
+            let control = (rawValue & 0x00010000 != 0)
+            let option = (rawValue & 0x00100000 != 0)
+            let shift = (rawValue & 0x01000000 != 0)
+            let command = (rawValue & 0x10000000 != 0)
+            return .keyPress(keyCode: entry1, control: control, option: option, shift: shift, command: command)
+        case 0x10:
+            return .dubeolsikJongseongHangul(leading: entry1, medial: entry2, trailing: entry3)
         default:
-            throw DecodingError.dataCorruptedError(forKey: .actionType, in: container, debugDescription: "Unknown ActionType")
+            return .normalCharacter(unicode: 0)
         }
     }
 }
+struct InputProcessorData: Codable {
+    var flags: [InputProcessorFlag] = []
+    var additionalExpressions = AdditionalExpressions()
+    
+    var keyTable: [Key: Expression] = [:]
+    var keyTableDescription: String = ""
+    var additionalKeyTable: [ShortcutKey: Expression] = [:]
+    
+    var advancedKeyInput: [Key: Int] = [:] // TODO [키 코드: (누를 때 조건, 누를 때 방식, 변수, 식, 뗄 때 방식, 변수, 식)]
+    var normalKeyPrefixExpression: Expression? = nil
+    var advancedKeyPrefixExpression: Expression? = nil
+    
+    enum InputProcessorFlag: Codable {
+        case markAsSpecial
+        case plainInputProcessorCompatible // Windows 호환 옵션
+        case considerNonHangulComposingState
+        case allowAssignmentToStateVariable
+        case considerScrollLockState
+        
+        case useRandomNumber
+    }
+    struct AdditionalExpressions: Codable {
+        var prefixExpression: Expression? = nil
+        var postfixExpression: Expression? = nil
+        var onAppLaunch: Expression? = nil
+        var onFocus: Expression? = nil
+        var onKeyboardSwitch: Expression? = nil
+        var onComposingEnd: Expression? = nil
+        var onInputStopped: Expression? = nil
+    }
+}
 
-@Observable class Keyboard: Codable, Identifiable, Hashable, Equatable {
-    enum HangulRange: Codable {
+
+/* OUTPUT PROCESSOR OBJECT */
+
+enum DeleteKeyAction: Codable {
+    case byWhetherComposing(deletingUnit: DeletingUnit)
+    case byContinuousInput(deletingUnit: DeletingUnit)
+    case byExpression(deletingUnit: Expression)
+    
+    enum DeletingUnit: Codable {
+        case key
+        case leastSignificantKey
+        case leastSignificantJamo
+        case syllable
+        case word
+    }
+}
+struct CompositionRule: Codable {
+    var syncLeadingAndTrailing: Bool = false
+    var leading: [[Jamo]: Jamo] = [:]
+    var medial: [[Jamo]: Jamo] = [:]
+    var trailing: [[Jamo]: Jamo] = [:]
+}
+struct VirtualJamoRule: Codable {
+    var syncLeadingAndTrailing: Bool = false
+    var leading: [Jamo: Jamo] = [:]
+    var medial: [Jamo: Jamo] = [:]
+    var trailing: [Jamo: Jamo] = [:]
+}
+typealias TrailingToLeadingRule = [Jamo: [Jamo]]
+struct DecompositionSkipRule: Codable {
+    var leading: [Jamo: [Jamo]] = [:]
+    var medial: [Jamo: [Jamo]] = [:]
+    var trailing: [Jamo: [Jamo]] = [:]
+}
+struct AutomataEntry: Codable {
+    var expression: Expression
+    var fallbackState = 0
+    var description: String = ""
+}
+struct OutputProcessorData: Codable {
+    var flags: [OutputProcessorFlag] = []
+    
+    var deleteKeyRules: [DeleteKeyAction] = [] // TODO
+    var composableSyllableRange: SyllableRange = .modernFull
+    var timerRules: [String]? = nil
+    var privateCandidates: [String: String] = [:] // TODO [원문: (치환, 설명)]
+    
+    var compositionRules = CompositionRule() // 초성, 중성, 종성 각각 [(한글 자모, 한글 자모): 한글 자모]
+    var virtualJamoRules = VirtualJamoRule() // 초성, 중성, 종성 각각 [한글 자모: 한글 자모]
+    var trailingToLeadingRules = TrailingToLeadingRule() // [종성: (종성, 초성?, 초성)]
+    var decompositionSkipRules = DecompositionSkipRule() // 초성, 중성, 종성 각각 [한글 자모: (한글 자모, 한글 자모)]
+    var automataRules: [Int: AutomataEntry] = [:]
+    
+    var privateCompositionRules: [Int: String] = [:] // TODO [상태: [키: (새 상태, 입력, 조합)]]
+    var syllableSubstitution: [String: String] = [:] // TODO
+    var jamoSubstitution: [String: String] = [:] // TODO
+    
+    enum OutputProcessorFlag: Codable {
+        case doNotApplyFinalConversion
+    }
+    enum SyllableRange: Codable {
         case ksx1001        // KS X 1001에 있는 2350자
         case modernFull     // 현대 한글 음절 11172자 전체
         case hanyangPUA     // 현대 한글 + 한양 PUA 5299자
         case oldFull        // 가능한 모든 옛한글 음절 포함
     }
-    
+}
+
+
+/* MAIN OBJECT */
+
+@Observable class Keyboard: Codable, Identifiable, Hashable, Equatable {
     var id: String
     var name: String
     var description: String
-    var layout: [Key: [Condition: KeyAction]]
-    var compositionRules: [[Hangul]: Hangul]
-    var automata: [Int: [Condition: Int]]
-    var hangulRange: HangulRange  // 구성을 허용할 한글 음절자의 범위.
+    
+    // 각각 '입력 스키마', '문자 생성기'에 대응
+    var inputLevel: Level
+    var outputLevel: Level
+    enum Level: Codable {
+        case plain
+        case basic
+        case advanced
+    }
+    
+    var inputProcessorData: InputProcessorData
+    var outputProcessorData: OutputProcessorData
     
     static func == (lhs: Keyboard, rhs: Keyboard) -> Bool {
         return lhs.id == rhs.id
@@ -230,13 +230,15 @@ enum KeyAction: Codable, Hashable, Equatable {
         hasher.combine(id)
     }
     
-    init(id: String, name: String, description: String, layout: [Key: [Condition: KeyAction]], compositionRules: [[Hangul]: Hangul], automata: [Int: [Condition: Int]], hangulRange: HangulRange) {
+    init(id: String, name: String, description: String, inputLevel: Level, outputLevel: Level, inputProcessorData: InputProcessorData, outputProcessorData: OutputProcessorData) {
         self.id = id
         self.name = name
         self.description = description
-        self.layout = layout
-        self.compositionRules = compositionRules
-        self.automata = automata
-        self.hangulRange = hangulRange
+        
+        self.inputLevel = inputLevel
+        self.outputLevel = outputLevel
+        
+        self.inputProcessorData = inputProcessorData
+        self.outputProcessorData = outputProcessorData
     }
 }

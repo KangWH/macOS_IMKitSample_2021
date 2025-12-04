@@ -59,7 +59,7 @@ enum KeyCode: UInt16, Codable, Identifiable {
     // case tab             = 0x30
     // case space           = 0x31
     case grave              = 0x32
-    // case delete          = 0x33
+    case delete             = 0x33
     // case escape          = 0x35
     // case commandRight    = 0x36
     // case command         = 0x37
@@ -131,5 +131,63 @@ enum KeyCode: UInt16, Codable, Identifiable {
     
     var id: String {
         return self.rawValue.description
+    }
+    var name: String {
+        switch self {
+        case .a: return "A"
+        case .b: return "B"
+        case .c: return "C"
+        case .d: return "D"
+        case .e: return "E"
+        case .f: return "F"
+        case .g: return "G"
+        case .h: return "H"
+        case .i: return "I"
+        case .j: return "J"
+        case .k: return "K"
+        case .l: return "L"
+        case .m: return "M"
+        case .n: return "N"
+        case .o: return "O"
+        case .p: return "P"
+        case .q: return "Q"
+        case .r: return "R"
+        case .s: return "S"
+        case .t: return "T"
+        case .u: return "U"
+        case .v: return "V"
+        case .w: return "W"
+        case .x: return "X"
+        case .y: return "Y"
+        case .z: return "Z"
+            
+        case .zero: return "0"
+        case .one: return "1"
+        case .two: return "2"
+        case .three: return "3"
+        case .four: return "4"
+        case .five: return "5"
+        case .six: return "6"
+        case .seven: return "7"
+        case .eight: return "8"
+        case .nine: return "9"
+            
+        case .grave: return "`"
+        case .minus: return "-"
+        case .equal: return "="
+        case .backslash: return "\\"
+        case .leftBracket: return "["
+        case .rightBracket: return "]"
+        case .semicolon: return ";"
+        case .quote: return "'"
+        case .comma: return ","
+        case .period: return "."
+        case .slash: return "/"
+        case .section: return "§"
+        case .yen: return "¥"
+        case .underscore: return "_"
+            
+        case .delete: return "delete"
+        }
     }
 }
