@@ -8,7 +8,7 @@
 import Cocoa
 import InputMethodKit
 
-let fallBackKeyboard = dubeolsikOld
+let fallBackKeyboard = sebeolsik391
 
 @objc(IMKitSampleInputController)
 class IMKitSampleInputController: IMKInputController {

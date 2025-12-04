@@ -68,6 +68,10 @@ let dubeolsik = Keyboard(
         Key(keyCode: .equal, shift: true,  option: false): Expression.parse("'+'"),
         Key(keyCode: .equal, shift: false, option: true):  Expression.parse("'='"),
         Key(keyCode: .equal, shift: true,  option: true):  Expression.parse("'+'"),
+        Key(keyCode: .yen, shift: false, option: false): Expression.parse("'¥'"),
+        Key(keyCode: .yen, shift: true,  option: false): Expression.parse("'|'"),
+        Key(keyCode: .yen, shift: false, option: true):  Expression.parse("'¥'"),
+        Key(keyCode: .yen, shift: true,  option: true):  Expression.parse("'|'"),
         
         Key(keyCode: .q, shift: false, option: false): Expression.parse("T < 2 ? H2|B_ : H2|_B"),
         Key(keyCode: .q, shift: true,  option: false): Expression.parse("H3|BB"),
@@ -162,6 +166,10 @@ let dubeolsik = Keyboard(
         Key(keyCode: .semicolon, shift: true,  option: false): Expression.parse("':'"),
         Key(keyCode: .semicolon, shift: false, option: true):  Expression.parse("';'"),
         Key(keyCode: .semicolon, shift: true,  option: true):  Expression.parse("':'"),
+        Key(keyCode: .quote, shift: false, option: false): Expression.parse("''"),
+        Key(keyCode: .quote, shift: true, option: false): Expression.parse("'\"'"),
+        Key(keyCode: .quote, shift: false, option: true): Expression.parse("''"),
+        Key(keyCode: .quote, shift: true, option: true): Expression.parse("'\"'"),
         
         Key(keyCode: .section, shift: false, option: false): Expression.parse("'§'"),
         Key(keyCode: .section, shift: true,  option: false): Expression.parse("'±'"),
@@ -207,6 +215,10 @@ let dubeolsik = Keyboard(
         Key(keyCode: .slash, shift: true,  option: false): Expression.parse("'?'"),
         Key(keyCode: .slash, shift: false, option: true):  Expression.parse("'/'"),
         Key(keyCode: .slash, shift: true,  option: true):  Expression.parse("'?'"),
+        Key(keyCode: .underscore, shift: false, option: false): Expression.parse("'_'"),
+        Key(keyCode: .underscore, shift: true, option: false): Expression.parse("'_'"),
+        Key(keyCode: .underscore, shift: false, option: true): Expression.parse("'_'"),
+        Key(keyCode: .underscore, shift: true, option: true): Expression.parse("'_'"),
     ]),
     
     outputProcessorData: OutputProcessorData(

@@ -162,6 +162,14 @@ let dubeolsikOld = Keyboard(
             Key(keyCode: .semicolon, shift: true,  option: false): Expression.parse("':'"),
             Key(keyCode: .semicolon, shift: false, option: true):  Expression.parse("';'"),
             Key(keyCode: .semicolon, shift: true,  option: true):  Expression.parse("':'"),
+            Key(keyCode: .quote, shift: false, option: false): Expression.parse("''"),
+            Key(keyCode: .quote, shift: true, option: false): Expression.parse("'\"'"),
+            Key(keyCode: .quote, shift: false, option: true): Expression.parse("''"),
+            Key(keyCode: .quote, shift: true, option: true): Expression.parse("'\"'"),
+            Key(keyCode: .yen, shift: false, option: false): Expression.parse("'¥'"),
+            Key(keyCode: .yen, shift: true,  option: false): Expression.parse("'|'"),
+            Key(keyCode: .yen, shift: false, option: true):  Expression.parse("'¥'"),
+            Key(keyCode: .yen, shift: true,  option: true):  Expression.parse("'|'"),
             
             Key(keyCode: .section, shift: false, option: false): Expression.parse("'§'"),
             Key(keyCode: .section, shift: true,  option: false): Expression.parse("'±'"),
@@ -207,6 +215,10 @@ let dubeolsikOld = Keyboard(
             Key(keyCode: .slash, shift: true,  option: false): Expression.parse("'?'"),
             Key(keyCode: .slash, shift: false, option: true):  Expression.parse("'/'"),
             Key(keyCode: .slash, shift: true,  option: true):  Expression.parse("'?'"),
+            Key(keyCode: .underscore, shift: false, option: false): Expression.parse("'_'"),
+            Key(keyCode: .underscore, shift: true, option: false): Expression.parse("'_'"),
+            Key(keyCode: .underscore, shift: false, option: true): Expression.parse("'_'"),
+            Key(keyCode: .underscore, shift: true, option: true): Expression.parse("'_'"),
         ]
     ),
     
