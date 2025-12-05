@@ -759,7 +759,7 @@ let TrailingToCompatibility: [Int: Int] = [
     0x11F9: 0x3186, // _X
 ]
 
-class Jamo: Hashable, Codable {
+nonisolated class Jamo: Hashable, Codable {
     var code: Int16
     var position: Position
     var keySet: KeySet

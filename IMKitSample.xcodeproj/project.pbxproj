@@ -14,6 +14,8 @@
 		1A41E64726E74937009B65D7 /* main.tiff in Resources */ = {isa = PBXBuildFile; fileRef = 1A41E64626E74937009B65D7 /* main.tiff */; };
 		436158252EE198D500E9B22A /* sebeolsik391.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436158242EE198D500E9B22A /* sebeolsik391.swift */; };
 		436158262EE198D500E9B22A /* sebeolsik391.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436158242EE198D500E9B22A /* sebeolsik391.swift */; };
+		436158282EE1CF2D00E9B22A /* KeyActionInputView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436158272EE1CF2D00E9B22A /* KeyActionInputView.swift */; };
+		4361582A2EE27AE100E9B22A /* AutomataView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436158292EE27AE100E9B22A /* AutomataView.swift */; };
 		436BCD012ED7CA5B00570B5C /* FileManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 436BCD002ED7CA5B00570B5C /* FileManager.swift */; };
 		436BCD292ED8512300570B5C /* Hangul.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43779DEF2ED442390058E07C /* Hangul.swift */; };
 		436BCD2A2ED8512A00570B5C /* KeyCodes.swift in Sources */ = {isa = PBXBuildFile; fileRef = 438BBBEB2ED5DD5C00A269BA /* KeyCodes.swift */; };
@@ -70,6 +72,8 @@
 		1A41E64626E74937009B65D7 /* main.tiff */ = {isa = PBXFileReference; lastKnownFileType = image.tiff; name = main.tiff; path = IMKitSample/main.tiff; sourceTree = SOURCE_ROOT; };
 		1A41E64826E7495A009B65D7 /* IMKitSample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = IMKitSample.entitlements; sourceTree = "<group>"; };
 		436158242EE198D500E9B22A /* sebeolsik391.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = sebeolsik391.swift; sourceTree = "<group>"; };
+		436158272EE1CF2D00E9B22A /* KeyActionInputView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyActionInputView.swift; sourceTree = "<group>"; };
+		436158292EE27AE100E9B22A /* AutomataView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AutomataView.swift; sourceTree = "<group>"; };
 		436BCD002ED7CA5B00570B5C /* FileManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FileManager.swift; path = Data/FileManager.swift; sourceTree = SOURCE_ROOT; };
 		436BCD082ED84F3F00570B5C /* HaneulIMESettings.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = HaneulIMESettings.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		43779DEF2ED442390058E07C /* Hangul.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Hangul.swift; sourceTree = "<group>"; };
@@ -204,8 +208,10 @@
 				43BC364A2EDB327A001ED719 /* SettingsView.swift */,
 				43BC36482EDB327A001ED719 /* GeneralView.swift */,
 				43BC36492EDB327A001ED719 /* KeyboardDataView.swift */,
+				436158292EE27AE100E9B22A /* AutomataView.swift */,
 				43BC36662EDB3AD2001ED719 /* LayoutView.swift */,
 				43BC366E2EDBF402001ED719 /* KeyOptionView.swift */,
+				436158272EE1CF2D00E9B22A /* KeyActionInputView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -439,6 +445,8 @@
 				43BC365B2EDB327A001ED719 /* SettingsView.swift in Sources */,
 				43BC36622EDB327A001ED719 /* AppEnvironment.swift in Sources */,
 				43BC36632EDB327A001ED719 /* ContentView.swift in Sources */,
+				436158282EE1CF2D00E9B22A /* KeyActionInputView.swift in Sources */,
+				4361582A2EE27AE100E9B22A /* AutomataView.swift in Sources */,
 				43BC366F2EDBF402001ED719 /* KeyOptionView.swift in Sources */,
 				43BC36642EDB327A001ED719 /* HaneulIMESettingsApp.swift in Sources */,
 				43BC366A2EDBC018001ED719 /* Expression.swift in Sources */,

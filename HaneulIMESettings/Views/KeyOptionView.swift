@@ -9,28 +9,29 @@ import SwiftUI
 
 struct KeyOptionView: View {
     @Environment(\.dismiss) var dismiss
+    
     let key: Key
     @Binding var expression: String
+    var onSave: (String) -> Void
     
-    @State private var expressionBuffer: String
-    
-    init(key: Key, expression: Binding<String>) {
-        self.key = key
-        self._expression = expression
-        self._expressionBuffer = State(initialValue: expression.wrappedValue)
-    }
+    @State var keyPaletteOpened = false
     
     var body: some View {
         Form {
             Section {
                 HStack {
                     Text("표현식")
-                    TextField("", text: $expressionBuffer)
+                    TextField("", text: $expression)
                         .monospaced()
                 }
                 HStack {
                     Spacer()
-                    Button("문자 상수 입력 도우미...", action: {})
+                    Button("문자 상수 입력 도우미...", action: {
+                        keyPaletteOpened.toggle()
+                    })
+                    .sheet(isPresented: $keyPaletteOpened) {
+                        KeyActionInputView()
+                    }
                 }
             } header: {
                 HStack(spacing: 0) {
@@ -51,7 +52,9 @@ struct KeyOptionView: View {
             Button("취소") { dismiss() }
             Button("확인", action: {
                 do {
-                    let expression = try Expression.parse(expressionBuffer)
+                    let _ = try Expression.parse(expression)
+                    onSave(expression)
+                    dismiss()
                 } catch {
                     print("There is a syntax error in the expression.")
                 }
@@ -63,5 +66,5 @@ struct KeyOptionView: View {
 }
 
 #Preview {
-    KeyOptionView(key: Key(keyCode: .a, shift: false, option: true), expression: .constant("Hello!"))
+    KeyOptionView(key: Key(keyCode: .a, shift: false, option: true), expression: .constant("Hello!"), onSave: { _ in })
 }

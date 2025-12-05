@@ -11,7 +11,7 @@ import AppKit
 
 /* INPUT PROCESSOR OBJECT */
 
-struct Key: Hashable, Equatable, Codable {
+nonisolated struct Key: Hashable, Equatable, Codable {
     var keyCode: KeyCode
     var shift: Bool
     var option: Bool
@@ -41,7 +41,7 @@ struct Key: Hashable, Equatable, Codable {
         return self.shift == event.modifierFlags.contains(.shift) && self.option == event.modifierFlags.contains(.option)
     }
 }
-struct ShortcutKey: Hashable, Equatable, Codable {
+nonisolated struct ShortcutKey: Hashable, Equatable, Codable {
     var keyCode: KeyCode
     var control: ModifierCondition
     var option: ModifierCondition
@@ -128,7 +128,7 @@ enum KeyAction: Equatable, Codable {
         }
     }
 }
-struct InputProcessorData: Codable {
+@Observable class InputProcessorData: Codable {
     var flags: [InputProcessorFlag] = []
     var additionalExpressions = AdditionalExpressions()
     
@@ -157,6 +157,26 @@ struct InputProcessorData: Codable {
         var onKeyboardSwitch: Expression? = nil
         var onComposingEnd: Expression? = nil
         var onInputStopped: Expression? = nil
+    }
+    
+    init(
+        flags: [InputProcessorFlag] = [],
+        additionalExpressions: AdditionalExpressions = AdditionalExpressions(),
+        keyTable: [Key : String] = [:],
+        keyTableDescription: String = "",
+        additionalKeyTable: [ShortcutKey : Expression] = [:],
+        advancedKeyInput: [Key : Int] = [:],
+        normalKeyPrefixExpression: Expression? = nil,
+        advancedKeyPrefixExpression: Expression? = nil
+    ) {
+        self.flags = flags
+        self.additionalExpressions = additionalExpressions
+        self.keyTable = keyTable
+        self.keyTableDescription = keyTableDescription
+        self.additionalKeyTable = additionalKeyTable
+        self.advancedKeyInput = advancedKeyInput
+        self.normalKeyPrefixExpression = normalKeyPrefixExpression
+        self.advancedKeyPrefixExpression = advancedKeyPrefixExpression
     }
 }
 
@@ -199,7 +219,7 @@ struct AutomataEntry: Codable {
     var fallbackState = 0
     var description: String = ""
 }
-struct OutputProcessorData: Codable {
+@Observable class OutputProcessorData: Codable {
     var flags: [OutputProcessorFlag] = []
     
     var deleteKeyRules: [DeleteKeyAction] = [] // TODO
@@ -225,6 +245,36 @@ struct OutputProcessorData: Codable {
         case modernFull     // 현대 한글 음절 11172자 전체
         case hanyangPUA     // 현대 한글 + 한양 PUA 5299자
         case oldFull        // 가능한 모든 옛한글 음절 포함
+    }
+    
+    init(
+        flags: [OutputProcessorFlag] = [],
+        deleteKeyRules: [DeleteKeyAction] = [],
+        composableSyllableRange: SyllableRange = .modernFull,
+        timerRules: [String]? = nil,
+        privateCandidates: [String : String] = [:],
+        compositionRules: CompositionRule = CompositionRule(),
+        virtualJamoRules: VirtualJamoRule = VirtualJamoRule(),
+        trailingToLeadingRules: TrailingToLeadingRule = TrailingToLeadingRule(),
+        decompositionSkipRules: DecompositionSkipRule = DecompositionSkipRule(),
+        automataRules: [Int : AutomataEntry] = [:],
+        privateCompositionRules: [Int : String] = [:],
+        syllableSubstitution: [String : String] = [:],
+        jamoSubstitution: [String : String] = [:]
+    ) {
+        self.flags = flags
+        self.deleteKeyRules = deleteKeyRules
+        self.composableSyllableRange = composableSyllableRange
+        self.timerRules = timerRules
+        self.privateCandidates = privateCandidates
+        self.compositionRules = compositionRules
+        self.virtualJamoRules = virtualJamoRules
+        self.trailingToLeadingRules = trailingToLeadingRules
+        self.decompositionSkipRules = decompositionSkipRules
+        self.automataRules = automataRules
+        self.privateCompositionRules = privateCompositionRules
+        self.syllableSubstitution = syllableSubstitution
+        self.jamoSubstitution = jamoSubstitution
     }
 }
 
